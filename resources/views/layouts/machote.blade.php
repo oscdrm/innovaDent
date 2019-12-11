@@ -36,93 +36,63 @@
      <!-- ASSETS CSS INSPINIA -->
 
 </head>
-<body>
-    <div id="wrapper">
-            <nav class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav metismenu" id="side-menu">
-                        <li class="nav-header">
-                            <div class="dropdown profile-element"> <div style="width:50px; height:56px;">
-                                <img alt="image" class="img-circle" src="{{asset('img/os.jpeg')}}" style="width:100%; height:100%;"/>
-                                </div>
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->name }}</strong>
-                                </span> <span class="text-muted text-xs block">Director General <b class="caret"></b></span> </span> </a>
-                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                    <li><a href="profile.html">Perfil</a></li>
-                                    <li><a href="login.html">Logout</a></li>
-                                </ul>
-                            </div>
-                            <div class="logo-element">
-                                IDH
-                            </div>
-                        </li>
-                        <li>
-                            <a href="{{ url('/home') }}"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Personal</span> <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li class="active"><a href="index.html">Cajeras</a></li>
-                                <li><a href="dashboard_2.html">Medicos</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Operaciones</span> <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li class="active"><a href="index.html">Cobros</a></li>
-                                <li><a href="dashboard_2.html">Tratamientos</a></li>
-                                <li><a href="dashboard_3.html">Pacientes</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Citas</span></a>
-                        </li>
+<body class="gray-bg">
+    <div  id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Oscar') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
                     </ul>
 
-                </div>
-            </nav>
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
-            <div id="page-wrapper" class="gray-bg dashbard-1">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                    <!--<form role="search" class="navbar-form-custom" action="search_results.html">
-                        <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>-->
-                </div>
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <a  href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"
-                            >
-                                <i class="fa fa-sign-out"></i> {{ __('Cerrar Sesión') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                            </form>
-                        </li>
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
                     </ul>
-
-                </nav>
-            </div>
-                <!-- Main content-->
-                <div class="wrapper wrapper-content">
-
-                <main class="py-4">
-                    @yield('content')
-                </main>
-                
-
                 </div>
-                <!-- END Main content-->
+            </div>
+        </nav>
 
-            </div><!--END PAGE-WRAPPER-->
-    </div><!--END WRAPPER-->
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 
 <!--  SCRIPTS INSPINIA  -->
 
@@ -175,7 +145,7 @@
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Vamos a darle con todo hoy', 'Hola Oscar');
+                toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
 
             }, 1300);
 
@@ -270,3 +240,23 @@
 
 </body>
 </html>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

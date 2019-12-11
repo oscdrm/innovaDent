@@ -15,7 +15,11 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'testController@probando');
+Route::get('/', function(){
+
+    return view('auth/login');
+
+});
 
 Route::get('/prueba', function(){ 
     return 'Hola soy Oscar, mundo laravel';
