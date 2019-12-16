@@ -26,6 +26,25 @@ Route::get('/prueba', function(){
 });
 
 
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//RUTAS PARA PAIENTES
+Route::get('/patients', 'PatientsController@index')->name('patients'); //Listado
+Route::get('/patients/create', 'PatientsController@create'); //Crear
+Route::post('/patients', 'PatientsController@store'); //Guardar paciente
+Route::get('/patients/{id}/edit', 'PatientsController@edit'); //Editar
+Route::post('/patients/{id}/edit', 'PatientsController@update'); //actualizar paciente
+Route::delete('/patients/{id}', 'PatientsController@delete'); //actualizar paciente
+
+//Rutas para tiendas
+Route::get('/stores', 'StoresController@index'); //Listado
+Route::get('/stores/create', 'StoresController@create'); //Crear
+Route::post('/stores', 'StoresController@store'); //Guardar 
+Route::get('/stores/{id}/edit', 'StoresController@edit'); //Editar
+Route::post('/stores/{id}/edit', 'StoresController@update'); //actualizar
+Route::delete('/stores/{id}', 'StoresController@delete'); //actualizar
+

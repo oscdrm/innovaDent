@@ -20,6 +20,7 @@ class CreatePatientsTable extends Migration
             $table->string('age')->nullable();
             $table->string('telephone');
             $table->string('email')->nullable();
+            $table->string('user_photo')->nullable();
             $table->timestamps();
         });
     }

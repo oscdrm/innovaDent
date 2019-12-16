@@ -30,4 +30,10 @@ class Treatment extends Model
         return $this->hasMany(TreatmentSession::class);
     }
 
+    //$treatment->clinicHistories
+    public function clinicHistories()
+    {
+        return $this->hasMany(ClinicHistory::class);
+    }
+
 }

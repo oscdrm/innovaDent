@@ -2,7 +2,7 @@
 
 @section('content')
  <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-10">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-success pull-right">Diario</span>
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-     <div class="col-lg-3">
+     <div class="col-lg-10">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-info pull-right">Semanal</span>
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-     <div class="col-lg-3">
+     <div class="col-lg-10">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-primary pull-right">Mensual</span>
@@ -46,3 +46,5 @@
 
 </div>
 @endsection
+
+@extends('saludo')
