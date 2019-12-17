@@ -20,6 +20,32 @@
   border-radius:100px;
 }
 
+
+.actions-custom{
+  margin: 0px 5px;
+}
+
+.actions-custom i{
+  padding-right: 5px;
+}
+
+.yellow{
+  color:#ff9900;
+}
+
+.yellow:hover{
+  color:#ff9900;
+}
+
+.red{
+  color:#cc0000;
+}
+
+.btn-custom{
+  background: transparent;
+  border:none;
+}
+
 h1,
 h2,
 h3,

@@ -46,5 +46,14 @@ Route::get('/stores/create', 'StoresController@create'); //Crear
 Route::post('/stores', 'StoresController@store'); //Guardar 
 Route::get('/stores/{id}/edit', 'StoresController@edit'); //Editar
 Route::post('/stores/{id}/edit', 'StoresController@update'); //actualizar
-Route::delete('/stores/{id}', 'StoresController@delete'); //actualizar
+Route::delete('/stores/{id}', 'StoresController@delete'); //Eliminar
+
+//Rutas para concepto
+//Rutas para tiendas
+Route::get('/concepts', 'ConceptsController@index'); //Listado
+Route::get('/concepts/create', 'ConceptsController@create'); //Crear
+Route::post('/concepts', 'ConceptsController@store'); //Guardar 
+Route::get('/concepts/{id}/edit', 'ConceptsController@edit'); //Editar
+Route::post('/concepts/{id}/edit', 'ConceptsController@update'); //actualizar
+Route::delete('/concepts/{id}', 'ConceptsController@delete'); //actualizar
 

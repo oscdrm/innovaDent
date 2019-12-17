@@ -33,8 +33,8 @@
     <link href="{{asset('css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{asset('css/plugins/jasny/jasny-bootstrap.min.css')}}" rel="stylesheet">
-
-     <!-- ASSETS CSS INSPINIA -->
+    <!--CHOOSEN SELECT-->
+    <link href="{{asset('css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -75,7 +75,7 @@
                                 <li><a href="treatments">Tratamientos</a></li>
                                 <li><a href="/patients">Pacientes</a></li>
                                 <li><a href="/stores">Tiendas</a></li>
-                                <li><a href="/services">Servicios</a></li>
+                                <li><a href="/concepts">Servicios</a></li>
                                 <li><a href="/patients">Corte de Caja</a></li>
                             </ul>
                         </li>
@@ -170,6 +170,14 @@
     <script src="{{asset('js/plugins/toastr/toastr.min.js')}}"></script>
 
     <script src="{{asset('js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
+
+    <script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+
+    <script src="{{asset('js/plugins/chosen/chosen.jquery.js')}}"></script>
+
+    <script>
+        $('.chosen-select').chosen({width: "100%"});
+    </script>
 
 </body>
 </html>
