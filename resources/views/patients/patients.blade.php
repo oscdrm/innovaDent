@@ -61,11 +61,13 @@
                             <div class="m-t-xs btn-group">
                                 <a class="btn btn-xs btn-white">Perfil</a>
                                 <a href="{{url('/patients/'.$patient->id.'/edit')}}" class="btn btn-xs btn-white">Editar</a>
+                                @if(auth()->user()->role->id == 1)
                                 <form style="display:inline" method="post" action="{{url('/patients/'.$patient->id)}}">
                                     @csrf
                                     {{method_field('DELETE')}}
                                     <button type="submit" title="Eliminar" class="btn btn-xs btn-white">Eliminar</button>
                                 </form>
+                                @endif
                             </div>
                         </div>
 

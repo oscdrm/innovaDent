@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminMiddleware
+class CashierMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,11 +14,10 @@ class AdminMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {      
-        if(auth()->user()->role->id != 1){
+    {   
+        if(auth()->user()->role->id != 2){
             return redirect('/home');
         }
-
         return $next($request);
     }
 }

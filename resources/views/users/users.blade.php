@@ -60,7 +60,7 @@
                         <a href="profile.html">
                             <img alt="image" class="img-circle" src="{{$user->user_photo ? asset($user->user_photo) : asset('img/profile.jpg')}}">
                             <h3 class="m-b-xs"><strong>{{$user->name}} {{$user->lastName}}</strong></h3>
-                            <div class="font-bold">Edad: {{$user->email}}</div>
+                            <div class="font-bold">Edad: {{$user->age}}</div>
                             <div class="font-bold">{{$user->email}}</div>
                             <address class="m-t-md">
                                 <strong>Dirección</strong><br>

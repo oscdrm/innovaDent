@@ -44,11 +44,11 @@
                     <ul class="nav metismenu" id="side-menu">
                         <li class="nav-header">
                             <div class="dropdown profile-element"> <div style="width:50px; height:56px;">
-                                <img alt="image" class="img-circle" src="{{asset('img/os.jpeg')}}" style="width:100%; height:100%;"/>
+                                <img alt="image" class="img-circle" style="width:100%;" src="{{Auth::user()->user_photo ? asset(Auth::user()->user_photo) : asset('img/profile.jpg')}}">
                                 </div>
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->name }}</strong>
-                                </span> <span class="text-muted text-xs block">Director General <b class="caret"></b></span> </span> </a>
+                                </span> <span class="text-muted text-xs block">{{Auth::user()->role->name}} <b class="caret"></b></span> </span> </a>
                                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                     <li><a href="profile.html">Perfil</a></li>
                                     <li><a href="login.html">Logout</a></li>
@@ -61,6 +61,7 @@
                         <li>
                             <a href="{{ url('/home') }}"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                         </li>
+                        @if(auth()->user()->role->id == 1)
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Personal</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -69,15 +70,18 @@
                                 <li><a href="/users/admin/index">Administradores</a></li>
                             </ul>
                         </li>
+                        @endif
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Operaciones</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li class="active"><a href="index.html">Consultas</a></li>
-                                <li><a href="treatments">Tratamientos</a></li>
                                 <li><a href="/patients">Pacientes</a></li>
+                                <li><a href="index.html">Consultas</a></li>
+                                <li><a href="treatments">Tratamientos</a></li>
+                                @if(auth()->user()->role->id == 1)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
                                 <li><a href="/patients">Corte de Caja</a></li>
+                                @endif
                             </ul>
                         </li>
                         <li>
