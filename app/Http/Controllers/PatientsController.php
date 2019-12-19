@@ -43,8 +43,8 @@ class PatientsController extends Controller
         $rules = [
             'name' => 'required | alpha | min:3',
             'lastName' => 'required | alpha | min:3',
-            'age' => 'digits:0 | max:3',
-            'telephone' => 'digits:0 | max:10 | min:10',
+            'age' => ' max:3',
+            'telephone' => ' max:10 | min:10',
             'email' => 'email',
         ];
 
@@ -61,6 +61,7 @@ class PatientsController extends Controller
         $patient->email = $email;
         
         $img_user = $request->file('user_photo');
+        if($img_user){
         $user_photo = Image::make($img_user);
         $target = $email.".".$img_user->getClientOriginalExtension();
         $user_photo->resize(200,200);
@@ -69,6 +70,7 @@ class PatientsController extends Controller
         $target = 'img/'.$email.".".$img_user->getClientOriginalExtension();
 
         $patient->user_photo = $target;
+        }
         $patient->save();
 
         $address = new Address();

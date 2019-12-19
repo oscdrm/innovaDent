@@ -14,7 +14,15 @@ class AdminMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {      
+        if(!auth()->check()){
+            return redirect('/login');
+        }
+
+        if((!auth()->user()->role()->id == 1) || (!auth()->user()->role()->name == 'Admin')){
+            return redirect('/login');
+        }
+
         return $next($request);
     }
 }

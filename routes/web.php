@@ -48,12 +48,19 @@ Route::get('/stores/{id}/edit', 'StoresController@edit'); //Editar
 Route::post('/stores/{id}/edit', 'StoresController@update'); //actualizar
 Route::delete('/stores/{id}', 'StoresController@delete'); //Eliminar
 
-//Rutas para concepto
 //Rutas para tiendas
 Route::get('/concepts', 'ConceptsController@index'); //Listado
 Route::get('/concepts/create', 'ConceptsController@create'); //Crear
 Route::post('/concepts', 'ConceptsController@store'); //Guardar 
 Route::get('/concepts/{id}/edit', 'ConceptsController@edit'); //Editar
 Route::post('/concepts/{id}/edit', 'ConceptsController@update'); //actualizar
-Route::delete('/concepts/{id}', 'ConceptsController@delete'); //actualizar
+Route::delete('/concepts/{id}', 'ConceptsController@delete'); //Eliminar
+
+//Rutas para cajeros
+Route::get('/users/{role}/index', 'UsersController@index'); //Listado
+Route::get('/users/{role}/create', 'UsersController@create'); //Crear
+Route::post('users/{role}/', 'UsersController@store'); //Guardar 
+Route::get('users/{role}/{id}/edit', 'UsersController@edit'); //Editar
+Route::post('users/{id}/edit', 'UsersController@update'); //actualizar
+Route::delete('users/{id}', 'UsersController@delete'); //Eliminar
 
