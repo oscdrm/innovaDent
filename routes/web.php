@@ -26,14 +26,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Middlaware solo admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    //RUTAS PARA PAIENTES
-    Route::get('/patients', 'PatientsController@index')->name('patients'); //Listado
-    Route::get('/patients/create', 'PatientsController@create'); //Crear
-    Route::post('/patients', 'PatientsController@store'); //Guardar paciente
-    Route::get('/patients/{id}/edit', 'PatientsController@edit'); //Editar
-    Route::post('/patients/{id}/edit', 'PatientsController@update'); //actualizar paciente
-    Route::delete('/patients/{id}', 'PatientsController@delete'); //actualizar paciente
+    
+    //RUTAS PARA PATIENT
+    Route::delete('/patients/{id}', 'PatientsController@delete'); //Eliminar paciente
 
     //Rutas para tiendas
     Route::get('/stores', 'StoresController@index'); //Listado
@@ -60,12 +57,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('users/{id}', 'UsersController@delete'); //Eliminar
 });
 
+//Middlaware para ADMIN y CAJERO
 Route::middleware(['auth', 'cashier'])->group(function () {
     //RUTAS PARA PAIENTES
-    Route::get('/patients', 'PatientsController@index')->name('patients'); //Listado
     Route::get('/patients/create', 'PatientsController@create'); //Crear
     Route::post('/patients', 'PatientsController@store'); //Guardar paciente
     Route::get('/patients/{id}/edit', 'PatientsController@edit'); //Editar
     Route::post('/patients/{id}/edit', 'PatientsController@update'); //actualizar paciente
 });
 
+//Middlaware para los tres perfiles
+Route::middleware(['auth'])->group(function () {
+    //RUTAS PARA PAIENTES
+    Route::get('/patients', 'PatientsController@index')->name('patients'); //Listado
+
+});

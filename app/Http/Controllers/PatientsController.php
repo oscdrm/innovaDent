@@ -102,7 +102,7 @@ class PatientsController extends Controller
             'required' => 'Es necesario ingresar un valor para el campo :attribute',
             'alpha' => 'Solo puedes introducir letras para el campo :attribute',
             'min' => 'Debes ingresar al menos :min caracteres en el campo :attribute',
-            'digits' => 'Solo puedes ingresar numeros en el campo :attribute',
+            'numeric' => 'Solo puedes ingresar numeros en el campo :attribute',
             'max' => 'No debes ingresar mas :max caracteres en el campo :attribute',
             'email' => 'Debes ingresar un email valido example@example.com'
         ];
@@ -111,8 +111,8 @@ class PatientsController extends Controller
         $rules = [
             'name' => 'required | alpha | min:3',
             'lastName' => 'required | alpha | min:3',
-            'age' => 'digits:0 | max:3',
-            'telephone' => 'digits:0 | max:10 | min:10',
+            'age' => 'max:3',
+            'telephone' => 'max:10 | min:10',
             'email' => 'email',
         ];
 
