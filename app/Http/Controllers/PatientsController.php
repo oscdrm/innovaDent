@@ -73,13 +73,15 @@ class PatientsController extends Controller
         }
         $patient->save();
 
-        $address = new Address();
-        $address->street = $request->input('street');
-        $address->number = $request->input('number');
-        $address->colonia = $request->input('colonia');
-        $address->cp = $request->input('cp');
-        $address->patient_id = $patient->id;
-        $address->save();
+        if($request->input('street') && $request->input('colonia')){
+            $address = new Address();
+            $address->street = $request->input('street');
+            $address->number = $request->input('number');
+            $address->colonia = $request->input('colonia');
+            $address->cp = $request->input('cp');
+            $address->patient_id = $patient->id;
+            $address->save();
+        }    
 
         return redirect('/patients');
     }
@@ -139,13 +141,26 @@ class PatientsController extends Controller
         $patient->user_photo = $target;
         $patient->save();
 
-        $address = new Address();
-        $address->street = $request->input('street');
-        $address->number = $request->input('number');
-        $address->colonia = $request->input('colonia');
-        $address->cp = $request->input('cp');
-        $address->patient_id = $patient->id;
-        $address->save();
+        if($patient->addresses->count() >= 1){
+            $add_id = $patient->addresses->last()->id;
+            $address = Address::find($add_id);
+            $address->street = $request->input('street');
+            $address->number = $request->input('number');
+            $address->colonia = $request->input('colonia');
+            $address->cp = $request->input('cp');
+            $address->patient_id = $patient->id;
+            $address->save();
+        }else{
+            if($request->input('street') && $request->input('colonia')){
+                $address = new Address();
+                $address->street = $request->input('street');
+                $address->number = $request->input('number');
+                $address->colonia = $request->input('colonia');
+                $address->cp = $request->input('cp');
+                $address->patient_id = $patient->id;
+                $address->save();
+            }    
+        }
 
         return redirect('/patients');
     }

@@ -16,9 +16,9 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('street');
-            $table->string('number');
+            $table->string('number')->nullable();
             $table->string('colonia');
-            $table->string('cp');
+            $table->string('cp')->nullable();
             
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

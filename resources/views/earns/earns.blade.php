@@ -4,39 +4,52 @@
 <div class="wrapper wrapper-content animated fadeInRight">
  <div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-2">
-           <a href="{{url('/patients/create')}}">
-                <div class="widget lazur-bg p-lg text-center">
-                    <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
-                        <h3 class="font-bold no-margins">
-                            Nuevo Paciente
-                        </h3>
+        <div class="col-lg-4">
+            <form action="{{url('/earning/calculate')}}" method="post">
+                @csrf
+                <div class="form-group" style="margin-bottom:35px">
+                    <div style="padding:10px 0px;">
+                        <label class="col-lg-2 control-label">Doctor</label>
+                        <div class="col-sm-10">
+                            <select data-placeholder="Selecciona una tienda" name="doctor" class="chosen-select"  tabindex="2">
+                                <option value="">Selecciona un Doctor</option>
+                                @foreach ($doctors as $doctor)
+                                    <option value="{{$doctor->id}}">{{$doctor->name}} {{$doctor->lastName}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </a>
-        </div>
 
-        <div class="col-lg-2">
-            <a href="{{url('/consults/create')}}">
-                <div class="widget yellow-bg p-lg text-center">
-                    <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-stethoscope fa-4x"></i>
-                        <h3 class="font-bold no-margins">
-                            Nueva Consulta
-                        </h3>
+                <div class="filter">
+                    <div class="form-group" id="data_5">
+                        <label class="font-normal">Selecciona las fechas de corte</label>
+                        <div class="input-daterange input-group" id="datepicker">
+                            <span class="input-group-addon">Del</span>
+                            <input type="text" class="input-sm form-control datepicker" data-date-format="dd/mm/yyyy" name="start"/>
+                            <span class="input-group-addon">al</span>
+                            <input type="text" class="input-sm form-control datepicker" data-date-format="dd/mm/yyyy" name="end"/>
+                        </div>
                     </div>
+                </div>               
+               
+                <div class="form-group">
+
+                        <button id="filter" type="button" class="btn btn-w-m btn-info">Filtrar por fechas</button>
+                        <button type="submit" class="btn btn-w-m btn-success">Realizar corte</button>
+
                 </div>
-            </a>
+
+            </form>
         </div>
 
 
         <div class="col-lg-4">
             <div class="widget navy-bg p-lg text-center">
                     <div class="m-b-md">
-                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountToday}}</span>
+                        <span style="font-size:55px;">{{$serviciosRealizados}}</span>
                         <h3 class="font-bold no-margins">
-                            Corte del dia
+                            Servicios Realizados
                         </h3>
                     </div>
                 </div>
@@ -63,7 +76,7 @@
             <div class="ibox-content">
              <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Consultas Recientes</h2>
+                    <h2>Consultas {{$sendConsults ? $sendConsults : "Recientes"}}</h2>
                 </div>
             </div>
     
@@ -86,7 +99,7 @@
                                {{$consult->id}} 
                             </td>
                             <td>
-                                {{$consult->patient->name}}
+                                {{$consult->patient->name}} {{$consult->patient->lastName}}
                             </td>
                             <td>
                                 {{$consult->amount}}
@@ -95,7 +108,7 @@
                                 {{$consult->created_at}}
                             </td>
                             <td>
-                                {{$consult->doctor->name}}
+                                {{$consult->doctor->name}} {{$consult->patient->lastName}}
                             </td>
                             <td>
                                 {{$consult->concept->name}}
@@ -111,6 +124,7 @@
 </div>
 </div>
 </div>
+
 @endsection
 
 @extends('saludo')

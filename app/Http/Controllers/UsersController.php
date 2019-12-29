@@ -116,14 +116,15 @@ class UsersController extends Controller
         }
         $user->save();
 
-        $address = new Address();
-        $address->street = $request->input('street');
-        $address->number = $request->input('number');
-        $address->colonia = $request->input('colonia');
-        $address->cp = $request->input('cp');
-        $address->user_id = $user->id;
-        $address->save();
-
+        if($request->input('street') && $request->input('colonia')){
+            $address = new Address();
+            $address->street = $request->input('street');
+            $address->number = $request->input('number');
+            $address->colonia = $request->input('colonia');
+            $address->cp = $request->input('cp');
+            $address->user_id = $user->id;
+            $address->save();
+        }    
 
         return redirect('/users/'.$role.'/index');
     }
@@ -212,13 +213,15 @@ class UsersController extends Controller
             $address->user_id = $user->id;
             $address->save();
         }else{
-            $address = new Address();
-            $address->street = $request->input('street');
-            $address->number = $request->input('number');
-            $address->colonia = $request->input('colonia');
-            $address->cp = $request->input('cp');
-            $address->user_id = $user->id;
-            $address->save();
+            if($request->input('street') && $request->input('colonia')){
+                $address = new Address();
+                $address->street = $request->input('street');
+                $address->number = $request->input('number');
+                $address->colonia = $request->input('colonia');
+                $address->cp = $request->input('cp');
+                $address->user_id = $user->id;
+                $address->save();
+            }    
         }
 
         

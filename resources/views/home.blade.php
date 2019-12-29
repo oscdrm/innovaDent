@@ -9,7 +9,7 @@
                 <h5>Fecha de Hoy</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins">24</h1>
+                <h1 class="no-margins">{{$nct}}</h1>
                 <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
                 <medium>Personas atendidas</medium>
             </div>
@@ -23,7 +23,7 @@
                 <h5>Semana</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins">24</h1>
+                <h1 class="no-margins">{{$ncw}}</h1>
                 <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
                 <medium>Personas atendidas</medium>
             </div>
@@ -37,7 +37,7 @@
                 <h5>Mes Actual</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins">24</h1>
+                <h1 class="no-margins">{{$ncm}}</h1>
                 <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
                 <medium>Personas atendidas</medium>
             </div>

@@ -98,7 +98,7 @@
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10"><input name="password" type="pass" class="form-control" value=""></div>
+                    <div class="col-sm-10"><input name="password" type="password" class="form-control" value=""></div>
                 </div>
 
                 <div class="hr-line-dashed"></div>

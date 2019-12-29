@@ -44,7 +44,7 @@
                 <div class="row m-b-sm m-t-sm">
                     
                     <div class="col-md-11">
-                        <div class="input-group"><input type="text" placeholder="Introduce el nombre del paciente a buscar" class="input-sm form-control"> <span class="input-group-btn">
+                        <div class="input-group"><input type="text" placeholder="Introduce el nombre del usuario a buscar" class="input-sm form-control"> <span class="input-group-btn">
                             <button type="button" class="btn btn-sm btn-primary"> Buscar</button> </span></div>
                     </div>
                 </div>

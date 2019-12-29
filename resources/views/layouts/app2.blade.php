@@ -36,6 +36,8 @@
     <!--CHOOSEN SELECT-->
     <link href="{{asset('css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
 
+    <link href="{{asset('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+
 </head>
 <body>
     <div id="wrapper">
@@ -51,7 +53,17 @@
                                 </span> <span class="text-muted text-xs block">{{Auth::user()->role->name}} <b class="caret"></b></span> </span> </a>
                                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                     <li><a href="profile.html">Perfil</a></li>
-                                    <li><a href="login.html">Logout</a></li>
+                                    <li>
+                                        <a  href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();"
+                                        >
+                                             {{ __('Cerrar Sesión') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="logo-element">
@@ -75,13 +87,13 @@
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Operaciones</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="/patients">Pacientes</a></li>
-                                <li><a href="index.html">Consultas</a></li>
+                                <li><a href="/consults">Consultas</a></li>
                                 <li><a href="treatments">Tratamientos</a></li>
                                 @if(auth()->user()->role->id == 1)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
-                                <li><a href="/patients">Corte de Caja</a></li>
-                                @endif
+                                <li><a href="/earning">Corte de Caja</a></li>
+                        @endif
                             </ul>
                         </li>
                         <li>
@@ -180,8 +192,34 @@
 
     <script src="{{asset('js/plugins/chosen/chosen.jquery.js')}}"></script>
 
+    <!-- Data picker -->
+   <script src="{{asset('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+
     <script>
         $('.chosen-select').chosen({width: "100%"});
+        $('.filter').hide();
+        var pivote = 0;
+        $( "#filter" ).click(function() {
+            if(pivote == 0){
+                $('.datepicker').attr('required');
+                $('.filter').fadeIn();
+                var today=new Date();
+                $('#data_5 .input-daterange .datepicker').datepicker({
+                        dateFormat: 'dd-mm-yyyy',
+                        changeMonth: true,
+                        changeYear: true
+                }).datepicker('setDate', new Date(today.getFullYear(), today.getMonth(), today.getDate()));
+                pivote = 1;
+            }else{
+                $('.datepicker').removeAttr('required');
+                $('.filter').fadeOut();
+                $('#data_5 .input-daterange .datepicker').datepicker('setDate', null);
+                pivote = 0;
+            }
+            
+         
+        });
+
     </script>
 
 </body>

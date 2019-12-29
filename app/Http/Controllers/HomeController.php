@@ -27,7 +27,11 @@ class HomeController extends Controller
     public function index()
     {   
         if(Auth::user()->role_id == 1){
-            return view('home');
+            $consults = $this->consultasAdmin();
+            $ncw = $consults['nconsultsweek'];
+            $nct = $consults['nct'];
+            $ncm = $consults['ncm'];
+            return view('home')->with(compact('ncw', 'nct', 'ncm'));
         }
 
         if(Auth::user()->role_id == 2){
@@ -35,9 +39,9 @@ class HomeController extends Controller
             $user = Auth::user()->id;
             $consults = $this->consultasCajera($user);
             $amountWeek = $consults['amountWeek'];
-            $consults = $consults['consults'];
             $amountToday = $consults['amountToday'];
-        
+            $consults = $consults['consults'];
+
             return view('cashier/home')->with(compact('consults', 'amountWeek', 'amountToday'));
         }
 
@@ -65,8 +69,22 @@ class HomeController extends Controller
                 $amountToday = $amountToday + $consult->amount;
             }
         }
+
         $consultsArray = ['consults' => $consults10, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
+        
         return $consultsArray;
     }
+
+    private function consultasAdmin(){
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        Carbon::setWeekEndsAt(Carbon::SATURDAY);
+        $nconsultsweek = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+        $nct = Consult::whereDate('created_at', Carbon::today())->count();
+        $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->count();
+        $consultsArray = ['nconsultsweek' => $nconsultsweek, 'nct' => $nct, 'ncm' => $ncm];
+        
+        return $consultsArray;
+    }
+
 
 }

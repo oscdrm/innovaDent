@@ -55,6 +55,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('users/{role}/{id}/edit', 'UsersController@edit'); //Editar
     Route::post('users/{id}/edit', 'UsersController@update'); //actualizar
     Route::delete('users/{id}', 'UsersController@delete'); //Eliminar
+
+    //Rutas para Consultas
+    Route::get('consults/{id}/edit', 'ConsultsController@edit'); //Editar
+    Route::post('/consults/{id}/edit', 'ConsultsController@update'); //actualizar paciente
+    Route::delete('consults/{id}', 'ConsultsController@delete'); //Eliminar
+
+    //RUTAS PARA CORTE DE CAJA
+    Route::get('earning/', 'EarningController@index'); //Inicio
+    Route::post('earning/calculate', 'EarningController@calculate'); //Inicio
+
+
 });
 
 //Middlaware para ADMIN y CAJERO
@@ -64,11 +75,18 @@ Route::middleware(['auth', 'cashier'])->group(function () {
     Route::post('/patients', 'PatientsController@store'); //Guardar paciente
     Route::get('/patients/{id}/edit', 'PatientsController@edit'); //Editar
     Route::post('/patients/{id}/edit', 'PatientsController@update'); //actualizar paciente
+
+    //RUTAS PARA CONSULTAS
+    Route::get('/consults/create', 'ConsultsController@create');
+    Route::post('/consults', 'ConsultsController@store');
 });
 
 //Middlaware para los tres perfiles
 Route::middleware(['auth'])->group(function () {
     //RUTAS PARA PAIENTES
     Route::get('/patients', 'PatientsController@index')->name('patients'); //Listado
+
+    //RUTAS PARA CONSULTAS
+    Route::get('/consults', 'ConsultsController@index');
 
 });
