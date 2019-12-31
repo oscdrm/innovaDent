@@ -108,7 +108,7 @@
                                 {{$consult->created_at}}
                             </td>
                             <td>
-                                {{$consult->doctor->name}} {{$consult->patient->lastName}}
+                                {{$consult->doctor->name}} {{$consult->doctor->lastName}}
                             </td>
                             <td>
                                 {{$consult->concept->name}}
