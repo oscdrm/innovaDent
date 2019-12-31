@@ -79,8 +79,8 @@ class UsersController extends Controller
 
         //Validaciones
         $rules = [
-            'name' => 'required | alpha | min:3',
-            'lastName' => 'required | alpha | min:3',
+            'name' => 'required | min:3',
+            'lastName' => 'required | min:3',
             'age' => ' max:3',
             'telephone' => ' max:10 | min:10',
             'email' => 'email || unique:users',
