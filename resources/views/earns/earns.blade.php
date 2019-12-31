@@ -99,7 +99,7 @@
                                {{$consult->id}} 
                             </td>
                             <td>
-                                {{$consult->patient->name}} {{$consult->patient->lastName}}
+                            {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
                             </td>
                             <td>
                                 {{$consult->amount}}
