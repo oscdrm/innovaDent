@@ -24,11 +24,12 @@ class CreateTreatmentsTable extends Migration
 
             $table->unsignedBigInteger('concept_id');
             $table->foreign('concept_id')->references('id')->on('concepts')->onUpdate('cascade');
-
+            
             $table->date('start_date');
             $table->date('finish_date')->nullable();
             $table->integer('num_sesions')->nullable();
             $table->float('total_cost');
+            
 
 
             $table->timestamps();

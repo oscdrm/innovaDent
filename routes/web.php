@@ -89,4 +89,7 @@ Route::middleware(['auth'])->group(function () {
     //RUTAS PARA CONSULTAS
     Route::get('/consults', 'ConsultsController@index');
 
+    //RUTAS PARA CONSULTAS
+    Route::get('/patients/profile', 'PatientsController@profile');
+
 });

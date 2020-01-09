@@ -82,8 +82,8 @@ class UsersController extends Controller
             'name' => 'required | min:3',
             'lastName' => 'required | min:3',
             'age' => ' max:3',
-            'telephone' => ' max:10 | min:10',
-            'email' => 'email || unique:users',
+            'telephone' => ' max:10',
+            'email' => 'email | nullable',
             'username' => 'unique:users'
         ];
 

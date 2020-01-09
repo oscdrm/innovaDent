@@ -41,11 +41,11 @@ class PatientsController extends Controller
 
         //Validaciones
         $rules = [
-            'name' => 'required | alpha | min:3',
-            'lastName' => 'required | alpha | min:3',
+            'name' => 'required | min:3',
+            'lastName' => 'required | min:3',
             'age' => ' max:3',
-            'telephone' => ' max:10 | min:10',
-            'email' => 'email',
+            'telephone' => ' max:10 | min:10 | nullable',
+            'email' => 'email | nullable',
         ];
 
         // Validator::make($request, $rules);
@@ -171,6 +171,11 @@ class PatientsController extends Controller
         $patients->delete();
 
         return back();
+    }
+
+
+    public function profile(){
+        return view('patients.profile');
     }
 
 }
