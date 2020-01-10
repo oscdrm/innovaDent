@@ -68,21 +68,29 @@ class EarningController extends Controller
         if($doctor){
             $doctorData = User::find($doctor);
             $sendConsults = "recientes del doctor ".$doctorData->name." ".$doctorData->lastName;
+            $consults = Consult::where('doctor_id', '=', $doctor)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            if($start && $end){
+                $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
+                $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
+                //$ds = $ds->toDateString();
+                //$de = $de->toDateString();
+    
+                $consults = Consult::where('doctor_id', '=', $doctor)->whereBetween('created_at', [$ds, $de])->get();
+            }
         }else{
             $sendConsults = "recientes";
+
+            if($start && $end){
+                $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
+                $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
+               
+    
+                $consults = Consult::whereBetween('created_at', [$ds, $de])->get();
+            }
+
         }
 
-
-        $consults = Consult::where('doctor_id', '=', $doctor)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
-
-        if($start && $end){
-            $ds = Carbon::createFromFormat('d/m/Y', $start);
-            $de = Carbon::createFromFormat('d/m/Y', $end);
-            $ds = $ds->toDateString();
-            $de = $de->toDateString();
-
-            $consults = Consult::where('doctor_id', '=', $doctor)->whereBetween('created_at', [$ds, $de])->get();
-        }
+        
               
 
 
