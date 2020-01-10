@@ -37,6 +37,7 @@
 
                         <button id="filter" type="button" class="btn btn-w-m btn-info">Filtrar por fechas</button>
                         <button type="submit" class="btn btn-w-m btn-success">Realizar corte</button>
+                        <button type="button" onclick="window.location='/earning/';"  class="btn btn-w-m btn-warning">Corte general</button>
 
                 </div>
 
