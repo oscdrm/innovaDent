@@ -80,13 +80,14 @@
                     <label class="col-sm-2 control-label">Costo</label>
                     <div class="col-sm-10"><input name="amount" type="number" class="form-control" value="{{old('amount')}}"></div>
                 </div>
-
-                <div class="form-group" id="data_1">
-                                <label class="font-normal">Selecciona la fecha de consulta:</label>
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date-consult" name="date-consult" type="text" data-date-format="dd/mm/yyyy" class="form-control">
-                                </div>
-                </div>
+                @if(auth()->user()->role->id == 1)
+                    <div class="form-group" id="data_1">
+                                    <label class="font-normal">Selecciona la fecha de consulta:</label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date-consult" name="date-consult" type="text" data-date-format="dd/mm/yyyy" class="form-control">
+                                    </div>
+                    </div>
+                @endif
 
 
                 <div class="hr-line-dashed"></div>
