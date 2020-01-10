@@ -10,18 +10,19 @@
     <!--<title>{{ config('app.name', 'Bienvenido a InnovaDent Huetamo') }}</title>-->
     <title>Bienvenido a InnovaDent Huetamo</title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 
     <!-- ASSETS CSS INSPINIA -->
 
     <link href="{{asset('css/bootstrap.min.css')}}  " rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
     <link href="{{asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
     <!-- Toastr style -->
@@ -37,6 +38,9 @@
     <link href="{{asset('css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
 
     <link href="{{asset('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link href="{{asset('css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -149,7 +153,7 @@
 
  <!-- Mainly scripts -->
     <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.js')}}"></script>
     <script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
@@ -221,6 +225,8 @@
         });
 
     </script>
+
+    @yield('additional_scripts')
 
 </body>
 </html>
