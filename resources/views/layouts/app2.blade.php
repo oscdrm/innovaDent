@@ -200,29 +200,40 @@
    <script src="{{asset('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 
     <script>
-        $('.chosen-select').chosen({width: "100%"});
-        $('.filter').hide();
-        var pivote = 0;
-        $( "#filter" ).click(function() {
-            if(pivote == 0){
-                $('.datepicker').attr('required');
-                $('.filter').fadeIn();
-                var today=new Date();
-                $('#data_5 .input-daterange .datepicker').datepicker({
-                        dateFormat: 'dd-mm-yyyy',
-                        changeMonth: true,
-                        changeYear: true
-                }).datepicker('setDate', new Date(today.getFullYear(), today.getMonth(), today.getDate()));
-                pivote = 1;
-            }else{
-                $('.datepicker').removeAttr('required');
-                $('.filter').fadeOut();
-                $('#data_5 .input-daterange .datepicker').datepicker('setDate', null);
-                pivote = 0;
-            }
+        $(document).ready(function(){
+        
+            var today=new Date();
+            $('.chosen-select').chosen({width: "100%"});
+            $('.filter').hide();
+            var pivote = 0;
+            $( "#filter" ).click(function() {
+                if(pivote == 0){
+                    $('.datepicker').attr('required');
+                    $('.filter').fadeIn();
+                    
+                    $('#data_5 .input-daterange .datepicker').datepicker({
+                            dateFormat: 'dd-mm-yyyy',
+                            changeMonth: true,
+                            changeYear: true
+                    }).datepicker('setDate', new Date(today.getFullYear(), today.getMonth(), today.getDate()));
+                    pivote = 1;
+                }else{
+                    $('.datepicker').removeAttr('required');
+                    $('.filter').fadeOut();
+                    $('#data_5 .input-daterange .datepicker').datepicker('setDate', null);
+                    pivote = 0;
+                }
+                
             
-         
-        });
+            });
+
+            $('#data_1 .input-group.date').datepicker({
+                            dateFormat: 'dd-mm-yyyy',
+                            changeMonth: true,
+                            changeYear: true
+                    }).datepicker('setDate', new Date(today.getFullYear(), today.getMonth(), today.getDate()));
+            
+    });
 
     </script>
 

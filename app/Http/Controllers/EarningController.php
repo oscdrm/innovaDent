@@ -65,6 +65,7 @@ class EarningController extends Controller
         $start = $request->input('start');
         $end = $request->input('end');
         
+        
         if($doctor){
             $doctorData = User::find($doctor);
             $sendConsults = "recientes del doctor ".$doctorData->name." ".$doctorData->lastName;
@@ -83,6 +84,11 @@ class EarningController extends Controller
             if($start && $end){
                 $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
                 $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
+                $ds2 = $ds->format('l d, F Y');
+                $de2 = $de->format('l d, F Y');
+                //$ds2 = $ds2->toFormattedDateString(); 
+                //$de2 = $de2->toFormattedDateString(); 
+                $sendConsults = "del $ds2 al $de2";
                
     
                 $consults = Consult::whereBetween('created_at', [$ds, $de])->get();

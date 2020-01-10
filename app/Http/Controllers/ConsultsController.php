@@ -73,6 +73,9 @@ class ConsultsController extends Controller
         
         // dd($request->all());
         $dt = Carbon::now();
+
+        
+
         $consult = new Consult();
         $consult->patient_id = $request->input('patient');
         $consult->doctor_id = $request->input('doctor');
@@ -81,7 +84,17 @@ class ConsultsController extends Controller
         $consult->other_patient = $request->input('other_patient');
         $cashier = Auth::user()->id;
         $consult->cashier_id = $cashier;
+
+        $date_consult = $request->input('date-consult');
+        $date_consult = Carbon::createFromFormat('d/m/Y', $date_consult);
+
+        if($date_consult < $dt){
+            $dt = $date_consult;
+            $consult->created_at = $dt;
+        }
+
         $consult->cashed_on = $dt;
+        
 
         $consult->save();
 
