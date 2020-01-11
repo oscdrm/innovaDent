@@ -73,7 +73,7 @@
                             @foreach ($doctors as $doctor)
                                 @php
                                     $selected = "";
-                                    if($doctor->id == $doctor->id){
+                                    if($doctor->id == $consult->doctor->id){
                                         $selected = "selected";
                                     }
                                 @endphp
@@ -97,7 +97,7 @@
                             @foreach ($services as $service)
                                 @php
                                     $selected = "";
-                                    if($service->id == $service->id){
+                                    if($service->id == $consult->concept->id){
                                         $selected = "selected";
                                     }
                                 @endphp

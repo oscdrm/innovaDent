@@ -30,8 +30,64 @@
             </a>
         </div>
 
+        <div class="col-lg-2">
+           <a href="{{url('/patients/create')}}">
+                <div class="widget bblue-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
+                        <h3 class="font-bold no-margins">
+                            Caja
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-2">
+            <a href="{{url('/consults/create')}}">
+                <div class="widget yellow-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <i style="margin-bottom:5px;" class="fa fa-stethoscope fa-4x"></i>
+                        <h3 class="font-bold no-margins">
+                            Imprimibles
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-2">
+           <a href="{{url('/patients/create')}}">
+                <div class="widget aqua-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
+                        <h3 class="font-bold no-margins">
+                            Agenda
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-2">
+            <a href="{{url('/consults/create')}}">
+                <div class="widget yellow-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <i style="margin-bottom:5px;" class="fa fa-stethoscope fa-4x"></i>
+                        <h3 class="font-bold no-margins">
+                            Correo
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        
+
+        
+
+
+        <!--<div class="col-lg-4">
             <div class="widget navy-bg p-lg text-center">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountToday}}</span>
@@ -51,7 +107,7 @@
                         </h3>
                     </div>
                 </div>
-        </div>
+        </div>-->
 
             
     </div>

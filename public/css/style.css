@@ -11,6 +11,16 @@
   cursor:pointer;
 }
 
+.aqua-bg{
+  background:#2c7873;
+  color:#fff;
+}
+
+.bblue-bg{
+  background:#015668;
+  color:#fff;
+}
+
 .edit_img{
   width:200px;
   height:200px;
