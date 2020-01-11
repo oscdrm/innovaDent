@@ -37,14 +37,17 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Paciente</label>
                     <div class="col-sm-10">
-                        <select data-placeholder="Selecciona una tienda" name="patient" class="chosen-select"  tabindex="2" required>
+                        <select data-placeholder="Selecciona una tienda" name="patient" class="chosen-select"  tabindex="2">
                             <option value="">Selecciona un paciente</option>
                             @foreach ($patients as $patient)
                                 @php
                                     $selected = "";
-                                    if($patient->id == $patient->id){
-                                        $selected = "selected";
+                                    if($consult->patient){
+                                        if($patient->id == $consult->patient->id){
+                                            $selected = "selected";
+                                        }
                                     }
+                                    
                                 @endphp
                                 <option {{$selected}} value="{{$patient->id}}">{{$patient->name}}</option>
                             @endforeach
@@ -55,7 +58,7 @@
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Otro paciente</label>
-                    <div class="col-sm-10"><input name="other_patient" type="text" class="form-control" value="{{old('other_patient, $other_patient')}}"></div>
+                    <div class="col-sm-10"><input name="other_patient" type="text" class="form-control" value="{{old('other_patient', $consult->other_patient)}}"></div>
                 </div>
 
                 <div class="form-group">
