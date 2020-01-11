@@ -203,6 +203,13 @@
         $(document).ready(function(){
         
             var today=new Date();
+            $('#dc .dc-date .dci').datepicker({
+                            dateFormat: 'DD-MM',
+                            changeMonth: true,
+                            changeYear: true
+                    }).datepicker('setDate', new Date(today.getFullYear(), today.getMonth(), today.getDate()));
+
+
             $('.chosen-select').chosen({width: "100%"});
             $('.filter').hide();
             var pivote = 0;
@@ -225,14 +232,7 @@
                 }
                 
             
-            });
-
-            $('#data_1 .input-group.date').datepicker({
-                            dateFormat: 'dd-mm-yyyy',
-                            changeMonth: true,
-                            changeYear: true
-                    }).datepicker('setDate', new Date(today.getFullYear(), today.getMonth(), today.getDate()));
-            
+            });            
     });
 
     </script>

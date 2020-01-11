@@ -86,13 +86,15 @@ class ConsultsController extends Controller
         $consult->cashier_id = $cashier;
 
         $date_consult = $request->input('date-consult');
-        $date_consult = Carbon::createFromFormat('d/m/Y', $date_consult);
-
-        if($date_consult < $dt){
-            $dt = $date_consult;
-            $consult->created_at = $dt;
+        if($date_consult){
+            $date_consult = Carbon::createFromFormat('d/m/Y', $date_consult);
+            if($date_consult < $dt){
+                $dt = $date_consult;
+                $consult->created_at = $dt;
+            }
+    
         }
-
+        
         $consult->cashed_on = $dt;
         
 
