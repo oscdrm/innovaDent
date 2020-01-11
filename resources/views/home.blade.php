@@ -117,6 +117,7 @@
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                     <thead>
                     <tr>
+                        <th>N Consulta</th>
                         <th>ID Consulta</th>
                         <th data-hide="phone">Paciente</th>
                         <th data-hide="phone">Costo</th>
@@ -127,8 +128,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @php
+                        $c = 0;
+                    @endphp
                     @foreach ($consults as $consult)
+                        @php
+                            $c++;
+                        @endphp
                         <tr>
+                            <td>
+                               {{$c}} 
+                            </td>
                             <td>
                                {{$consult->id}} 
                             </td>

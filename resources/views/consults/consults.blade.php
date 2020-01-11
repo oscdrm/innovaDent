@@ -35,6 +35,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th>N consulta</th>
                                         <th>ID Consulta</th>
                                         <th>Paciente</th>
                                         <th>Costo</th>
@@ -48,8 +49,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $c = 0;
+                                        @endphp
                                         @foreach ($consults as $consult)
                                             @php
+                                                $c++;
                                                 $i = 0;
                                                 $class = "";
                                                 if($i%2 == 0){
@@ -59,6 +64,9 @@
                                                 }
                                             @endphp   
                                             <tr class="{{$class}}">
+                                                <td>
+                                                    {{$c}} 
+                                                </td>
                                                 <td>
                                                     {{$consult->id}} 
                                                 </td>
