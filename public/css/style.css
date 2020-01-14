@@ -6,6 +6,16 @@
  *   version 2.7
  *
 */
+.shad{
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, .5);
+}
+.bck-square{
+  background-image:url('/img/back/bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
 #new-treatment{
   cursor:pointer;
