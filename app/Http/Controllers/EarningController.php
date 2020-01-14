@@ -64,6 +64,7 @@ class EarningController extends Controller
         $doctor = $request->input('doctor');
         $start = $request->input('start');
         $end = $request->input('end');
+        Carbon::setLocale('es');
         
         
         if($doctor){
