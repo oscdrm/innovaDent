@@ -54,6 +54,22 @@ class HomeController extends Controller
 
     }
 
+    public function cash(){
+
+        if(Auth::user()->role_id == 2){
+
+            $user = Auth::user()->id;
+            $consults = $this->consultasCajera($user);
+            $amountWeek = $consults['amountWeek'];
+            $amountToday = $consults['amountToday'];
+            $consults = $consults['consults'];
+
+            return view('cashier/cash')->with(compact('consults', 'amountWeek', 'amountToday'));
+        }
+
+
+    }
+
     private function consultasCajera($user){
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
