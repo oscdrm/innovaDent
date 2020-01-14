@@ -79,6 +79,10 @@ Route::middleware(['auth', 'cashier'])->group(function () {
     //RUTAS PARA CONSULTAS
     Route::get('/consults/create', 'ConsultsController@create');
     Route::post('/consults', 'ConsultsController@store');
+
+    //RUTA PARA CAJA
+    Route::get('/cashier/cash', 'HomeController@cash');
+
 });
 
 //Middlaware para los tres perfiles
