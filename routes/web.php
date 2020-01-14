@@ -25,6 +25,8 @@ Route::get('/', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/catalogs/services', 'CatalogsController@servicesCatalog');
+
 
 //Middlaware solo admin
 Route::middleware(['auth', 'admin'])->group(function () {

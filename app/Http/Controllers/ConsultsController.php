@@ -41,7 +41,7 @@ class ConsultsController extends Controller
     public function create()
     {
         $patients = Patient::all();
-        $doctors = User::where('role_id', '=', 3)->get();
+        $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
         $services = Concept::where('surgery_id', '=', 1)->get();
         return view('consults.create')->with(compact('services', 'doctors', 'patients'));
 
