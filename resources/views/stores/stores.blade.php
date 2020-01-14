@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 @section('content')
 
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>Tiendas</h2>
                     <ol class="breadcrumb">
@@ -17,7 +17,7 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
 
-        <div class="ibox">
+        <div class="ibox shad">
             <div class="ibox-title">
                 <div class="ibox-tools">
                     <a href="{{url('/stores/create')}}" class="btn btn-primary btn-xs">Crear nueva tienda</a>
@@ -28,7 +28,7 @@
         <div class="row">
             @foreach($stores as $store)
                 <div class="col-lg-3">
-                    <div class="contact-box center-version">
+                    <div class="contact-box center-version shad">
 
                         <a href="profile.html">
                             <h3 class="m-b-xs"><strong>{{$store->name}}</strong></h3>

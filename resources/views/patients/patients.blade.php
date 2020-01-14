@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 @section('content')
 
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>Pacientes</h2>
                     <ol class="breadcrumb">
@@ -15,9 +15,9 @@
                 </div>
 </div><!-- END SECCION TITULO-->
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInRight ">
 
-        <div class="ibox">
+        <div class="ibox shad">
             <div class="ibox-title">
                 <div class="ibox-tools">
                     <a href="{{url('/patients/create')}}" class="btn btn-primary btn-xs">Crear nuevo paciente</a>
@@ -39,7 +39,7 @@
         <div class="row">
             @foreach($patients as $patient)
                 <div class="col-lg-3">
-                    <div class="contact-box center-version">
+                    <div class="contact-box center-version shad">
 
                         <a href="profile.html">
 

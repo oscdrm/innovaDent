@@ -17,7 +17,7 @@
     }       
 
 @endphp
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>{{$type_user}}</h2>
                     <ol class="breadcrumb">
@@ -36,7 +36,7 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
 
-        <div class="row">
+        <div class="row shad">
 
         <div class="ibox-content">
             <h4>Editar {{$type_user}}</h4>

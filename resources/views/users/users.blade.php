@@ -17,7 +17,7 @@
     }       
 
 @endphp
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>{{$type_user}}</h2>
                     <ol class="breadcrumb">
@@ -33,7 +33,7 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
 
-        <div class="ibox">
+        <div class="ibox shad">
             <div class="ibox-title">
                 <div class="ibox-tools">
                     <a href="{{url('/users/'.$role_name.'/create')}}" class="btn btn-primary btn-xs">Crear nuevo {{$type_user}}</a>
@@ -55,7 +55,7 @@
         <div class="row">
             @foreach($users as $user)
                 <div class="col-lg-3">
-                    <div class="contact-box center-version">
+                    <div class="contact-box center-version shad">
 
                         <a href="profile.html">
                             <img alt="image" class="img-circle" src="{{$user->user_photo ? asset($user->user_photo) : asset('img/profile.jpg')}}">

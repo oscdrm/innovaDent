@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 @section('content')
 
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>Consultas</h2>
                     <ol class="breadcrumb">
@@ -22,7 +22,7 @@
 
         <div class="row">
 
-        <div class="ibox-content">
+        <div class="ibox-content shad">
             <h4>Editar consulta</h4>
             <div class="hr-line-dashed"></div>
             @if($errors->any())

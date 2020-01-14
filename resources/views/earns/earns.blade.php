@@ -11,7 +11,7 @@
                     <div style="padding:10px 0px;">
                         <label class="col-lg-2 control-label">Doctor</label>
                         <div class="col-sm-10">
-                            <select data-placeholder="Selecciona una tienda" name="doctor" class="chosen-select"  tabindex="2">
+                            <select data-placeholder="Selecciona una tienda" name="doctor" class="chosen-select shad"  tabindex="2">
                                 <option value="">Selecciona un Doctor</option>
                                 @foreach ($doctors as $doctor)
                                     <option value="{{$doctor->id}}">{{$doctor->name}} {{$doctor->lastName}}</option>
@@ -24,9 +24,9 @@
                 <div class="filter">
                     <div class="form-group" id="data_5">
                         <label class="font-normal">Selecciona las fechas de corte</label>
-                        <div class="input-daterange input-group" id="datepicker">
+                        <div class="input-daterange input-group shad" id="datepicker">
                             <span class="input-group-addon">Del</span>
-                            <input type="text" class="input-sm form-control datepicker" data-date-format="dd/mm/yyyy" name="start"/>
+                            <input type="text" class="input-sm form-control datepicker shad" data-date-format="dd/mm/yyyy" name="start"/>
                             <span class="input-group-addon">al</span>
                             <input type="text" class="input-sm form-control datepicker" data-date-format="dd/mm/yyyy" name="end"/>
                         </div>
@@ -46,7 +46,7 @@
 
 
         <div class="col-lg-4">
-            <div class="widget navy-bg p-lg text-center">
+            <div class="widget navy-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <span style="font-size:55px;">{{$serviciosRealizados}}</span>
                         <h3 class="font-bold no-margins">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="widget blue-bg p-lg text-center">
+            <div class="widget blue-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
                         <h3 class="font-bold no-margins">
@@ -74,7 +74,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
-            <div class="ibox-content">
+            <div class="ibox-content shad">
              <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
                     <h2>Consultas {{$sendConsults ? $sendConsults : "Recientes"}}</h2>

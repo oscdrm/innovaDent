@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 @section('content')
 
-    <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="row wrapper border-bottom white-bg page-heading shad">
             <div class="col-lg-9">
                 <h2>Consultas</h2>
                 <ol class="breadcrumb">
@@ -16,7 +16,7 @@
     </div><!-- END SECCION TITULO-->
 
 <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="ibox">
+        <div class="ibox shad">
             <div class="ibox-title">
                 <div class="ibox-tools">
                     <a href="{{url('/consults/create')}}" class="btn btn-primary btn-xs">Crear nueva consulta</a>
@@ -26,7 +26,7 @@
     <div class="row">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">
-                    <div class="ibox float-e-margins">
+                    <div class="ibox float-e-margins shad">
                         <div class="ibox-title">
                             <h5>Listado de Consultas</h5>
                         </div>
