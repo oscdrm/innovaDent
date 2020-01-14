@@ -45,7 +45,7 @@
         </div>
 
         <div class="col-lg-2">
-            <a href="{{url('/consults/create')}}">
+            <a>
                 <div class="widget blue2-bg p-lg text-center">
                     <div class="m-b-md">
                         <i style="margin-bottom:5px;" class="fa fa-print fa-4x"></i>
