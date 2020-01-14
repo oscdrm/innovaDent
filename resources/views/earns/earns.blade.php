@@ -80,45 +80,55 @@
                     <h2>Consultas {{$sendConsults ? $sendConsults : "Recientes"}}</h2>
                 </div>
             </div>
-    
-                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                    <thead>
-                    <tr>
-                        <th>ID Consulta</th>
-                        <th data-hide="phone">Paciente</th>
-                        <th data-hide="phone">Costo</th>
-                        <th data-hide="phone">Dia y Hora de consulta</th>
-                        <th data-hide="phone,tablet" >Doctor</th>
-                        <th data-hide="phone">Servicio</th>
-                        <!--<th class="text-right">Action</th>-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($consults as $consult)
+                <div class="table-responsive">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
                         <tr>
-                            <td>
-                               {{$consult->id}} 
-                            </td>
-                            <td>
-                            {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
-                            </td>
-                            <td>
-                                {{$consult->amount}}
-                            </td>
-                            <td>
-                                {{$consult->created_at}}
-                            </td>
-                            <td>
-                                {{$consult->doctor->name}} {{$consult->doctor->lastName}}
-                            </td>
-                            <td>
-                                {{$consult->concept->name}}
-                            </td>
+                            <th>N Consulta</th>
+                            <th>ID Consulta</th>
+                            <th data-hide="phone">Paciente</th>
+                            <th data-hide="phone">Costo</th>
+                            <th data-hide="phone">Dia y Hora de consulta</th>
+                            <th data-hide="phone,tablet" >Doctor</th>
+                            <th data-hide="phone">Servicio</th>
+                            <!--<th class="text-right">Action</th>-->
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
+                        </thead>
+                        <tbody>
+                        @php
+                            $c = 0;
+                        @endphp
+                        @foreach ($consults as $consult)
+                        @php
+                            $c++;
+                        @endphp
+                            <tr>
+                                <td>
+                                {{$c}} 
+                                </td>
+                                <td>
+                                {{$consult->id}} 
+                                </td>
+                                <td>
+                                {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
+                                </td>
+                                <td>
+                                    {{$consult->amount}}
+                                </td>
+                                <td>
+                                    {{$consult->created_at}}
+                                </td>
+                                <td>
+                                    {{$consult->doctor->name}} {{$consult->doctor->lastName}}
+                                </td>
+                                <td>
+                                    {{$consult->concept->name}}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
