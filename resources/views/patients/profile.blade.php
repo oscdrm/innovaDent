@@ -25,18 +25,24 @@
                 <div class="col-md-6">
 
                     <div class="profile-image">
-                        <img src="/img/profile.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                        <img src="{{$patient->user_photo ? asset($patient->user_photo) : asset('img/profile.jpg')}}" class="img-circle circle-border m-b-md" alt="profile">
                     </div>
                     <div class="profile-info">
                         <div class="">
                             <div>
                                 <h2 class="no-margins">
-                                    Alex Smith
+                                    {{$patient->name}} {{$patient->lastName}}
                                 </h2>
-                                <h4>Founder of Groupeq</h4>
                                 <small>
-                                    There are many variations of passages of Lorem Ipsum available, but the majority
-                                    have suffered alteration in some form Ipsum available.
+                                    Teléfono: {{$patient->telephone}} <br>
+                                    Teléfono 2: <br>
+                                    Email: <br>
+                                    Dirección:
+                                     @php
+                                       if($add){
+                                           echo $add->street.' '.$add->number.' '.$add->colonia.' '.$add->cp;
+                                       }
+                                     @endphp
                                 </small>
                             </div>
                         </div>

@@ -15,13 +15,18 @@ class Patient extends Model
     //$patient->treatments
     public function treatments()
     {
-        return $this->hasMany(Treatment::class);
+        return $this->hasMany(Treatment::class)->orderBy('created_at', 'DESC');
     }
 
     //$patient->clinicHistories
     public function clinicHistories()
     {
-        return $this->hasMany(ClinicHistory::class);
+        return $this->hasMany(ClinicHistory::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function consults()
+    {
+        return $this->hasMany(Consult::class)->orderBy('created_at', 'DESC');
     }
 
 }

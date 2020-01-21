@@ -93,11 +93,11 @@
                                 <li><a href="/patients">Pacientes</a></li>
                                 <li><a href="/consults">Consultas</a></li>
                                 <li><a href="treatments">Tratamientos</a></li>
-                                @if(auth()->user()->role->id == 1)
+                            @if(auth()->user()->role->id == 1)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
                                 <li><a href="/earning">Corte de Caja</a></li>
-                        @endif
+                            @endif
                             </ul>
                         </li>
                         <li>

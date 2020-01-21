@@ -25,7 +25,10 @@ Route::get('/', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//CATALOGS
 Route::get('/catalogs/services', 'CatalogsController@servicesCatalog');
+Route::get('/catalogs/doctors', 'CatalogsController@doctorsCatalog');
 
 
 //Middlaware solo admin
@@ -96,6 +99,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/consults', 'ConsultsController@index');
 
     //RUTAS PARA CONSULTAS
-    Route::get('/patients/profile', 'PatientsController@profile');
+    Route::get('/patients/{id}/profile', 'PatientsController@profile');
 
 });

@@ -77,14 +77,14 @@
             <div class="ibox-content shad">
              <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Consultas {{$sendConsults ? $sendConsults : "Recientes"}}</h2>
+                    <h2>Movimientos {{$sendConsults ? $sendConsults : "Recientes"}}</h2>
                 </div>
             </div>
                 <div class="table-responsive">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>N Consulta</th>
+                            <th>N Movimiento</th>
                             <th>ID Consulta</th>
                             <th data-hide="phone">Paciente</th>
                             <th data-hide="phone">Costo</th>

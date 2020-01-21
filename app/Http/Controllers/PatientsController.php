@@ -174,8 +174,19 @@ class PatientsController extends Controller
     }
 
 
-    public function profile(){
-        return view('patients.profile');
+    public function profile($id){
+        $patient = Patient::find($id);
+        $add = null;
+        if($patient->addresses->count() >= 1){
+            $add = $patient->addresses->last();
+        }
+
+        $treatments = $patient->treatments;
+        $consults = $patient->consults;
+        $clinicHistories = $patient->clinicHistories;
+
+
+        return view('patients.profile')->with(compact('treatment', 'patient', 'add', 'consults', 'clinicHistories'));
     }
 
 }

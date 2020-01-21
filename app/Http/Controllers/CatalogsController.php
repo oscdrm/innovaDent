@@ -22,13 +22,19 @@ class CatalogsController extends Controller
 
     public function doctorsCatalog(){
         $retArray = [];
-        $doctors = User::where('role_id', '=', 3)->where('username', 'admin')->get();
-        if(!$services){
+        $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
+        if(!$doctors){
             $retArray = ['data' => ''];
             return response()->json($retArray);
         }
 
-        $retArray = ['data' => $services];
+        $docArray = [];
+        foreach($doctors as $doctor){
+            $docObj = ['id' => $doctor->id, 'name' => $doctor->name.' '.$doctor->lastName];
+            array_push($docArray, $docObj);
+        }
+
+        $retArray = ['data' => $docArray];
         return response()->json($retArray);
 
     }
