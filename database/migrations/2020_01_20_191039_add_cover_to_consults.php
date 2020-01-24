@@ -16,6 +16,7 @@ class AddCoverToConsults extends Migration
         Schema::table('consults', function (Blueprint $table) {
             $table->string('other_concept')->nullable()->after('concept_id');
             $table->boolean('outflow')->nullable();
+            $table->boolean('dismount')->nulllable();
         });
     }
 

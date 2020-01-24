@@ -158,4 +158,49 @@ class ConsultsController extends Controller
         return back();
     }
 
+
+    public function cashMovements(){
+        return view('consults.movements');
+    }
+
+    public function storeMovement(Request $request)
+    {
+        // dd($request->all());
+
+        $dismount = $request->input('dismount');
+
+        $dt = Carbon::now();
+        $consult = new Consult();
+        $consult->other_concept = $request->input('other_concept');
+        $consult->amount = $request->input('amount');
+        $cashier = Auth::user()->id;
+        $consult->cashier_id = $cashier;
+
+        if($dismount == "on"){
+            $dismount = true;
+        }else{
+            $dismount = false;
+        }
+
+        $consult->outflow = true;
+        $consult->dismount = $dismount;
+
+        $date_consult = $request->input('date-consult');
+        if($date_consult){
+            $date_consult = Carbon::createFromFormat('d/m/Y', $date_consult);
+            if($date_consult < $dt){
+                $dt = $date_consult;
+                $consult->created_at = $dt;
+            }
+    
+        }
+        
+        $consult->cashed_on = $dt;
+        
+
+        $consult->save();
+
+        return redirect('/home');
+    }
+
 }

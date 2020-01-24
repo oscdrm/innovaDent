@@ -85,6 +85,9 @@ Route::middleware(['auth', 'cashier'])->group(function () {
     Route::get('/consults/create', 'ConsultsController@create');
     Route::post('/consults', 'ConsultsController@store');
 
+    Route::get('/movements', 'ConsultsController@cashMovements');
+    Route::post('/movements/store', 'ConsultsController@storeMovement');
+
     //RUTA PARA CAJA
     Route::get('/cashier/cash', 'HomeController@cash');
 

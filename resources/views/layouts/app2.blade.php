@@ -42,6 +42,8 @@
     <!-- Sweet Alert -->
     <link href="{{asset('css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 
+      <link href="{{asset('css/plugins/switchery/switchery.css')}}" rel="stylesheet">
+
 </head>
 <body>
     <div id="wrapper">
@@ -98,6 +100,7 @@
                                 <li><a href="/concepts">Servicios</a></li>
                                 <li><a href="/earning">Corte de Caja</a></li>
                             @endif
+                                <li><a href="/movements">Movimientos caja</a></li>
                             </ul>
                         </li>
                         <li>
@@ -199,8 +202,14 @@
     <!-- Data picker -->
    <script src="{{asset('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 
+   <!-- Switchery -->
+   <script src={{asset('js/plugins/switchery/switchery.js')}}></script>
+
     <script>
         $(document).ready(function(){
+
+            var elem_2 = document.querySelector('.js-switch_2');
+            var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
         
             var today=new Date();
             $('#dc .dc-date .dci').datepicker({

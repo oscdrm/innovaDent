@@ -34,6 +34,8 @@ class HomeController extends Controller
             $amountWeek = $consults['amountWeek'];
             $amountToday = $consults['amountToday'];
             $consults = $consults['consults'];
+            //var_dump($consults);
+            //exit();
             return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeek', 'amountToday', 'consults'));
         }
 
@@ -44,7 +46,6 @@ class HomeController extends Controller
             $amountWeek = $consults['amountWeek'];
             $amountToday = $consults['amountToday'];
             $consults = $consults['consults'];
-
             return view('cashier/home')->with(compact('consults', 'amountWeek', 'amountToday'));
         }
 
@@ -97,11 +98,11 @@ class HomeController extends Controller
     private function consultasAdmin(){
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
-        $nconsultsweek = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
-        $nct = Consult::whereDate('created_at', Carbon::today())->count();
-        $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->count();
+        $nconsultsweek = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->count();
+        $nct = Consult::whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
+        $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
 
-        $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->paginate(10);
+        $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
         $allConsults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $amountWeek = 0;
         $dt = Carbon::now();
@@ -109,14 +110,25 @@ class HomeController extends Controller
         $dc = "";
         $amountToday = 0;
         foreach($allConsults as $consult){
-            $amountWeek = $amountWeek + $consult->amount;
-            $dc = $consult->created_at;
-            $dc = explode(" ", $dc);
-            if($dt[0] == $dc[0]){
-                $amountToday = $amountToday + $consult->amount;
+            if($consult->dismount != true){
+                $amountWeek = $amountWeek + $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday + $consult->amount;
+                }
+            }else{
+                $amountWeek = $amountWeek - $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday - $consult->amount;
+                }
             }
+            
         }
-
+         
+     
 
         $consultsArray = ['nconsultsweek' => $nconsultsweek, 'nct' => $nct, 'ncm' => $ncm, 'consults' => $consults10, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
         

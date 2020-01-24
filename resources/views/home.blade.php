@@ -140,7 +140,7 @@
                                 {{$c}} 
                                 </td>
                                 <td>
-                                {{$consult->id}} 
+                                    {{$consult->id}} 
                                 </td>
                                 <td>
                                     {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
@@ -152,10 +152,10 @@
                                     {{$consult->created_at}}
                                 </td>
                                 <td>
-                                    {{$consult->doctor->name}}
+                                    {{$consult->doctor ? $consult->doctor->name : ''}} {{$consult->doctor ? $consult->doctor->lastName : ''}}
                                 </td>
                                 <td>
-                                    {{$consult->concept->name}}
+                                    {{$consult->concept ? $consult->concept->name : $consult->other_concept}}
                                 </td>
                             </tr>
                             @endforeach
