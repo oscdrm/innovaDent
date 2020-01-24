@@ -44,12 +44,20 @@ class EarningController extends Controller
         $amountToday = 0;
         $serviciosRealizados = 0;
         foreach($allConsults as $consult){
-            $serviciosRealizados++;
-            $amountWeek = $amountWeek + $consult->amount;
             $dc = $consult->created_at;
             $dc = explode(" ", $dc);
-            if($dt[0] == $dc[0]){
-                $amountToday = $amountToday + $consult->amount;
+            
+            if($consult->dismount != true){
+                $serviciosRealizados++;
+                $amountWeek = $amountWeek + $consult->amount;
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday + $consult->amount;
+                }
+            }else{
+                $amountWeek = $amountWeek - $consult->amount;
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday - $consult->amount;
+                }
             }
         }
     
@@ -85,6 +93,7 @@ class EarningController extends Controller
             if($start && $end){
                 $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
                 $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
+                
                 $ds2 = $ds->format('l d, F Y');
                 $de2 = $de->format('l d, F Y');
                 //$ds2 = $ds2->toFormattedDateString(); 
@@ -107,13 +116,20 @@ class EarningController extends Controller
         $dc = "";
         $amountToday = 0;
         $serviciosRealizados = 0;
-        foreach($consults as $consult){
-            $serviciosRealizados++;
-            $amountWeek = $amountWeek + $consult->amount;
+        foreach($allConsults as $consult){
             $dc = $consult->created_at;
             $dc = explode(" ", $dc);
-            if($dt[0] == $dc[0]){
-                $amountToday = $amountToday + $consult->amount;
+            if($consult->dismount != true){
+                $serviciosRealizados++;
+                $amountWeek = $amountWeek + $consult->amount;
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday + $consult->amount;
+                }
+            }else{
+                $amountWeek = $amountWeek - $consult->amount;
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday - $consult->amount;
+                }
             }
         }
         

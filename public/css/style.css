@@ -6,6 +6,11 @@
  *   version 2.7
  *
 */
+
+.dismount{
+  color:#ed5565;
+}
+
 .shad{
   box-shadow: 1px 3px 10px rgba(0, 0, 0, .5);
 }
@@ -703,6 +708,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 .btn {
   border-radius: 3px;
+  margin-top:5px;
 }
 .float-e-margins .btn {
   margin-bottom: 5px;

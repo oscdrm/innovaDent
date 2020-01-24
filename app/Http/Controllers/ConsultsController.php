@@ -84,6 +84,8 @@ class ConsultsController extends Controller
         $consult->other_patient = $request->input('other_patient');
         $cashier = Auth::user()->id;
         $consult->cashier_id = $cashier;
+        $consult->outflow = false;
+        $consult->dismount = false;
 
         $date_consult = $request->input('date-consult');
         if($date_consult){

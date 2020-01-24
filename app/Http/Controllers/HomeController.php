@@ -74,7 +74,7 @@ class HomeController extends Controller
     private function consultasCajera($user){
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
-        $consults10 = Consult::where('cashier_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->paginate(10);
+        $consults10 = Consult::where('cashier_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
         $allConsults = Consult::where('cashier_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $amountWeek = 0;
         $dt = Carbon::now();
@@ -82,12 +82,22 @@ class HomeController extends Controller
         $dc = "";
         $amountToday = 0;
         foreach($allConsults as $consult){
-            $amountWeek = $amountWeek + $consult->amount;
-            $dc = $consult->created_at;
-            $dc = explode(" ", $dc);
-            if($dt[0] == $dc[0]){
-                $amountToday = $amountToday + $consult->amount;
+            if($consult->dismount != true){
+                $amountWeek = $amountWeek + $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday + $consult->amount;
+                }
+            }else{
+                $amountWeek = $amountWeek - $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountToday = $amountToday - $consult->amount;
+                }
             }
+            
         }
 
         $consultsArray = ['consults' => $consults10, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
