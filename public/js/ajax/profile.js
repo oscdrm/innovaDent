@@ -2,7 +2,7 @@
    var modal = $('#myModal');
 
    var form_sesion = '\
-    <form class="form-horizontal"  id="new-treatment">\
+    <form class="form-horizontal" id="new-treat">\
       <div class="form-group">\
          <label class="col-sm-2 control-label">Servicio</label>\
          <div class="col-sm-10">\
@@ -27,10 +27,15 @@
          <label class="col-sm-2 control-label">¿Cuantas Sesiones?</label>\
          <div class="col-sm-10"><input name="sessions" type="number" class="form-control"></div>\
       </div>\
-    </form>';
+      <div class="modal-footer">\
+         <button type="submit" class="btn btn-primary" id="btn-save">Guardar</button>\
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>\
+      </div>\
+      </form>';
 
    $('#new-treatment').click(function(){
       $('.modal-body').html(form_sesion);
+
       //call functions to fill selectors
         getServices();
         getDoctors();
@@ -49,7 +54,6 @@
             success: function(data){        
                if(data.data != ''){
                   $.each(data.data, function(key, entry) {
-                     console.log(entry.id+' '+entry.name);
                      var option = '<option value="'+entry.id+'"> '+entry.name+' </option>';
                      $('#service').append(option);
                   });
@@ -67,7 +71,6 @@
          success: function(data){        
             if(data.data != ''){
                $.each(data.data, function(key, entry) {
-                  console.log(entry.id+' '+entry.name);
                   var option = '<option value="'+entry.id+'">'+entry.name+'</option>';
                   $('#doctor').append(option);
                });
@@ -77,5 +80,12 @@
    });
 
    }
+
+   $(function() {
+      $('body').on('click', '#btn-save', function (e) {
+         e.preventDefault();
+         console.log('me han enviado');
+      });
+   });
 
 

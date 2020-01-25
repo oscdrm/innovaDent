@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 @section('content')
 
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>Pacientes</h2>
                     <ol class="breadcrumb">
@@ -21,10 +21,10 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 
 
-            <div class="row m-b-lg m-t-lg">
-                <div class="col-md-6">
+            <div class="row m-b-lg m-t-lg ">
+                <div class="col-md-6 ">
 
-                    <div class="profile-image">
+                    <div class="profile-image ">
                         <img src="{{$patient->user_photo ? asset($patient->user_photo) : asset('img/profile.jpg')}}" class="img-circle circle-border m-b-md" alt="profile">
                     </div>
                     <div class="profile-info">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-3">
                     <a href="{{url('/patients/create')}}">
-                        <div class="widget lazur-bg p-lg text-center">
+                        <div class="widget lazur-bg p-lg text-center shad">
                             <div class="m-b-md">
                                 <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
                                 <h3 class="font-bold no-margins">
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="col-md-3" id="new-treatment" data-toggle="modal" data-target="#myModal">
-                        <div class="widget navy-bg p-lg text-center">
+                        <div class="widget navy-bg p-lg text-center shad">
                             <div class="m-b-md">
                                 <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
                                 <h3 class="font-bold no-margins">
@@ -76,8 +76,8 @@
             </div>
             <div class="row">
 
-                <div class="col-lg-7">
-                        <div class="ibox">
+                <div class="col-lg-7 ">
+                        <div class="ibox shad">
                             <div class="ibox-content">
                             <div class="row wrapper border-bottom white-bg page-heading">
                                 <div class="col-lg-9">
@@ -127,7 +127,7 @@
                         </div>
                     
 
-                        <div class="ibox">
+                        <div class="ibox shad">
                             <div class="ibox-content">
                             <div class="row wrapper border-bottom white-bg page-heading">
                                 <div class="col-lg-9">
@@ -179,7 +179,7 @@
                 <!-- INICIO TRATAMIENTOS-->
                 <div class="col-lg-5">
                     <!-- Tratamiento -->
-                    <div class="social-feed-box">
+                    <div class="social-feed-box shad">
                         <div class="social-avatar">
                             <div class="media-body">
                                 <h3>Tratamiento de Brackets</h3>
@@ -270,7 +270,7 @@
                     </div><!-- End Tratamiento-->
 
                     <!-- Historia Clinica -->
-                    <div class="social-feed-box">
+                    <div class="social-feed-box shad">
                         <div class="social-avatar">
                             <div class="media-body">
                                 <h3>Historia Clinica</h3>
@@ -337,11 +337,11 @@
                         Modal body..
                     </div>
                     
-                    <!-- Modal footer -->
+                    <!-- Modal footer 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Guardar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
+                    </div>-->
                     
                 </div>
                 </div>
@@ -354,7 +354,5 @@
 @endsection
 
 @section('additional_scripts')
-
     <script src="{{asset('js/ajax/profile.js')}}"></script>
-
 @endsection
