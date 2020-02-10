@@ -1,6 +1,14 @@
 @extends('layouts.app2')
-@section('content')
 
+@section('spinner')
+    <section class="spinner-container" id="loadingSpin">
+            <div class="sk-spinner sk-spinner-wandering-cubes">
+                        <div class="sk-cube1"></div>
+                        <div class="sk-cube2"></div>
+            </div>
+    </section>
+@endsection
+@section('content')
 <div class="row wrapper border-bottom white-bg page-heading shad">
                 <div class="col-lg-9">
                     <h2>Pacientes</h2>
@@ -85,11 +93,11 @@
                                 </div>
                             </div>
                     
-                                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <table id="treat-table" class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                     <thead>
                                     <tr>
+                                        <th>No Tratamiento </th>
                                         <th>ID Tratamiento</th>
-                                        <th data-hide="phone">Paciente</th>
                                         <th data-hide="phone">Doctor</th>
                                         <th data-hide="phone">Tipo de tratamiento</th>
                                         <th data-hide="phone,tablet" >Numero de Sesiones</th>
@@ -97,7 +105,7 @@
                                         <!--<th class="text-right">Action</th>-->
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="treat-tr">
                                     
                                         <tr>
                                             <td>
@@ -262,7 +270,7 @@
                         </div>
 
                         <div class="social-footer" style="overflow:hidden;">
-                               <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Nueva sesión</button>
+                               <button type="button" class="btn btn-primary pull-right" id="new-session" data-sesid="2" data-toggle="modal" data-target="#myModal">Nueva sesión</button>
                         </div>
 
                         
@@ -347,12 +355,15 @@
                 </div>
             </div>
 
- 
+           
 
         </div>
-
+        
 @endsection
 
+
 @section('additional_scripts')
-    <script src="{{asset('js/ajax/profile.js')}}"></script>
+    <script src="{{asset('js/ajax/profile/profile.js')}}"></script>
+    <script src="{{asset('js/ajax/profile/treatments/treatments.js')}}"></script>
+    <script src="{{asset('js/ajax/profile/treatments/sessions.js')}}"></script>
 @endsection

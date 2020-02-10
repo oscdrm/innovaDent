@@ -1,7 +1,7 @@
 
    var modal = $('#myModal');
 
-   var form_sesion = '\
+   var form_treatment = '\
     <form class="form-horizontal" id="new-treat">\
       <div class="form-group">\
          <label class="col-sm-2 control-label">Servicio</label>\
@@ -34,16 +34,13 @@
       </form>';
 
    $('#new-treatment').click(function(){
-      $('.modal-body').html(form_sesion);
+      $('.modal-body').html(form_treatment);
 
       //call functions to fill selectors
         getServices();
         getDoctors();
       //End call functions to fill selectors
         $('.modal-title').html('Registrar nuevo tratamiento');
-        
-       
-
    });
 
    function getServices(){
@@ -82,10 +79,45 @@
    }
 
    $(function() {
-      $('body').on('click', '#btn-save', function (e) {
-         e.preventDefault();
-         console.log('me han enviado');
+
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
       });
+
+      $('body').on('click', '#btn-save', function (e) {
+         var url  = window.location.pathname;
+         url = url.replace(/\D/g, "");
+         e.preventDefault();
+         var inputs = $('#new-treat').serialize();
+         $.ajax({
+            data:inputs,
+            url:'/treatments/'+url+'/store',
+            type: "POST",
+            //dataType:"Json",
+            success:function(data){
+                if(data.succesfull != true){
+
+                }
+
+                if(data.result == 'save'){
+                    $('#myModal').modal('hide');
+                    swal({
+                        title: "El tratamiento se ha guardado correctamente",
+                        text: "Presiona el botón para cerrar",
+                        type: "success"
+                    });
+                    getTreatments();
+                }
+
+            }
+
+
+         });
+      });
+
+
    });
 
 

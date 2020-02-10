@@ -104,4 +104,15 @@ Route::middleware(['auth'])->group(function () {
     //RUTAS PARA CONSULTAS
     Route::get('/patients/{id}/profile', 'PatientsController@profile');
 
+    //RUTAS PARA GUARDAR TRATAMIENTO
+    Route::post('/treatments/{id}/store', 'TreatmentsController@store');
+
+    //RUTAS GET TRATAMIENTOS
+    Route::get('/treatments/{id}', 'TreatmentsController@treatments');
+
+    //RUTA PARA GUARDAR Sesion de tratamiento
+    Route::post('/treatments/sessions/{id}/store', 'TreatmentsController@store_session');
+
+
+
 });

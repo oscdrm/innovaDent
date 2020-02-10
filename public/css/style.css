@@ -7,6 +7,29 @@
  *
 */
 
+.spinner-container{
+
+  width:100%;
+  height:100%;
+  position:fixed;
+  z-index:1000000;
+  background:rgba(255,255,255, 0.5);
+  left:1px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.treat-tr{
+  cursor:pointer;
+}
+
+.treat-tr tr:hover{
+  background:#e7eaec;
+}
+
+
 .dismount{
   color:#ed5565;
 }
@@ -6152,15 +6175,15 @@ body.body-small .vote-icon {
  */
 .sk-spinner-wandering-cubes.sk-spinner {
   margin: 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 80px;
+  height: 80px;
   position: relative;
 }
 .sk-spinner-wandering-cubes .sk-cube1,
 .sk-spinner-wandering-cubes .sk-cube2 {
   background-color: #1ab394;
-  width: 10px;
-  height: 10px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   top: 0;
   left: 0;
