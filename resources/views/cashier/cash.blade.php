@@ -41,7 +41,7 @@
                 </div>
         </div>
 
-        <div class="col-lg-4">
+        <!--<div class="col-lg-4">
             <div class="widget blue-bg p-lg text-center">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
@@ -50,7 +50,7 @@
                         </h3>
                     </div>
                 </div>
-        </div>
+        </div>-->
 
             
     </div>
