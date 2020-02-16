@@ -166,12 +166,11 @@ class UsersController extends Controller
 
         //Validaciones
         $rules = [
-            'name' => 'required | alpha | min:3',
-            'lastName' => 'required | alpha | min:3',
-            'age' => ' max:3',
-            'telephone' => ' max:10 | min:10',
-            'email' => 'email',
-            'street' => 'required'
+            'name' => 'required | min:3',
+            'lastName' => 'min:3',
+            'age' => ' digits',
+            'telephone' => ' max:10',
+            'email' => 'email'
         ];
 
         // Validator::make($request, $rules);

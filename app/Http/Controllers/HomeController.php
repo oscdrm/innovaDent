@@ -74,7 +74,10 @@ class HomeController extends Controller
     private function consultasCajera($user){
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
-        $consults10 = Consult::where('cashier_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
+        $consults = Consult::where('cashier_id', '=', $user)
+                    ->whereDate('created_at', Carbon::today())
+                    ->where('outflow', '!=', true)
+                    ->orderBy('created_at', 'desc')->get();
         $allConsults = Consult::where('cashier_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $amountWeek = 0;
         $dt = Carbon::now();
@@ -100,7 +103,7 @@ class HomeController extends Controller
             
         }
 
-        $consultsArray = ['consults' => $consults10, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
+        $consultsArray = ['consults' => $consults, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
         
         return $consultsArray;
     }

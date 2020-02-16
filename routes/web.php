@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/treatments/{id}', 'TreatmentsController@treatments');
 
     //RUTA PARA GUARDAR Sesion de tratamiento
-    Route::post('/treatments/sessions/{id}/store', 'TreatmentsController@store_session');
+    Route::post('/treatments/sessions/{id}/store', 'TreatmentsSessionController@store_session');
 
 
 

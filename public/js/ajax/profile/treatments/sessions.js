@@ -47,7 +47,7 @@ var modal = $('#myModal');
               if(data.result == 'save'){
                   $('#myModal').modal('hide');
                   swal({
-                      title: "El tratamiento se ha guardado correctamente",
+                      title: "La sesion del tratamiento se ha guardado correctamente",
                       text: "Presiona el botón para cerrar",
                       type: "success"
                   });
@@ -62,3 +62,40 @@ var modal = $('#myModal');
 
 
  });
+
+
+ function getSessionsTreatments(id){
+   // $('#loadingSpin').show();
+   $.ajax({ 
+      type: "GET",
+      dataType: "json",
+      url: "/treatments/sessions/"+url,
+      success: function(data){        
+         if(data.succesfull == true){
+            if(data.result != ""){
+               // $('#treat-table tbody').html('');
+               $.each(data.result, function(key, entry) {
+                  alert('si hay');
+                  // var status = entry.active == 1 ? 'Activo' : 'Terminado'; 
+                  // var tr = '<tr data-id="'+entry.id+'">';
+                  // tr += '<td>'+count+'</td>';
+                  // tr += '<td>'+entry.id+'</td>';
+                  // tr += '<td>'+entry.doctor+'</td>';
+                  // tr += '<td>'+entry.concept+'</td>';
+                  // tr += '<td>'+entry.sessions+'</td>';
+                  // tr += '<td>'+status+'</td>';
+                  // tr += '</tr>';
+                  // count++;
+                  // $('#treat-table tbody').append(tr);
+               });
+               $('#loadingSpin').delay(800).hide();
+            }else{
+               alert('aun no hay sesiones');
+               // $('#treat-table').html('<p>No hay tratamientos disponibles</p>');
+            }
+         }else{
+            alert('Algo ha salido mal por favor contacta a soporte tecnico')
+         }
+      }
+   });
+}

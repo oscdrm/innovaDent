@@ -77,7 +77,7 @@
             <div class="ibox-content shad">
              <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Movimientos {{$sendConsults ? $sendConsults : "Recientes"}}</h2>
+                    <h2>Movimientos consultados</h2>
                 </div>
             </div>
                 <div class="table-responsive">

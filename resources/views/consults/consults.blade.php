@@ -62,6 +62,14 @@
                                                 } else {
                                                     $class = "odd";
                                                 }
+
+                                                $dismount = "";
+                                                $minus = "";
+                                                if($consult->dismount == 1){
+                                                    $class = "dismount";
+                                                    $minus = "-";
+                                                }
+
                                             @endphp   
                                             <tr class="{{$class}}">
                                                 <td>
@@ -74,16 +82,17 @@
                                                     {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
                                                 </td>
                                                 <td>
-                                                    {{$consult->amount}}
+                                                    {{$minus}}{{$consult->amount}}
                                                 </td>
                                                 <td>
                                                     {{$consult->created_at}}
                                                 </td>
                                                 <td>
-                                                    {{$consult->doctor->name}} {{$consult->doctor->lastName}}
+                                                    {{$consult->doctor ? $consult->doctor->name : ''}}
+                                                    {{$consult->doctor ? $consult->doctor->lastName : ''}} 
                                                 </td>
                                                 <td>
-                                                    {{$consult->concept->name}}
+                                                    {{$consult->concept ? $consult->concept->name : $consult->other_concept}}
                                                 </td>
 
                                                 <td>

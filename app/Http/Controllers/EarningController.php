@@ -116,7 +116,7 @@ class EarningController extends Controller
         $dc = "";
         $amountToday = 0;
         $serviciosRealizados = 0;
-        foreach($allConsults as $consult){
+        foreach($consults as $consult){
             $dc = $consult->created_at;
             $dc = explode(" ", $dc);
             if($consult->dismount != true){

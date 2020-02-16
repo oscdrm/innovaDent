@@ -121,13 +121,14 @@
             <div class="ibox-content">
              <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Consultas Recientes</h2>
+                    <h2>Consultas de hoy</h2>
                 </div>
             </div>
                 <div class="table-responsive">
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
+                            <th>N Consulta</th>
                             <th>ID Consulta</th>
                             <th data-hide="phone">Paciente</th>
                             <th data-hide="phone">Costo</th>
@@ -138,8 +139,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @php
+                            $c = 0;
+                        @endphp
                         @foreach ($consults as $consult)
+                            @php
+                                $c++;
+                            @endphp
                             <tr>
+                                <td>
+                                    {{$c}} 
+                                </td>
                                 <td>
                                 {{$consult->id}} 
                                 </td>

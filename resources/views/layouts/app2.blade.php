@@ -213,7 +213,7 @@
         $(document).ready(function(){
 
             var elem_2 = document.querySelector('.js-switch_2');
-            var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
+            // var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
         
             var today=new Date();
             $('#dc .dc-date .dci').datepicker({
