@@ -32,16 +32,16 @@
                         @endforeach
                 </div>
             @endif
-            <form method="post" action="{{url('/movements/store')}}" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="{{url('/movements/store')}}" class="form-horizontal form-disabled" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Concepto</label>
-                    <div class="col-sm-10"><input name="other_concept" type="text" class="form-control" value="{{old('other_concept')}}"></div>
+                    <div class="col-sm-10"><input name="other_concept" required type="text" class="form-control" value="{{old('other_concept')}}"></div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Monto</label>
-                    <div class="col-sm-10"><input name="amount" type="number" class="form-control" value="{{old('amount')}}"></div>
+                    <div class="col-sm-10"><input name="amount" required type="number" class="form-control" value="{{old('amount')}}"></div>
                 </div>
 
                 <div class="form-group">
@@ -76,6 +76,13 @@
         </div><!--END CONTAINER ROW-->
 </div><!--END WRAPER-->
 
+@endsection
+
+
 @include('layouts/disablebutton')
+@section('switchery')
+
+    var elem_2 = document.querySelector('.js-switch_2');
+    var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
 
 @endsection

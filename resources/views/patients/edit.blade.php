@@ -32,7 +32,7 @@
                         @endforeach
                 </div>
             @endif
-            <form method="post" action="{{url('/patients/'.$patient->id.'/edit')}}" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="{{url('/patients/'.$patient->id.'/edit')}}" class="form-horizontal form-disabled" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <figure class="edit_img"><img src="{{$patient->user_photo ? asset($patient->user_photo) : asset('img/profile.jpg')}}" alt=""></figure>

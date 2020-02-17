@@ -1,7 +1,7 @@
-<script>
 
-    $("button").click(function(){
-        $("button").prop("disabled", false);
+@section('disbutton')
+    $("button").click(function(e){
+        $("button").prop("disabled", true);
+        $(".form-disabled").submit();
     });
-
-</script>
+@endsection

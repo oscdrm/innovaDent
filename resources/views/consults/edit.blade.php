@@ -32,7 +32,7 @@
                         @endforeach
                 </div>
             @endif
-            <form method="post" action="{{url('/consults/'.$consult->id.'/edit')}}" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="{{url('/consults/'.$consult->id.'/edit')}}" class="form-horizontal form-disabled" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Paciente</label>

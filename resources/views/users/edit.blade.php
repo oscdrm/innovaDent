@@ -48,7 +48,7 @@
                         @endforeach
                 </div>
             @endif
-            <form method="post" action="{{url('/users/'.$user->id.'/edit')}}" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="{{url('/users/'.$user->id.'/edit')}}" class="form-horizontal form-disabled" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <figure class="edit_img"><img src="{{$user->user_photo ? asset($user->user_photo) : asset('img/profile.jpg')}}" alt=""></figure>
