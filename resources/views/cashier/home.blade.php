@@ -135,7 +135,6 @@
                             <th data-hide="phone">Dia y Hora de consulta</th>
                             <th data-hide="phone,tablet" >Doctor</th>
                             <th data-hide="phone">Servicio</th>
-                            <th data-hide="phone">Metodo de pago</th>
                             <!--<th class="text-right">Action</th>-->
                         </tr>
                         </thead>
@@ -146,23 +145,8 @@
                                 @foreach ($consults as $consult)
                                     @php
                                         $c++;
-                                        $i = 0;
-                                        $class = "";
-                                        if($i%2 == 0){
-                                            $class = "even";
-                                        } else {
-                                            $class = "odd";
-                                        }
-
-                                        $dismount = "";
-                                        $minus = "";
-                                        if($consult->dismount == 1){
-                                            $class = "dismount";
-                                            $minus = "-";
-                                        }
-
                                     @endphp
-                            <tr class="{{$class}}">
+                            <tr>
                                 <td>
                                     {{$c}} 
                                 </td>
@@ -173,7 +157,7 @@
                                     {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
                                 </td>
                                 <td>
-                                    {{$minus}} {{$consult->amount}}
+                                    {{$consult->amount}}
                                 </td>
                                 <td>
                                     {{$consult->created_at}}
@@ -184,8 +168,6 @@
                                 <td>
                                     {{$consult->concept->name}}
                                 </td>
-
-                              
                             </tr>
                             @endforeach
                         </tbody>
