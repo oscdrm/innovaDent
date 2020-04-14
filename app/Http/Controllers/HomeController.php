@@ -74,7 +74,7 @@ class HomeController extends Controller
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
         $consults = Consult::where('cashier_id', '=', $user)
                     ->whereDate('created_at', Carbon::today())
-                    ->where('outflow', '!=', true)
+                    //->where('outflow', '!=', true)
                     ->orderBy('created_at', 'desc')->get();
         $allConsults = Consult::where('cashier_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $amountWeek = 0;
@@ -113,7 +113,8 @@ class HomeController extends Controller
         $nct = Consult::whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
         $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
 
-        $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
+        //$consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
+        $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $allConsults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $amountWeek = 0;
         $dt = Carbon::now();

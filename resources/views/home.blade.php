@@ -136,8 +136,23 @@
                         @foreach ($consults as $consult)
                             @php
                                 $c++;
+                                $i = 0;
+                                $class = "";
+                                if($i%2 == 0){
+                                    $class = "even";
+                                } else {
+                                    $class = "odd";
+                                }
+
+                                $dismount = "";
+                                $minus = "";
+                                if($consult->dismount == 1){
+                                    $class = "dismount";
+                                    $minus = "-";
+                                }
+
                             @endphp
-                            <tr>
+                            <tr class="{{$class}}">
                                 <td>
                                 {{$c}} 
                                 </td>
@@ -148,7 +163,7 @@
                                     {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
                                 </td>
                                 <td>
-                                    {{$consult->amount}}
+                                    {{$minus}} {{$consult->amount}}
                                 </td>
                                 <td>
                                     {{$consult->created_at}}
