@@ -185,9 +185,7 @@
                                     {{$consult->concept->name}}
                                 </td>
 
-                                <td>
-                                    {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
-                                </td>
+                              
                             </tr>
                             @endforeach
                         </tbody>
