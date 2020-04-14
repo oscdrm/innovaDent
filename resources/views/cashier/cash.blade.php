@@ -69,6 +69,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
+                            <th>N Consulta</th>
                             <th>ID Consulta</th>
                             <th data-hide="phone">Paciente</th>
                             <th data-hide="phone">Costo</th>
@@ -79,10 +80,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($consults as $consult)
+                            @php
+                                $c = 0;
+                                @endphp
+                                @foreach ($consults as $consult)
+                                    @php
+                                        $c++;
+                            @endphp
                             <tr>
                                 <td>
-                                {{$consult->id}} 
+                                    {{$c}} 
+                                </td>
+                                <td>
+                                    {{$consult->id}} 
                                 </td>
                                 <td>
                                     {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}

@@ -43,6 +43,7 @@
                                         <th>Doctor</th>
                                         <th>Servicio</th>
                                         <th>Cajero</th>
+                                        <th>Metodo de Pago</th>
                                         @if(auth()->user()->role->id == 1)
                                             <th>Action</th>
                                         @endif
@@ -96,7 +97,11 @@
                                                 </td>
 
                                                 <td>
-                                                    {{$consult->cashier->name}} {{$consult->cashier->lastName}}
+                                                    {{$consult->cashier->username}}
+                                                </td>
+
+                                                <td>
+                                                    {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
                                                 </td>
 
                                                 @if(auth()->user()->role->id == 1)

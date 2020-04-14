@@ -139,13 +139,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @php
-                            $c = 0;
-                        @endphp
-                        @foreach ($consults as $consult)
                             @php
-                                $c++;
+                                $c = 0;
                             @endphp
+                                @foreach ($consults as $consult)
+                                    @php
+                                        $c++;
+                                    @endphp
                             <tr>
                                 <td>
                                     {{$c}} 

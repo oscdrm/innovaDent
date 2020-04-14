@@ -124,6 +124,8 @@
                             <th data-hide="phone">Dia y Hora de consulta</th>
                             <th data-hide="phone,tablet" >Doctor</th>
                             <th data-hide="phone">Servicio</th>
+                            <th data-hide="phone">Metodo de pago</th>
+                            <th data-hide="phone">Cobrada por:</th>
                             <!--<th class="text-right">Action</th>-->
                         </tr>
                         </thead>
@@ -157,6 +159,15 @@
                                 <td>
                                     {{$consult->concept ? $consult->concept->name : $consult->other_concept}}
                                 </td>
+
+                                <td>
+                                    {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
+                                </td>
+
+                                <td>
+                                    {{$consult->cashier ? $consult->cashier->username: ''}}
+                                </td>
+
                             </tr>
                             @endforeach
                         </tbody>

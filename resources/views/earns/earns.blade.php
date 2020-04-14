@@ -4,21 +4,30 @@
 <div class="wrapper wrapper-content animated fadeInRight">
  <div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <form action="{{url('/earning/calculate')}}" method="post">
                 @csrf
-                <div class="form-group" style="margin-bottom:35px">
-                    <div style="padding:10px 0px;">
-                        <label class="col-lg-2 control-label">Doctor</label>
-                        <div class="col-sm-10">
-                            <select data-placeholder="Selecciona una tienda" name="doctor" class="chosen-select shad"  tabindex="2">
+                <div class="row">
+                    <div class="col-md-6">
+                            <p>Doctor</p>
+                            <select data-placeholder="Selecciona una doctor" name="doctor" class="chosen-select shad"  tabindex="2">
                                 <option value="">Selecciona un Doctor</option>
                                 @foreach ($doctors as $doctor)
                                     <option value="{{$doctor->id}}">{{$doctor->name}} {{$doctor->lastName}}</option>
                                 @endforeach
                             </select>
-                        </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <p>Tratamiento</p>
+                        <select data-placeholder="Selecciona un tratamiento" name="concept" class="chosen-select shad"  tabindex="2">
+                            <option value="">Selecciona un concepto</option>
+                            @foreach ($concepts as $concept)
+                                <option value="{{$concept->id}}">{{$concept->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="filter">
@@ -44,8 +53,11 @@
             </form>
         </div>
 
+    </div>
 
-        <div class="col-lg-4">
+    <div class="col-lg-12">
+
+        <div class="col-lg-3">
             <div class="widget navy-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <span style="font-size:55px;">{{$serviciosRealizados}}</span>
@@ -61,7 +73,18 @@
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
                         <h3 class="font-bold no-margins">
-                            Corte de la semana
+                            Corte General
+                        </h3>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="widget yellow-bg p-lg text-center shad">
+                    <div class="m-b-md">
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$dineroCaja}}</span>
+                        <h3 class="font-bold no-margins">
+                            Dinero en caja
                         </h3>
                     </div>
                 </div>
@@ -91,6 +114,8 @@
                             <th data-hide="phone">Dia y Hora de consulta</th>
                             <th data-hide="phone,tablet" >Doctor</th>
                             <th data-hide="phone">Concepto</th>
+                            <th data-hide="phone">Cobrada por</th>
+                            <th data-hide="phone">Metodo de pago</th>
                             <!--<th class="text-right">Action</th>-->
                         </tr>
                         </thead>
@@ -130,6 +155,15 @@
                                 <td>
                                     {{$consult->concept ? $consult->concept->name : $consult->other_concept}}
                                 </td>
+
+                                <td>
+                                    {{$consult->cashier->username}}
+                                </td>
+
+                                <td>
+                                    {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
+                                </td>
+
                             </tr>
                             @endforeach
                         </tbody>

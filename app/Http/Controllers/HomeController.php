@@ -34,8 +34,6 @@ class HomeController extends Controller
             $amountWeek = $consults['amountWeek'];
             $amountToday = $consults['amountToday'];
             $consults = $consults['consults'];
-            //var_dump($consults);
-            //exit();
             return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeek', 'amountToday', 'consults'));
         }
 

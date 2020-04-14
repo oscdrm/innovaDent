@@ -7,6 +7,7 @@ use App\Consult;
 use App\Patient;
 use App\User;
 use App\Concept;
+use App\PaymentMethod;
 use Carbon\Carbon;
 use Auth;
 
@@ -43,7 +44,8 @@ class ConsultsController extends Controller
         $patients = Patient::all();
         $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
         $services = Concept::where('surgery_id', '=', 1)->get();
-        return view('consults.create')->with(compact('services', 'doctors', 'patients'));
+        $payments = PaymentMethod::all();
+        return view('consults.create')->with(compact('services', 'doctors', 'patients', 'payments'));
 
     }
 
@@ -86,6 +88,11 @@ class ConsultsController extends Controller
         $consult->cashier_id = $cashier;
         $consult->outflow = false;
         $consult->dismount = false;
+
+        $paymentMetod = $request->input('payment_method') ? $request->input('payment_method') : 1;
+        $consult->payment_method_id = $paymentMetod;
+        
+        
 
         $date_consult = $request->input('date-consult');
         if($date_consult){

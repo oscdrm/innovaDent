@@ -29,4 +29,11 @@ class Consult extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+     //$consult->paymentmethod
+     public function paymentMethod()
+     {
+         return $this->belongsTo(PaymentMethod::class);
+     }
+
 }

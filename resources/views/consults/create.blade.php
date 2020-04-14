@@ -80,6 +80,18 @@
                     <label class="col-sm-2 control-label">Costo</label>
                     <div class="col-sm-10"><input name="amount" type="number" class="form-control" value="{{old('amount')}}"></div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Tipo de Pago</label>
+                    <div class="col-sm-10">
+                        <select data-placeholder="Selecciona una tipo de pago" name="payment_method" class="chosen-select"  tabindex="2" required>
+                            @foreach ($payments as $payment)
+                                <option value="{{$payment->id}}">{{$payment->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 @if(auth()->user()->role->id == 1)
                     <div class="form-group" id="dc">
                                     <label class="font-normal">Selecciona la fecha de consulta:</label>
