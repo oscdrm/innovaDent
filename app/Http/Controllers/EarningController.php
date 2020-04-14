@@ -71,7 +71,7 @@ class EarningController extends Controller
             }
         }
     
-        return view('earns/earns')->with(compact('sendConsults', 'consults', 'amountWeek', 'serviciosRealizados', 'doctors', 'concepts'));
+        return view('earns/earns')->with(compact('sendConsults', 'consults', 'amountWeek', 'serviciosRealizados', 'doctors', 'concepts', 'dineroCaja'));
     }
 
     public function calculate(Request $request){
