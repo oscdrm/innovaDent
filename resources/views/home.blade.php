@@ -159,7 +159,29 @@
                                 <td>
                                     {{$consult->id}} 
                                 </td>
-                                
+                                <td>
+                                    {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
+                                </td>
+                                <td>
+                                    {{$minus}} {{$consult->amount}}
+                                </td>
+                                <td>
+                                    {{$consult->created_at}}
+                                </td>
+                                <td>
+                                    {{$consult->doctor ? $consult->doctor->name : ''}} {{$consult->doctor ? $consult->doctor->lastName : ''}}
+                                </td>
+                                <td>
+                                    {{$consult->concept ? $consult->concept->name : $consult->other_concept}}
+                                </td>
+
+                                <td>
+                                    {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
+                                </td>
+
+                                <td>
+                                    {{$consult->cashier ? $consult->cashier->username: ''}}
+                                </td>
 
                             </tr>
                             @endforeach

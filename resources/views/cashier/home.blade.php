@@ -153,7 +153,21 @@
                                 <td>
                                 {{$consult->id}} 
                                 </td>
-                        
+                                <td>
+                                    {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
+                                </td>
+                                <td>
+                                    {{$consult->amount}}
+                                </td>
+                                <td>
+                                    {{$consult->created_at}}
+                                </td>
+                                <td>
+                                    {{$consult->doctor->name}}
+                                </td>
+                                <td>
+                                    {{$consult->concept->name}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
