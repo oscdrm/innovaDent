@@ -65,6 +65,9 @@ class EarningController extends Controller
                 }
             }else{
                 $amountWeek = $amountWeek - $consult->amount;
+                if($paymentMethod == 1){
+                    $dineroCaja = $dineroCaja - $consult->amount;
+                }
                 if($dt[0] == $dc[0]){
                     $amountToday = $amountToday - $consult->amount;
                 }
