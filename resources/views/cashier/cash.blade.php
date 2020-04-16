@@ -80,14 +80,29 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @php
+                            $c = 0;
+                        @endphp
+                        @foreach ($consults as $consult)
                             @php
-                                $c = 0;
-                                @endphp
-                                @foreach ($consults as $consult)
-                                    @php
-                                        $c++;
+                                $c++;
+                                $i = 0;
+                                $class = "";
+                                if($i%2 == 0){
+                                    $class = "even";
+                                } else {
+                                    $class = "odd";
+                                }
+
+                                $dismount = "";
+                                $minus = "";
+                                if($consult->dismount == 1){
+                                    $class = "dismount";
+                                    $minus = "-";
+                                }
+
                             @endphp
-                            <tr>
+                            <tr class="{{$class}}">
                                 <td>
                                     {{$c}} 
                                 </td>
@@ -98,16 +113,20 @@
                                     {{$consult->patient ? $consult->patient->name : $consult->other_patient}} {{$consult->patient ? $consult->patient->lastName : ''}}
                                 </td>
                                 <td>
-                                    {{$consult->amount}}
+                                    {{$dismount}} {{$consult->amount}}
                                 </td>
                                 <td>
                                     {{$consult->created_at}}
                                 </td>
                                 <td>
-                                    {{$consult->doctor->name}}
+                                    {{$consult->doctor ? $consult->doctor->name : ''}} {{$consult->doctor ? $consult->doctor->lastName : ''}}
                                 </td>
                                 <td>
-                                    {{$consult->concept->name}}
+                                    {{$consult->concept ? $consult->concept->name : $consult->other_concept}}
+                                </td>
+
+                                <td>
+                                    {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
                                 </td>
                             </tr>
                             @endforeach
