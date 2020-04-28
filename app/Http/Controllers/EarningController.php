@@ -32,7 +32,7 @@ class EarningController extends Controller
         $sendConsults = "";
         $consults = [];
         $amountWeek = 0;
-        $doctors = User::where('role_id', '=', 3)->get();
+        $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
         $concepts = Concept::all();
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
@@ -98,25 +98,19 @@ class EarningController extends Controller
             array_push($arrayClausules, ['doctor_id', '=', $doctor]);
             $sendConsults = "recientes del doctor ".$doctorData->name." ".$doctorData->lastName;
             $consults = Consult::where($arrayClausules)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
-            if($start && $end){
-                $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
-                $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
-                //$ds = $ds->toDateString();
-                //$de = $de->toDateString();
-                $consults = Consult::where($arrayClausules)->whereBetween('created_at', [$ds, $de])->get();
-            }
         }
 
         if($concept){
             array_push($arrayClausules, ['concept_id', '=', $concept]);
             $consults = Consult::where($arrayClausules)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
-            if($start && $end){
-                $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
-                $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
-                //$ds = $ds->toDateString();
-                //$de = $de->toDateString();
-                $consults = Consult::where($arrayClausules)->whereBetween('created_at', [$ds, $de])->get();
-            }
+        }
+
+        if($start && $end){
+            $ds = Carbon::createFromFormat('d/m/Y', $start)->startOfDay();
+            $de = Carbon::createFromFormat('d/m/Y', $end)->endOfDay();
+            //$ds = $ds->toDateString();
+            //$de = $de->toDateString();
+            $consults = Consult::where($arrayClausules)->whereBetween('created_at', [$ds, $de])->get();
         }
     
         $amountWeek = 0;

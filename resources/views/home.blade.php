@@ -12,7 +12,7 @@
             <div class="ibox-content">
                 <h1 class="no-margins">{{$nct}}</h1>
                 <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
-                <medium>Personas atendidas</medium>
+                <medium>Consultas atendidas</medium>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="ibox-content">
                 <h1 class="no-margins">{{$ncw}}</h1>
                 <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
-                <medium>Personas atendidas</medium>
+                <medium>Consultas atendidas</medium>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
             <div class="ibox-content">
                 <h1 class="no-margins">{{$ncm}}</h1>
                 <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
-                <medium>Personas atendidas</medium>
+                <medium>Consultas atendidas</medium>
             </div>
         </div>
     </div>
