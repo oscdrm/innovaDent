@@ -226,6 +226,19 @@
             $('.chosen-select').chosen({width: "100%"});
             $('.filter').hide();
             var pivote = 0;
+            
+            if($("#datepicker").attr("val-valid") == 1){
+                $('.datepicker').attr('required');
+                $('.filter').fadeIn();
+                    
+                    $('#data_5 .input-daterange .datepicker').datepicker({
+                            dateFormat: 'dd-mm-yyyy',
+                            changeMonth: true,
+                            changeYear: true
+                    }).datepicker();
+            }
+
+
             $( "#filter" ).click(function() {
                 if(pivote == 0){
                     $('.datepicker').attr('required');

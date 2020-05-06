@@ -27,6 +27,9 @@
     <link href="{{asset('css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
+    <!--CHOOSEN SELECT-->
+    <link href="{{asset('css/plugins/chosen/bootstrap-chosen.css')}}" rel="stylesheet">
+
      <!-- ASSETS CSS INSPINIA -->
 
 </head>
@@ -42,5 +45,16 @@
  <!-- Mainly scripts -->
     <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/plugins/chosen/chosen.jquery.js')}}"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('.chosen-select').chosen({width: "100%"});
+
+        });
+    
+    </script>
+
 </body>
 </html>

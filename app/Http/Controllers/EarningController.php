@@ -82,26 +82,27 @@ class EarningController extends Controller
         $consults = [];
         $amountWeek = 0;
         $doctors = User::where('role_id', '=', 3)->get();
-        $doctor = $request->input('doctor');
-        $concept = $request->input('concept');
+        $doc = $request->input('doctor');
+        $conc = $request->input('concept');
         $concepts = Concept::all();
         $start = $request->input('start');
         $end = $request->input('end');
+        $vali = 0;
         Carbon::setLocale('es');
         $arrayClausules = [];
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
         $consults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         
-        if($doctor){
-            $doctorData = User::find($doctor);
-            array_push($arrayClausules, ['doctor_id', '=', $doctor]);
+        if($doc){
+            $doctorData = User::find($doc);
+            array_push($arrayClausules, ['doctor_id', '=', $doc]);
             $sendConsults = "recientes del doctor ".$doctorData->name." ".$doctorData->lastName;
             $consults = Consult::where($arrayClausules)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         }
 
-        if($concept){
-            array_push($arrayClausules, ['concept_id', '=', $concept]);
+        if($conc){
+            array_push($arrayClausules, ['concept_id', '=', $conc]);
             $consults = Consult::where($arrayClausules)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         }
 
@@ -111,6 +112,7 @@ class EarningController extends Controller
             //$ds = $ds->toDateString();
             //$de = $de->toDateString();
             $consults = Consult::where($arrayClausules)->whereBetween('created_at', [$ds, $de])->get();
+            $vali = 1;
         }
     
         $amountWeek = 0;
@@ -141,7 +143,10 @@ class EarningController extends Controller
             }
         }
         
-        return view('earns/earns')->with(compact('sendConsults', 'consults', 'amountWeek', 'serviciosRealizados', 'doctors', 'concepts', 'dineroCaja'));
+        return view('earns/earns')->with(compact('sendConsults', 'consults', 'amountWeek',
+                                                 'serviciosRealizados', 'doctors', 'concepts',
+                                                 'dineroCaja', 'start', 'end', 'vali', 'doc',
+                                                 'conc'));
 
 
     }

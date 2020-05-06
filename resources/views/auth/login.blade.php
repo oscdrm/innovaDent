@@ -13,13 +13,20 @@
             <form class="m-t" role="form"  method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                    <input id="username" type="text"
+                    <select data-placeholder="Selecciona una tienda" name="username" class="chosen-select"  tabindex="2" required>
+                        <option value="">Selecciona un usuario</option>
+                        @foreach ($users as $user)
+                            <option value="{{$user->username}}">{{$user->username}}</option>
+                        @endforeach
+                    </select>
+
+                   <!-- <input id="username" type="text"
                            class="form-control @error('username') is-invalid @enderror"
                            name="username"
                            value="{{old ('username')}}" 
                            placeholder="Usuario"
                            required autocomplete="username" autofocus
-                    >
+                    >-->
                     @error('username')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

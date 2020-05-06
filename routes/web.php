@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +16,10 @@
 // });
 
 Route::get('/', function(){
-
-    return view('auth/login');
+    $users = User::All();
+    return view('auth/login')->with(compact('users'));;
 
 });
-
 
 Auth::routes();
 

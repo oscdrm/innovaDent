@@ -13,7 +13,11 @@
                             <select data-placeholder="Selecciona una doctor" name="doctor" class="chosen-select shad"  tabindex="2">
                                 <option value="">Selecciona un Doctor</option>
                                 @foreach ($doctors as $doctor)
-                                    <option value="{{$doctor->id}}">{{$doctor->name}} {{$doctor->lastName}}</option>
+                                    @if(isset($doc) && $doc == $doctor->id)
+                                        <option value="{{$doctor->id}}" selected>{{$doctor->name}} {{$doctor->lastName}}</option>
+                                    @else
+                                        <option value="{{$doctor->id}}">{{$doctor->name}} {{$doctor->lastName}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                     </div>
@@ -23,7 +27,11 @@
                         <select data-placeholder="Selecciona un tratamiento" name="concept" class="chosen-select shad"  tabindex="2">
                             <option value="">Selecciona un concepto</option>
                             @foreach ($concepts as $concept)
-                                <option value="{{$concept->id}}">{{$concept->name}}</option>
+                                @if(isset($conc) && $conc == $concept->id)
+                                    <option value="{{$concept->id}}" selected>{{$concept->name}}</option>
+                                @else
+                                    <option value="{{$concept->id}}">{{$concept->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -33,11 +41,11 @@
                 <div class="filter">
                     <div class="form-group" id="data_5">
                         <label class="font-normal">Selecciona las fechas de corte</label>
-                        <div class="input-daterange input-group shad" id="datepicker">
-                            <span class="input-group-addon">Del</span>
-                            <input type="text" class="input-sm form-control datepicker shad" data-date-format="dd/mm/yyyy" name="start"/>
-                            <span class="input-group-addon">al</span>
-                            <input type="text" class="input-sm form-control datepicker" data-date-format="dd/mm/yyyy" name="end"/>
+                        <div class="input-daterange input-group shad" id="datepicker" val-valid="{{isset($vali) ? $vali : 0}}">
+                            <span class="input-group-addon">Del </span>
+                            <input type="text" class="input-sm form-control datepicker shad" value="{{isset($start) ? $start : ''}}" data-date-format="dd/mm/yyyy" name="start"/>
+                            <span class="input-group-addon">al </span>
+                            <input type="text" class="input-sm form-control datepicker" value="{{isset($end) ? $end : ''}}" data-date-format="dd/mm/yyyy" name="end"/>
                         </div>
                     </div>
                 </div>               
