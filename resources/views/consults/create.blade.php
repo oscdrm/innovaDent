@@ -92,14 +92,14 @@
                     </div>
                 </div>
 
-                @if(auth()->user()->role->id == 1)
+               
                     <div class="form-group" id="dc">
                                     <label class="font-normal">Selecciona la fecha de consulta:</label>
                                     <div class="input-group date dc-date">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date-consult" name="date-consult" type="text" data-date-format="dd/mm/yyyy" class="form-control dci">
                                     </div>
                     </div>
-                @endif
+               
 
 
                 <div class="hr-line-dashed"></div>
