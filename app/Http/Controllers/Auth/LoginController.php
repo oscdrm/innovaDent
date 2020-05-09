@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -39,6 +40,11 @@ class LoginController extends Controller
 
     public function username(){
         return 'username';
+    }
+
+    public function showLoginForm(){
+        $users = User::All();
+        return view('auth/login')->with(compact('users'));;
     }
 
 }
