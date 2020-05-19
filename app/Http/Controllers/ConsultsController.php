@@ -204,6 +204,7 @@ class ConsultsController extends Controller
     
         }
         
+        $consult->payment_method_id = 1;
         $consult->cashed_on = $dt;
         
 

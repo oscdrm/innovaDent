@@ -81,7 +81,7 @@ class EarningController extends Controller
 
         $consults = [];
         $amountWeek = 0;
-        $doctors = User::where('role_id', '=', 3)->get();
+        $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
         $doc = $request->input('doctor');
         $conc = $request->input('concept');
         $concepts = Concept::all();
@@ -137,6 +137,9 @@ class EarningController extends Controller
                     }
             }else{
                 $amountWeek = $amountWeek - $consult->amount;
+                if($paymentMethod == 1){
+                    $dineroCaja = $dineroCaja - $consult->amount;
+                }
                 if($dt[0] == $dc[0]){
                     $amountToday = $amountToday - $consult->amount;
                 }
