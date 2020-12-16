@@ -16,13 +16,31 @@
     </div><!-- END SECCION TITULO-->
 
 <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="ibox shad">
-            <div class="ibox-title">
-                <div class="ibox-tools">
-                    <a href="{{url('/consults/create')}}" class="btn btn-primary btn-xs">Crear nueva consulta</a>
-                </div>
+    <div class="ibox shad">
+        <div class="ibox-title">
+            <div class="ibox-tools">
+                <a href="{{url('/consults/create')}}" class="btn btn-primary btn-xs">Crear nueva consulta</a>
             </div>
-        </div> 
+        </div>
+    </div> 
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="search" class="shad" method="POST" action="{{url('/consults/search')}}">
+                @csrf
+                <div class="form-group">
+                    <div class="col-lg-9"> 
+                        <input type="text" placeholder="Buscar movimiento" class="form-control" name="filter" id="top-search">
+                    </div>
+
+                    <div class="col-lg-3 buscar"> 
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="row">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">

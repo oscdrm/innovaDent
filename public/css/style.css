@@ -29,6 +29,10 @@
   background:#e7eaec;
 }
 
+.buscar .btn{
+  margin-top:0px;
+  padding: 6px 50px;
+}
 
 .dismount{
   color:#ed5565;

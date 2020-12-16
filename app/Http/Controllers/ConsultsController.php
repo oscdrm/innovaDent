@@ -10,6 +10,7 @@ use App\Concept;
 use App\PaymentMethod;
 use Carbon\Carbon;
 use Auth;
+use DB;
 
 class ConsultsController extends Controller
 {
@@ -212,5 +213,33 @@ class ConsultsController extends Controller
 
         return redirect('/home');
     }
+
+
+    public function search(Request $request){
+        $sunday = Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        $saturday =  Carbon::setWeekEndsAt(Carbon::SATURDAY);
+        $filter = $request->input('filter');
+        $filter = strtolower($filter);
+        $filterArray = [$filter];
+        if(Auth::user()->role_id == 1){
+            $consults = Consult::whereRaw("LOWER(other_patient) LIKE ?", "%{$filter}%")
+                        ->OrwhereRaw("LOWER(other_concept) LIKE ?", "%{$filter}%")
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        }
+
+        if(Auth::user()->role_id == 2){
+            $user = Auth::user()->role_id;
+            $consults = Consult::where('cashier_id', '=', $user)
+                      ->whereBetween('created_at', [Carbon::now()
+                      ->startOfWeek(), Carbon::now()->endOfWeek()])
+                      ->orderBy('created_at', 'desc')
+                      ->paginate();
+        }
+
+        return view('consults/consults')->with(compact('consults'));
+    }
+
+
 
 }

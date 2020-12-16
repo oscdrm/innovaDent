@@ -100,6 +100,9 @@ Route::middleware(['auth'])->group(function () {
     //RUTAS PARA CONSULTAS
     Route::get('/consults', 'ConsultsController@index');
 
+     //RUTAS PARA BUSCAR CONSULTAS
+     Route::post('/consults/search', 'ConsultsController@search');
+
     //RUTAS PARA CONSULTAS
     Route::get('/patients/{id}/profile', 'PatientsController@profile');
 
