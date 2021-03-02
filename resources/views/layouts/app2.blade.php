@@ -94,7 +94,6 @@
                             <ul class="nav nav-second-level">
                                 <li><a href="/patients">Pacientes</a></li>
                                 <li><a href="/consults">Consultas</a></li>
-                                <li><a href="treatments">Tratamientos</a></li>
                             @if(auth()->user()->role->id == 1)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
@@ -102,9 +101,6 @@
                             @endif
                                 <li><a href="/movements">Movimientos caja</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Citas</span></a>
                         </li>
                     </ul>
 
