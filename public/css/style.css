@@ -4187,6 +4187,12 @@ table.table-mail tr td {
   color: #ffffff;
 }
 
+.lightblue1-bg,
+.bg-success {
+  background-color: #73C2FB;
+  color: #ffffff;
+}
+
 
 
 
