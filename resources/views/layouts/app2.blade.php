@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!--<title>{{ config('app.name', 'Bienvenido a InnovaDent Huetamo') }}</title>-->
-    <title>Bienvenido a InnovaDent Huetamo</title>
+    <!--<title>{{ config('app.name', 'Bienvenido a Rahex') }}</title>-->
+    <title>Bienvenido a Rahex</title>
     <!-- Scripts -->
     
 
