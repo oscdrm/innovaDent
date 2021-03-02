@@ -53,7 +53,7 @@
     <div class="col-lg-12">
         <div class="col-lg-2">
            <a href="{{url('/patients/create')}}">
-                <div class="widget lazur-bg p-lg text-center shad">
+                <div class="widget darkblue1-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
                         <h3 class="font-bold no-margins">
@@ -66,9 +66,9 @@
 
         <div class="col-lg-2">
             <a href="{{url('/consults/create')}}">
-                <div class="widget yellow-bg p-lg text-center shad">
+                <div class="widget darkblue2-bg p-lg text-center shad">
                     <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-x-ray fa-4x"></i>
+                        <i style="margin-bottom:5px;" class="fa fa-bolt fa-4x"></i>
                         <h3 class="font-bold no-margins">
                             Nuevo servicio
                         </h3>
@@ -79,7 +79,7 @@
 
 
         <div class="col-lg-4">
-            <div class="widget navy-bg p-lg text-center shad">
+            <div class="widget darkblue4-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountToday}}</span>
                         <h3 class="font-bold no-margins">
@@ -90,7 +90,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="widget blue-bg p-lg text-center shad">
+            <div class="widget darkblue3-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
                         <h3 class="font-bold no-margins">

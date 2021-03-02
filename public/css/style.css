@@ -4162,6 +4162,34 @@ table.table-mail tr td {
   background-color: #1c84c6;
   color: #ffffff;
 }
+
+.darkblue1-bg,
+.bg-success {
+  background-color: #0047AB;
+  color: #ffffff;
+}
+
+.darkblue2-bg,
+.bg-success {
+  background-color: #1034A6;
+  color: #ffffff;
+}
+
+.darkblue3-bg,
+.bg-success {
+  background-color: #002366;
+  color: #ffffff;
+}
+
+.darkblue4-bg,
+.bg-success {
+  background-color: #082567;
+  color: #ffffff;
+}
+
+
+
+
 .navy-bg,
 .bg-primary {
   background-color: #1ab394;
