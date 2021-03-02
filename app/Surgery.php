@@ -10,6 +10,10 @@ class Surgery extends Model
     public function concepts()
     {
         return $this->hasMany(Concept::class);
+    }
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

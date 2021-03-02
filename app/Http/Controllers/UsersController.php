@@ -7,6 +7,7 @@ use App\User;
 use App\Address;
 use Image;
 use Auth;
+use App\Surgery;
 
 class UsersController extends Controller
 {
@@ -48,7 +49,10 @@ class UsersController extends Controller
         if($role == 'doctor' || $role == 'Doctor'){
             $role_id = 3;
         }
-        return view('users.create')->with(compact('role_id'));
+
+        $surgeries = Surgery::all();
+
+        return view('users.create')->with(compact('role_id', 'surgeries'));
     }
 
     public function store(Request $request, $role)
@@ -83,8 +87,9 @@ class UsersController extends Controller
             'lastName' => 'required | min:3',
             'age' => ' max:3',
             'telephone' => ' max:10',
-            'email' => 'email | nullable',
-            'username' => 'unique:users'
+            'email' => 'email | nullable | unique:users',
+            'username' => 'unique:users',
+            'surgery' => 'required'
         ];
 
         // Validator::make($request, $rules);
@@ -102,6 +107,7 @@ class UsersController extends Controller
         $user->username = $request->input('username');
         $user->password = bcrypt($request->input('password'));
         $user->role_id = $role_id;
+        $user->surgery_id = $request->input('surgery');
 
         if($img_user){
 

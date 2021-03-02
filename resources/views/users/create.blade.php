@@ -101,6 +101,17 @@
                     <div class="col-sm-10"><input name="password" type="password" class="form-control" value=""></div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Tienda</label>
+                    <div class="col-sm-10">
+                        <select data-placeholder="Selecciona una tienda" name="surgery" class="chosen-select"  tabindex="2" required>
+                            @foreach ($surgeries as $surgery)
+                                <option value="{{$surgery->id}}">{{$surgery->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="hr-line-dashed"></div>
                 <h5>Dirección</h5>
 
