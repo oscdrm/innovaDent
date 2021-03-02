@@ -68,9 +68,9 @@
             <a href="{{url('/consults/create')}}">
                 <div class="widget yellow-bg p-lg text-center shad">
                     <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-stethoscope fa-4x"></i>
+                        <i style="margin-bottom:5px;" class="fa fa-x-ray fa-4x"></i>
                         <h3 class="font-bold no-margins">
-                            Nueva Consulta
+                            Nuevo servicio
                         </h3>
                     </div>
                 </div>
