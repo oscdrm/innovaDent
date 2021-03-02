@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'age' => 26,
             'username' => 'admin',
             'role_id' => 1,
-            'surgery_id' => 1
+            'surgery_id' => 2
         ]);
     }
 }
