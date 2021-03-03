@@ -78,7 +78,7 @@
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Costo</label>
-                    <div class="col-sm-10"><input name="amount" id="amount" type="number" class="form-control" disabled value="{{old('amount')}}"></div>
+                    <div class="col-sm-10"><input name="amount" id="amount" type="number" class="form-control" readonly value="{{old('amount')}}"></div>
                 </div>
 
                 <div class="form-group">

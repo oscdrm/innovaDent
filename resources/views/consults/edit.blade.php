@@ -86,7 +86,7 @@
                 </div>
 
                 @php
-                $disabled = "disabled";
+                $disabled = "readonly";
                 if($consult->outflow == 1){
                     $disabled = "";
                 }
