@@ -108,7 +108,9 @@ class ConceptsController extends Controller
         // dd($request->all());
         $concept = Concept::find($id);
         $concept->name = $request->input('name');
-        $concept->surgery_id = $request->input('surgery');
+
+        $sugReg = $request->input('surgeries');
+        $concept->surgeries()->sync($sugReg);
     
         $concept->save();
 
