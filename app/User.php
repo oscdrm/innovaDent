@@ -52,7 +52,7 @@ class User extends Authenticatable
     //user->surgery
     public function surgery()
     {
-        return $this->hasMany(Surgery::class);
+        return $this->belongsTo(Surgery::class);
     }
 
 }

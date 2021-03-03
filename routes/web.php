@@ -16,7 +16,7 @@ use App\User;
 // });
 
 Route::get('/', function(){
-    $users = User::All();
+    $users = User::where('role_id', '!=', 3)->get();
     return view('auth/login')->with(compact('users'));;
 
 });

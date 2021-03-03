@@ -43,7 +43,7 @@ class LoginController extends Controller
     }
 
     public function showLoginForm(){
-        $users = User::All();
+        $users = User::where('role_id', '!=', 3);
         return view('auth/login')->with(compact('users'));;
     }
 

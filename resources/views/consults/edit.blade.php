@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Servicio</label>
                     <div class="col-sm-10">
-                        <select data-placeholder="Selecciona una tienda" id="concept" name="concept" class="chosen-select"  tabindex="2" required>
+                        <select data-placeholder="Selecciona un servicio" id="concept" name="concept" class="chosen-select"  tabindex="2" required>
                             <option value="">Selecciona un servicio</option>
                             @foreach ($services as $service)
                                 @php

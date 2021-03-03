@@ -95,32 +95,49 @@ class UsersController extends Controller
         // Validator::make($request, $rules);
         $this->validate($request, $rules, $messages);
 
-        // dd($request->all());
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->lastName = $request->input('lastName');
-        $user->age = $request->input('age');
-        $user->telephone = $request->input('telephone');
-        $email = $request->input('email');
-        $user->email = $email;
-        $img_user = $request->file('user_photo');
-        $user->username = $request->input('username');
-        $user->password = bcrypt($request->input('password'));
-        $user->role_id = $role_id;
-        $user->surgery_id = $request->input('surgery');
+        if($role_id != 3){
+            $user = new User();
+            $user->name = $request->input('name');
+            $user->lastName = $request->input('lastName');
+            $user->age = $request->input('age');
+            $user->telephone = $request->input('telephone');
+            $email = $request->input('email');
+            $user->email = $email;
+            $img_user = $request->file('user_photo');
+            $user->username = $request->input('username');
+            $user->password = bcrypt($request->input('password'));
+            $user->role_id = $role_id;
+            $user->surgery_id = $request->input('surgery');
 
-        if($img_user){
+            if($img_user){
 
-            $user_photo = Image::make($img_user);
-            $target = $email.".".$img_user->getClientOriginalExtension();
-            $user_photo->resize(200,200);
-            $ruta = public_path().'/img/';
-            $user_photo->save($ruta.$target);
-            $target = 'img/'.$email.".".$img_user->getClientOriginalExtension();
-            $user->user_photo = $target;
+                $user_photo = Image::make($img_user);
+                $target = $email.".".$img_user->getClientOriginalExtension();
+                $user_photo->resize(200,200);
+                $ruta = public_path().'/img/';
+                $user_photo->save($ruta.$target);
+                $target = 'img/'.$email.".".$img_user->getClientOriginalExtension();
+                $user->user_photo = $target;
 
+            }
+            $user->save();
         }
-        $user->save();
+
+        if($role_id == 3){
+            $user = new User();
+            $user->name = $request->input('name');
+            $user->lastName = $request->input('lastName');
+            $user->age = 30;
+            $user->telephone = "5522918290";
+            $email = trim($request->input('name').".".$request->input('lastName')."@rahex.com");
+            $user->email = $email;
+            $user->username = $email;
+            $user->password = bcrypt(trim($request->input('name')."2021$!"));
+            $user->role_id = $role_id;
+            $user->surgery_id = $request->input('surgery');
+
+            $user->save();
+        }
 
         if($request->input('street') && $request->input('colonia')){
             $address = new Address();
@@ -148,13 +165,13 @@ class UsersController extends Controller
         if($role == 'doctor' || $role == 'Doctor'){
             $role_id = 3;
         }
-
+        $surgeries = Surgery::all();
         $user = User::find($id);
         $add = null;
         if($user->addresses->count() >= 1){
             $add = $user->addresses->last();
         }
-        return view('users.edit')->with(compact('user', 'role_id', 'add'));
+        return view('users.edit')->with(compact('user', 'role_id', 'add', 'surgeries'));
     }
 
     public function update(Request $request, $id)
