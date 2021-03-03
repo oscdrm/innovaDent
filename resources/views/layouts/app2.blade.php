@@ -85,16 +85,19 @@
                         <li>
                             <a href="{{ url('/home') }}"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                         </li>
-                        @if(auth()->user()->role->id == 1)
+                        
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Personal</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
+                                @if(auth()->user()->role->id == 1)
                                 <li><a href="/users/cashier/index">Cajeras</a></li>
-                                <li><a href="/users/doctor/index">Medicos</a></li>
                                 <li><a href="/users/admin/index">Administradores</a></li>
+                                @endif
+                                <li><a href="/users/doctor/index">Medicos</a></li>
                             </ul>
                         </li>
-                        @endif
+                        
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Operaciones</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

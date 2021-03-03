@@ -53,11 +53,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/concepts/{id}', 'ConceptsController@delete'); //Eliminar
 
     //Rutas para cajeros
-    Route::get('/users/{role}/index', 'UsersController@index'); //Listado
-    Route::get('/users/{role}/create', 'UsersController@create'); //Crear
-    Route::post('users/{role}/', 'UsersController@store'); //Guardar 
-    Route::get('users/{role}/{id}/edit', 'UsersController@edit'); //Editar
-    Route::post('users/{id}/edit', 'UsersController@update'); //actualizar
     Route::delete('users/{id}', 'UsersController@delete'); //Eliminar
 
     //Rutas para Consultas
@@ -86,6 +81,12 @@ Route::middleware(['auth', 'cashier'])->group(function () {
 
     Route::get('/movements', 'ConsultsController@cashMovements');
     Route::post('/movements/store', 'ConsultsController@storeMovement');
+
+    Route::get('/users/{role}/index', 'UsersController@index'); //Listado
+    Route::get('/users/{role}/create', 'UsersController@create'); //Crear
+    Route::post('users/{role}/', 'UsersController@store'); //Guardar 
+    Route::get('users/{role}/{id}/edit', 'UsersController@edit'); //Editar
+    Route::post('users/{id}/edit', 'UsersController@update'); //actualizar
 
     //RUTA PARA CAJA
     Route::get('/cashier/cash', 'HomeController@cash');
