@@ -99,7 +99,7 @@ class ConceptsController extends Controller
         //Validaciones
         $rules = [
             'name' => 'required | min:3',
-            'surgery' => 'required'
+            'surgeries' => 'required'
         ];
 
         // Validator::make($request, $rules);
