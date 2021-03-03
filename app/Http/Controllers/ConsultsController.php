@@ -48,7 +48,10 @@ class ConsultsController extends Controller
         $services = Concept::all();
         if(Auth::user()->role_id != 1){
             $surgery_id = Auth::user()->surgery_id;
-            $services = Concept::where('surgery_id', '=', $surgery_id)->get();  
+            $surgeries = [$surgery_id];
+            $services = Concept::whereHas('surgeries', function($q) use($surgeries) {
+                $q->whereIn('surgery_id', $surgeries);
+            })->get();
         }
 
         $surgeries = Surgery::all();
