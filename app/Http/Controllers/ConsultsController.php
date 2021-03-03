@@ -8,6 +8,7 @@ use App\Patient;
 use App\User;
 use App\Concept;
 use App\PaymentMethod;
+use App\Surgery;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -44,9 +45,15 @@ class ConsultsController extends Controller
     {
         $patients = Patient::all();
         $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
-        $services = Concept::where('surgery_id', '=', 1)->get();
+        $services = Concept::all();
+        if(Auth::user()->role_id != 1){
+            $surgery_id = Auth::user()->surgery_id;
+            $services = Concept::where('surgery_id', '=', $surgery_id)->get();  
+        }
+
+        $surgeries = Surgery::all();
         $payments = PaymentMethod::all();
-        return view('consults.create')->with(compact('services', 'doctors', 'patients', 'payments'));
+        return view('consults.create')->with(compact('services', 'doctors', 'patients', 'payments', 'surgeries'));
 
     }
 
@@ -89,6 +96,15 @@ class ConsultsController extends Controller
         $consult->cashier_id = $cashier;
         $consult->outflow = false;
         $consult->dismount = false;
+        if(Auth::user()->role_id == 1){
+            $surgery_id = $request->input('surgery');
+        }
+
+        if(Auth::user()->role_id == 2){
+            $surgery_id = Auth::user()->surgery_id;
+        }
+        
+        $consult->surgery_id = $surgery_id;
 
         $paymentMetod = $request->input('payment_method') ? $request->input('payment_method') : 1;
         $consult->payment_method_id = $paymentMetod;
@@ -118,7 +134,15 @@ class ConsultsController extends Controller
         $consult = Consult::find($id);
         $patients = Patient::all();
         $doctors = User::where('role_id', '=', 3)->get();
-        $services = Concept::where('surgery_id', '=', 1)->get();
+        $services = Concept::all();
+        
+        if(Auth::user()->role_id != 1){
+            $surgery_id = Auth::user()->surgery_id;
+            $services = Concept::where('surgery_id', '=', $surgery_id)->get();  
+        }
+
+        $surgeries = Surgery::all();
+        
         return view('consults.edit')->with(compact('services', 'doctors', 'patients', 'consult'));
     }
 
@@ -154,6 +178,10 @@ class ConsultsController extends Controller
          $consult->amount = $request->input('amount');
          $consult->other_patient = $request->input('other_patient');
          $consult->cashed_on = $dt;
+         if(Auth::user()->role_id == 1){
+            $surgery_id = $request->input('surgery');
+            $consult->surgery_id = $surgery_id;
+        }
  
          $consult->save();
  
@@ -170,7 +198,8 @@ class ConsultsController extends Controller
 
 
     public function cashMovements(){
-        return view('consults.movements');
+        $surgeries = Surgery::all();
+        return view('consults.movements')->with(compact('surgeries'));
     }
 
     public function storeMovement(Request $request)
@@ -185,6 +214,15 @@ class ConsultsController extends Controller
         $consult->amount = $request->input('amount');
         $cashier = Auth::user()->id;
         $consult->cashier_id = $cashier;
+        if(Auth::user()->role_id == 1){
+            $surgery_id = $request->input('surgery');
+        }
+
+        if(Auth::user()->role_id == 2){
+            $surgery_id = Auth::user()->surgery_id;
+        }
+        
+        $consult->surgery_id = $surgery_id;
 
         if($dismount == "on"){
             $dismount = true;

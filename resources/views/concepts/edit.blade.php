@@ -40,21 +40,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Tienda</label>
-                    <div class="col-sm-10">
-                        <select data-placeholder="Selecciona una tienda" name="surgery" class="chosen-select"  tabindex="2" required>
-                            <option value="">Selecciona una tienda</option>
-                            @foreach ($stores as $store)
-                                @php
-                                    $selected = "";
-                                    if($store->id == $concept->surgery->id){
-                                        $selected = "selected";
-                                    }
-                                @endphp
-                                <option {{$selected}} value="{{$store->id}}">{{$store->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <label class="col-sm-2 control-label">Tienda</label>
+                        <div class="col-sm-10">
+                            <select data-placeholder="Selecciona Tags de la noticia" id="surgeries" name="surgeries[]" class="chosen-select" multiple  tabindex="2" required>
+                                <option value="">Selecciona una tienda</option>
+                                @foreach ($stores as $store)
+                                    <option value="{{$store->id}}">{{$store->name}}</option>
+                                
+                                    @if(count($conceptsSurgery) > 0)
+                                        @foreach ($conceptsSurgery as $conceptSurgery)
+                                            @php
+                                                if($store->id == $conceptSurgery->id){
+                                                    $selected = "selected";
+                                                    echo '<option '.$selected.' value="'.$store->id.'">'.$store->name.'</option>';
+                                                }
+                                            @endphp
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
                 </div>
 
                

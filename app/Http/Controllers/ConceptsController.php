@@ -27,7 +27,6 @@ class ConceptsController extends Controller
 
     public function store(Request $request)
     {
-
         //Messages
         $messages = [
             'required' => 'Es necesario ingresar un valor para el campo :attribute',
@@ -41,7 +40,7 @@ class ConceptsController extends Controller
         //Validaciones
         $rules = [
             'name' => 'required | min:3',
-            'surgery' => 'required'
+            'surgeries' => 'required'
         ];
 
         // Validator::make($request, $rules);
@@ -50,9 +49,25 @@ class ConceptsController extends Controller
         // dd($request->all());
         $concept = new Concept();
         $concept->name = $request->input('name');
-        $concept->surgery_id = $request->input('surgery');
+        $concept->amount = $request->input('amount');
+        try{
+            $concept->save();
 
-        $concept->save();
+        }catch(\Illuminate\Database\QueryException $e){
+            $errors = [];
+            $errors['error'] = $e;
+            
+            return  back()->withErrors($errors);
+        
+        }
+        
+        //INSERTAMOS TAGS
+        $surgeryReq = $request->input('surgeries');
+        foreach($surgeryReq as $sr){
+            $surgery = Surgery::find($sr);
+            $concept->surgeries()->attach($surgery);
+        }
+
 
         return redirect('/concepts');
     }
@@ -61,7 +76,11 @@ class ConceptsController extends Controller
     {   
         $concept = Concept::find($id);
         $stores = Surgery::all();
-        return view('concepts.edit')->with(compact('concept', 'stores'));
+        $conceptsSurgery = [];
+        if(!empty($concept->surgeries)){
+            $conceptsSurgery = $concept->surgeries;
+        }
+        return view('concepts.edit')->with(compact('concept', 'stores', 'conceptsSurgery'));
     }
 
     public function update(Request $request, $id)

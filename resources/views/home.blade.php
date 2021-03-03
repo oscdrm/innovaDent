@@ -51,7 +51,7 @@
 <div class="wrapper wrapper-content animated fadeInRight">
  <div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-2">
+        <!--<div class="col-lg-2">
            <a href="{{url('/patients/create')}}">
                 <div class="widget darkblue1-bg p-lg text-center shad">
                     <div class="m-b-md">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div>-->
 
         <div class="col-lg-2">
             <a href="{{url('/consults/create')}}">

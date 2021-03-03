@@ -36,28 +36,6 @@
                 @csrf
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Paciente</label>
-                    <div class="col-sm-10">
-                        <select data-placeholder="Selecciona una tienda" name="patient" class="chosen-select"  tabindex="2">
-                            <option value="">Selecciona un paciente</option>
-                            @foreach ($patients as $patient)
-                                @php
-                                    $selected = "";
-                                    if($consult->patient){
-                                        if($patient->id == $consult->patient->id){
-                                            $selected = "selected";
-                                        }
-                                    }
-                                    
-                                @endphp
-                                <option {{$selected}} value="{{$patient->id}}">{{$patient->name}}</option>
-                            @endforeach
-
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Otro paciente</label>
                     <div class="col-sm-10"><input name="other_patient" type="text" class="form-control" value="{{old('other_patient', $consult->other_patient)}}"></div>
                 </div>
 
@@ -88,31 +66,34 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Servicio</label>
                     <div class="col-sm-10">
-                        <select data-placeholder="Selecciona una tienda" name="concept" class="chosen-select"  tabindex="2" required>
+                        <select data-placeholder="Selecciona una tienda" id="concept" name="concept" class="chosen-select"  tabindex="2" required>
                             <option value="">Selecciona un servicio</option>
-                            @foreach ($services as $service)
-                                <option value="{{$service->id}}">{{$service->name}}</option>
-                            @endforeach
-                            
                             @foreach ($services as $service)
                                 @php
                                     $selected = "";
-                                    if($service->id == $consult->concept->id){
-                                        $selected = "selected";
+                                    if($consult->concept){
+                                        if($service->id == $consult->concept->id){
+                                            $selected = "selected";
+                                        }
                                     }
+                                    
                                 @endphp
-                                <option {{$selected}} value="{{$service->id}}">{{$service->name}}</option>
+                                <option {{$selected}} value="{{$service->id}}" attr-price="{{$service->amount}}">{{$service->name}}</option>
                             @endforeach
-                            
 
                         </select>
                     </div>
                 </div>
 
-
+                @php
+                $disabled = "disabled";
+                if($consult->outflow == 1){
+                    $disabled = "";
+                }
+                @endphp
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Costo</label>
-                    <div class="col-sm-10"><input name="amount" type="number" class="form-control" value="{{old('amount', $consult->amount)}}"></div>
+                    <div class="col-sm-10"><input name="amount" id="amount" type="number" {{$disabled}} class="form-control" value="{{old('amount', $consult->amount)}}"></div>
                 </div>
 
                 <div class="hr-line-dashed"></div>
@@ -131,6 +112,15 @@
 
         </div><!--END CONTAINER ROW-->
 </div><!--END WRAPER-->
+
+<script>
+    $("#concept").on('change', function(e){
+        var price = $('option:selected', this).attr('attr-price');
+        $("#amount").val(price);
+
+
+    });
+</script>
 
 @include('layouts/disablebutton')
 
