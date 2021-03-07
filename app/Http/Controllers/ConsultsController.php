@@ -12,6 +12,7 @@ use App\Surgery;
 use Carbon\Carbon;
 use Auth;
 use DB;
+use Session;
 
 class ConsultsController extends Controller
 {
@@ -25,12 +26,21 @@ class ConsultsController extends Controller
         $saturday =  Carbon::setWeekEndsAt(Carbon::SATURDAY);
 
         if(Auth::user()->role_id == 1){
+
             $consults = Consult::orderBy('created_at', 'desc')
                       ->paginate();
+
+            if (session()->has('surgery')) {
+                $surgery = Session::get('surgery');
+                $consults = Consult::where('surgery_id', '=', $surgery)->orderBy('created_at', 'desc')
+                      ->paginate();
+            }
+
+            
         }
 
         if(Auth::user()->role_id == 2){
-            $user = Auth::user()->role_id;
+            $user = Auth::user()->id;
             $consults = Consult::where('cashier_id', '=', $user)
                       ->whereBetween('created_at', [Carbon::now()
                       ->startOfWeek(), Carbon::now()->endOfWeek()])

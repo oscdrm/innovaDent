@@ -63,6 +63,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //RUTAS PARA CORTE DE CAJA
     Route::get('earning/', 'EarningController@index'); //Inicio
     Route::post('earning/calculate', 'EarningController@calculate'); //Inicio
+    
+    //Seleccionar tienda
+    Route::get('selectSurgery/{id}', 'SelectSurgeryController@selectSurgery'); 
 
 
 });

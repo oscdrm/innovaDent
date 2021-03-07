@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Consult;
 use Carbon\Carbon;
+use Session;
 
 class HomeController extends Controller
 {
@@ -109,13 +110,23 @@ class HomeController extends Controller
     private function consultasAdmin(){
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
+
+        
         $nconsultsweek = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->count();
         $nct = Consult::whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
         $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
-
-        //$consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
         $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $allConsults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+
+        if (session()->has('surgery')) {
+            $surgery = Session::get('surgery');
+            $nconsultsweek = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->count();
+            $nct = Consult::where('surgery_id', '=', $surgery)->whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
+            $ncm = Consult::where('surgery_id', '=', $surgery)->whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
+            $consults10 = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            $allConsults = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();  
+        }
+
         $amountWeek = 0;
         $dt = Carbon::now();
         $dt = explode(" ", $dt);

@@ -9,6 +9,7 @@ use App\User;
 use App\Concept;
 use Carbon\Carbon;
 use Auth;
+use Session;
 
 class EarningController extends Controller
 {
@@ -38,6 +39,18 @@ class EarningController extends Controller
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
         $consults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $allConsults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+
+        if (session()->has('surgery')) {
+            $surgery = Session::get('surgery');
+            $surgeries = [$surgery];
+            $doctors = User::where('surgery_id', '=', $surgery)->where('role_id', '=', 3)->orWhere('username', 'admin')->get();
+            $concepts = Concept::whereHas('surgeries', function($q) use($surgeries) {
+                $q->whereIn('surgery_id', $surgeries);
+            })->get();
+            $consults = Consult::where('surgery_id', '=', $surgeries)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            $allConsults = Consult::where('surgery_id', '=', $surgeries)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        }
+
         $amountWeek = 0;
         $dt = Carbon::now();
         $dt = explode(" ", $dt);
@@ -78,7 +91,7 @@ class EarningController extends Controller
     }
 
     public function calculate(Request $request){
-
+        $sendConsults = "";
         $consults = [];
         $amountWeek = 0;
         $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
@@ -94,6 +107,16 @@ class EarningController extends Controller
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
         $consults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         
+        if (session()->has('surgery')) {
+            $surgery = Session::get('surgery');
+            $surgeries = [$surgery];
+            $doctors = User::where('surgery_id', '=', $surgery)->where('role_id', '=', 3)->orWhere('username', 'admin')->get();
+            $concepts = Concept::whereHas('surgeries', function($q) use($surgeries) {
+                $q->whereIn('surgery_id', $surgeries);
+            })->get();
+            $consults = Consult::where('surgery_id', '=', $surgeries)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        }
+
         if($doc){
             $doctorData = User::find($doc);
             array_push($arrayClausules, ['doctor_id', '=', $doc]);

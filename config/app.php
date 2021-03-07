@@ -176,6 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
+        //Custom providers
+        App\Providers\SendSurgerysProvider::class,
+
     ],
 
     /*

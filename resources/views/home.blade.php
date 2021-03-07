@@ -100,6 +100,17 @@
                 </div>
         </div>
 
+        <!--<div class="col-lg-4">
+            <form method="POST" action="{{url('/consults/search')}}">
+                @csrf
+                <div class="form-group">
+                    <div class="col-lg-9"> 
+                        <input type="text" placeholder="Buscar movimiento" class="form-control" name="filter" id="top-search">
+                    </div>
+                </div>
+            </form>
+        </div>-->
+
             
     </div>
 </div>
