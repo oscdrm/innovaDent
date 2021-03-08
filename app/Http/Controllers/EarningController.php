@@ -109,8 +109,6 @@ class EarningController extends Controller
         
         if (session()->has('surgery')) {
             $surgery = Session::get('surgery');
-            echo $surgery;
-            exit();
             $surgeries = [$surgery];
             $doctors = User::where('surgery_id', '=', $surgery)->where('role_id', '=', 3)->orWhere('username', 'admin')->get();
             $concepts = Concept::whereHas('surgeries', function($q) use($surgeries) {
