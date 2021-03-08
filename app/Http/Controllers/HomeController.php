@@ -32,10 +32,12 @@ class HomeController extends Controller
             $ncw = $consults['nconsultsweek'];
             $nct = $consults['nct'];
             $ncm = $consults['ncm'];
-            $amountWeek = $consults['amountWeek'];
-            $amountToday = $consults['amountToday'];
+            $amountWeekHuetamo = $consults['amountWeekHuetamo'];
+            $amountTodayHuetamo = $consults['amountTodayHuetamo'];
+            $amountWeekMaravatio = $consults['amountWeekMaravatio'];
+            $amountTodayMaravatio = $consults['amountTodayMaravatio'];
             $consults = $consults['consults'];
-            return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeek', 'amountToday', 'consults'));
+            return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeekHuetamo', 'amountTodayHuetamo', 'consults', 'amountWeekMaravatio', 'amountTodayMaravatio'));
         }
 
         if(Auth::user()->role_id == 2){
@@ -116,7 +118,8 @@ class HomeController extends Controller
         $nct = Consult::whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
         $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
         $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
-        $allConsults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $allConsultsHuetamo = Consult::where('surgery_id', '=', 1)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $allConsultsMaravatio = Consult::where('surgery_id', '=', 2)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
 
         if (session()->has('surgery')) {
             $surgery = Session::get('surgery');
@@ -124,28 +127,49 @@ class HomeController extends Controller
             $nct = Consult::where('surgery_id', '=', $surgery)->whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
             $ncm = Consult::where('surgery_id', '=', $surgery)->whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
             $consults10 = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
-            $allConsults = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();  
+            //$allConsults = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();  
         }
 
-        $amountWeek = 0;
+        $amountWeekHuetamo = 0;
+        $amountWeekMaravatio = 0;
         $dt = Carbon::now();
         $dt = explode(" ", $dt);
         $dc = "";
-        $amountToday = 0;
-        foreach($allConsults as $consult){
+        $amountTodayHuetamo = 0;
+        $amountTodayMaravatio = 0;
+        foreach($allConsultsHuetamo as $consult){
             if($consult->dismount != true){
-                $amountWeek = $amountWeek + $consult->amount;
+                $amountWeekHuetamo = $amountWeekHuetamo + $consult->amount;
                 $dc = $consult->created_at;
                 $dc = explode(" ", $dc);
                 if($dt[0] == $dc[0]){
-                    $amountToday = $amountToday + $consult->amount;
+                    $amountTodayHuetamo = $amountTodayHuetamo + $consult->amount;
                 }
             }else{
-                $amountWeek = $amountWeek - $consult->amount;
+                $amountWeekHuetamo = $amountWeekHuetamo - $consult->amount;
                 $dc = $consult->created_at;
                 $dc = explode(" ", $dc);
                 if($dt[0] == $dc[0]){
-                    $amountToday = $amountToday - $consult->amount;
+                    $amountTodayHuetamo = $amountTodayHuetamo - $consult->amount;
+                }
+            }
+            
+        }
+
+        foreach($allConsultsMaravatio as $consult){
+            if($consult->dismount != true){
+                $amountWeekMaravatio = $amountWeekMaravatio + $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountTodayMaravatio = $amountTodayMaravatio + $consult->amount;
+                }
+            }else{
+                $amountWeekMaravatio = $amountWeekMaravatio - $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountTodayMaravatio = $amountTodayMaravatio - $consult->amount;
                 }
             }
             
@@ -153,7 +177,15 @@ class HomeController extends Controller
          
      
 
-        $consultsArray = ['nconsultsweek' => $nconsultsweek, 'nct' => $nct, 'ncm' => $ncm, 'consults' => $consults10, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
+        $consultsArray = ['nconsultsweek' => $nconsultsweek,
+                          'nct' => $nct,
+                          'ncm' => $ncm,
+                          'consults' => $consults10,
+                          'amountWeekHuetamo' => $amountWeekHuetamo,
+                          'amountTodayHuetamo' => $amountTodayHuetamo,
+                          'amountWeekMaravatio' => $amountWeekMaravatio,
+                          'amountTodayMaravatio' => $amountTodayMaravatio
+                        ];
         
         return $consultsArray;
     }
