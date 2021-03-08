@@ -52,9 +52,9 @@
                
                 <div class="form-group">
 
-                        <button id="filter" type="button" class="btn btn-w-m btn-info">Filtrar por fechas</button>
-                        <button type="submit" class="btn btn-w-m btn-success">Realizar corte</button>
-                        <button type="button" onclick="window.location='/earning/';"  class="btn btn-w-m btn-warning">Corte general</button>
+                        <button id="filter" type="button" class="btn btn-w-m darkblue1-bg btn-info">Filtrar por fechas</button>
+                        <button type="submit" class="btn btn-w-m darkblue2-bg btn-success">Realizar corte</button>
+                        <button type="button" onclick="window.location='/earning/';"  class="btn btn-w-m darkblue3-bg btn-warning">Corte general</button>
 
                 </div>
 
@@ -66,7 +66,7 @@
     <div class="col-lg-12">
 
         <div class="col-lg-3">
-            <div class="widget navy-bg p-lg text-center shad">
+            <div class="widget darkblue1-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <span style="font-size:55px;">{{$serviciosRealizados}}</span>
                         <h3 class="font-bold no-margins">
@@ -77,7 +77,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="widget blue-bg p-lg text-center shad">
+            <div class="widget darkblue2-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
                         <h3 class="font-bold no-margins">
@@ -88,7 +88,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="widget yellow-bg p-lg text-center shad">
+            <div class="widget darkblue4-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$dineroCaja}}</span>
                         <h3 class="font-bold no-margins">
