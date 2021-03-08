@@ -114,7 +114,7 @@ class EarningController extends Controller
             $concepts = Concept::whereHas('surgeries', function($q) use($surgeries) {
                 $q->whereIn('surgery_id', $surgeries);
             })->get();
-            $consults = Consult::where('surgery_id', '=', $surgeries)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            $consults = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         }
 
         if($doc){

@@ -124,6 +124,7 @@
                             <th data-hide="phone">Concepto</th>
                             <th data-hide="phone">Cobrada por</th>
                             <th data-hide="phone">Metodo de pago</th>
+                            <th data-hide="phone">Sucursal:</th>
                             <!--<th class="text-right">Action</th>-->
                         </tr>
                         </thead>
@@ -170,6 +171,10 @@
 
                                 <td>
                                     {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
+                                </td>
+
+                                <td>
+                                    {{$consult->surgery ? $consult->surgery->name: ''}}
                                 </td>
 
                             </tr>
