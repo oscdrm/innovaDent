@@ -109,12 +109,15 @@ class EarningController extends Controller
         
         if (session()->has('surgery')) {
             $surgery = Session::get('surgery');
+            echo $surgery;
+            exit();
             $surgeries = [$surgery];
             $doctors = User::where('surgery_id', '=', $surgery)->where('role_id', '=', 3)->orWhere('username', 'admin')->get();
             $concepts = Concept::whereHas('surgeries', function($q) use($surgeries) {
                 $q->whereIn('surgery_id', $surgeries);
             })->get();
-            $consults = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            array_push($arrayClausules, ['surgery_id', '=', $surgery]);
+            $consults = Consult::where($arrayClausules)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         }
 
         if($doc){

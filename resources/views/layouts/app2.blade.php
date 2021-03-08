@@ -120,7 +120,7 @@
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Selecciona tienda</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 @foreach ($surgeries as  $surgery)
-                                    <li><a href="selectSurgery/{{$surgery->id}}">{{$surgery->name}}</a></li>
+                                    <li><a href="/selectSurgery/{{$surgery->id}}">{{$surgery->name}}</a></li>
                                 @endforeach                                
                             
                             </ul>
