@@ -114,8 +114,8 @@
                                 <li><a href="/movements">Movimientos caja</a></li>
                             </ul>
                         </li>
-
-                        @if(auth()->user()->role->id == 1)
+                        @if(auth()->user()->role->id == 1 && (!Request::isMethod('post')))
+                        
                             <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Selecciona tienda</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -125,6 +125,7 @@
                             
                             </ul>
                         </li>
+                        
                         @endif
                         
                     </ul>
