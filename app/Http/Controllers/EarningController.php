@@ -78,7 +78,7 @@ class EarningController extends Controller
     }
 
     public function calculate(Request $request){
-
+        $sendConsults = "";
         $consults = [];
         $amountWeek = 0;
         $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();

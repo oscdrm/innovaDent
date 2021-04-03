@@ -124,6 +124,7 @@
                             <th data-hide="phone">Concepto</th>
                             <th data-hide="phone">Cobrada por</th>
                             <th data-hide="phone">Metodo de pago</th>
+                            <th data-hide="phone">Actions</th>
                             <!--<th class="text-right">Action</th>-->
                         </tr>
                         </thead>
@@ -171,6 +172,16 @@
                                 <td>
                                     {{$consult->paymentMethod ? $consult->paymentMethod->name: ''}}
                                 </td>
+                                @if(auth()->user()->role->id == 1)
+                                    <td>    
+                                        <span class="actions-custom"><a class="yellow" href="{{url('/consults/'.$consult->id.'/edit')}}"> <i class="fa fa-edit yellow"></i>Editar </a></span>
+                                        <form style="display:inline" method="post" action="{{url('/consults/'.$consult->id)}}">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button type="submit" title="Eliminar" class="red btn-custom"><i class="fa fa-times red"></i>Eliminar</button>
+                                        </form>
+                                    </td>
+                                @endif
 
                             </tr>
                             @endforeach
