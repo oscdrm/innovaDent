@@ -44,6 +44,8 @@
 
       <link href="{{asset('css/plugins/switchery/switchery.css')}}" rel="stylesheet">
 
+      <link href="{{asset('css/plugins/dataTables/datatables.min.css')}} rel="stylesheet">
+
 </head>
 <body>
     <div id="wrapper">
@@ -100,7 +102,7 @@
                                 <li><a href="/concepts">Servicios</a></li>
                                 <li><a href="/earning">Corte de Caja</a></li>
                             @endif
-                                <li><a href="/movements">Movimientos caja</a></li>
+                                <li><a href="/movements">Registrar movimiento en caja</a></li>
                             </ul>
                         </li>
                         <li>
@@ -208,6 +210,9 @@
 
    <!-- Sweet alert -->
    <script src="{{asset('js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+
+   <script src="{{asset('js/plugins/dataTables/datatables.min.js')}}"></script>
+
 
     <script>
         $(document).ready(function(){
