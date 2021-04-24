@@ -51,4 +51,10 @@ class User extends Authenticatable
         return $this->hasMany(Address::class);
     }
 
+    //user->surgery
+    public function surgery()
+    {
+        return $this->belongsTo(Surgery::class);
+    }
+
 }

@@ -5,10 +5,14 @@
         <div>
             <div>
 
-                <h1 class="logo-name">IDH</h1>
+                <h1 class="logo-name">
+                    <figure class="logo-login">
+                        <img src="{{asset('/img/back/rahex-logo.png')}}"/>
+                    </figure>
+                </h1>
 
             </div>
-            <h3>Bienvenido a INNOVA DENT</h3>
+            <h3>Bienvenido a RAHEX</h3>
             <p>Por favor inicia sesión para entrar en acción</p>
             <form class="m-t" role="form"  method="POST" action="{{ route('login') }}">
                 @csrf
@@ -46,7 +50,7 @@
                         </span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <button type="submit" class="btn btn-primary block full-width m-b btn-login">Login</button>
                 @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         <small>{{ __('¿Olvidaste tu contraseña?') }}</small>

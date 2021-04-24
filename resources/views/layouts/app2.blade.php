@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!--<title>{{ config('app.name', 'Bienvenido a InnovaDent Huetamo') }}</title>-->
-    <title>Bienvenido a InnovaDent Huetamo</title>
+    <!--<title>{{ config('app.name', 'Bienvenido a Rahex') }}</title>-->
+    <title>Bienvenido a Rahex</title>
     <!-- Scripts -->
     
 
@@ -42,7 +42,16 @@
     <!-- Sweet Alert -->
     <link href="{{asset('css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 
-      <link href="{{asset('css/plugins/switchery/switchery.css')}}" rel="stylesheet">
+    <link href="{{asset('css/plugins/switchery/switchery.css')}}" rel="stylesheet">
+
+    <link href="{{asset('css/plugins/dataTables/datatables.min.css')}} rel="stylesheet">
+
+      <!-- Mainly scripts -->
+    <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.js')}}"></script>
+    <script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{asset('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('js/plugins/dataTables/datatables.min.js')}}"></script>
 
       <link href="{{asset('css/plugins/dataTables/datatables.min.css')}} rel="stylesheet">
 
@@ -81,22 +90,24 @@
                         <li>
                             <a href="{{ url('/home') }}"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                         </li>
-                        @if(auth()->user()->role->id == 1)
+                        
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Personal</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
+                                @if(auth()->user()->role->id == 1)
                                 <li><a href="/users/cashier/index">Cajeras</a></li>
-                                <li><a href="/users/doctor/index">Medicos</a></li>
                                 <li><a href="/users/admin/index">Administradores</a></li>
+                                @endif
+                                <li><a href="/users/doctor/index">Medicos</a></li>
                             </ul>
                         </li>
-                        @endif
+                        
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Operaciones</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="/patients">Pacientes</a></li>
+                                <!--<li><a href="/patients">Pacientes</a></li>-->
                                 <li><a href="/consults">Consultas</a></li>
-                                <li><a href="treatments">Tratamientos</a></li>
                             @if(auth()->user()->role->id == 1)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
@@ -105,9 +116,20 @@
                                 <li><a href="/movements">Registrar movimiento en caja</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Citas</span></a>
+                        @if(auth()->user()->role->id == 1 && (!Request::isMethod('post')))
+                        
+                            <li>
+                            <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Selecciona tienda</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                @foreach ($surgeries as  $surgery)
+                                    <li><a href="/selectSurgery/{{$surgery->id}}">{{$surgery->name}}</a></li>
+                                @endforeach                                
+                            
+                            </ul>
                         </li>
+                        
+                        @endif
+                        
                     </ul>
 
                 </div>
@@ -126,19 +148,30 @@
                             </div>
                         </form>-->
                     </div>
-                        <ul class="nav navbar-top-links navbar-right">
-                            <li>
-                                <a  href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"
-                                >
-                                    <i class="fa fa-sign-out"></i> {{ __('Cerrar Sesión') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                </form>
-                            </li>
-                        </ul>
+
+                    <div class="navbar-header surgery-name">
+                        @php
+                            if (session()->has('surgeryName')) {
+                                $surgeryName = Session::get('surgeryName');
+                                echo "<p>".$surgeryName."</p>";
+                            }
+                        @endphp
+                    </div>
+                   
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a  href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                            >
+                                <i class="fa fa-sign-out"></i> {{ __('Cerrar Sesión') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                            </form>
+                        </li>
+                    </ul>
 
                     </nav>
                 </div>
@@ -157,11 +190,7 @@
 
 <!--  SCRIPTS INSPINIA  -->
 
- <!-- Mainly scripts -->
-    <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.js')}}"></script>
-    <script src="{{asset('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-    <script src="{{asset('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+ 
 
     <!-- Flot -->
     <script src="{{asset('js/plugins/flot/jquery.flot.js')}}"></script>

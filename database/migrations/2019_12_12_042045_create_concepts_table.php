@@ -16,9 +16,27 @@ class CreateConceptsTable extends Migration
         Schema::create('concepts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('surgery_id')->nullable();
-            $table->foreign('surgery_id')->references('id')->on('surgeries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+        });
+
+        Schema::create('concept_surgery', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('surgery_id');
+            $table->unsignedBigInteger('concept_id');
+            $table->timestamps();
+
+            $table->unique(['surgery_id', 'concept_id']);
+
+            $table->foreign('surgery_id')
+                ->references('id')
+                ->on('surgeries')
+                ->onDelete('cascade');
+
+            $table->foreign('concept_id')
+                ->references('id')
+                ->on('concepts')
+                ->onDelete('cascade');
+
         });
     }
 

@@ -36,4 +36,10 @@ class Consult extends Model
          return $this->belongsTo(PaymentMethod::class);
      }
 
+     //$consult->surgery
+     public function surgery()
+     {
+         return $this->belongsTo(Surgery::class);
+     }
+
 }
