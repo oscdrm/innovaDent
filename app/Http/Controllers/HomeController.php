@@ -137,20 +137,20 @@ class HomeController extends Controller
         $dc = "";
         $amountTodayHuetamo = 0;
         $amountTodayMaravatio = 0;
-        foreach($allConsultsHuetamo as $consult){
-            if($consult->dismount != true){
-                $amountWeekHuetamo = $amountWeekHuetamo + $consult->amount;
-                $dc = $consult->created_at;
+        foreach($allConsultsHuetamo as $consulth){
+            if($consulth->dismount != true){
+                $amountWeekHuetamo = $amountWeekHuetamo + $consulth->amount;
+                $dc = $consulth->created_at;
                 $dc = explode(" ", $dc);
                 if($dt[0] == $dc[0]){
-                    $amountTodayHuetamo = $amountTodayHuetamo + $consult->amount;
+                    $amountTodayHuetamo = $amountTodayHuetamo + $consulth->amount;
                 }
             }else{
-                $amountWeekHuetamo = $amountWeekHuetamo - $consult->amount;
-                $dc = $consult->created_at;
+                $amountWeekHuetamo = $amountWeekHuetamo - $consulth->amount;
+                $dc = $consulth->created_at;
                 $dc = explode(" ", $dc);
                 if($dt[0] == $dc[0]){
-                    $amountTodayHuetamo = $amountTodayHuetamo - $consult->amount;
+                    $amountTodayHuetamo = $amountTodayHuetamo - $consulth->amount;
                 }
             }
             
