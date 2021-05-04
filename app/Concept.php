@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Concept extends Model
 {
     //$concept->surgery
-    public function surgery()
-    {
-        return $this->belongsTo(Surgery::class);
+    public function surgeries(){
+        return $this->belongsToMany(Surgery::class);
     }
 
     //$concept->treatment

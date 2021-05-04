@@ -1,49 +1,57 @@
 @extends('layouts.app2')
 
 @section('content')
+
+<section>
+ <div class="row">
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins shad">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Diario</span>
+                <h5>Fecha de Hoy</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{$nct}}</h1>
+                <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
+                <medium>Consultas atendidas</medium>
+            </div>
+        </div>
+    </div>
+
+     <div class="col-lg-3">
+        <div class="ibox float-e-margins shad">
+            <div class="ibox-title">
+                <span class="label label-info pull-right">Semanal</span>
+                <h5>Semana</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{$ncw}}</h1>
+                <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
+                <medium>Consultas atendidas</medium>
+            </div>
+        </div>
+    </div>
+
+     <div class="col-lg-3">
+        <div class="ibox float-e-margins shad">
+            <div class="ibox-title">
+                <span class="label label-primary pull-right">Mensual</span>
+                <h5>Mes Actual</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{$ncm}}</h1>
+                <!--<div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>-->
+                <medium>Consultas atendidas</medium>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+
 <div class="wrapper wrapper-content animated fadeInRight">
  <div class="row">
     <div class="col-lg-12">
-        <!--<div class="col-lg-2">
-           <a href="{{url('/patients/create')}}">
-                <div class="widget lightblue1-bg  p-lg text-center">
-                    <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
-                        <h3 class="font-bold no-margins">
-                            Nuevo Paciente
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>-->
-
-        <div class="col-lg-2">
-            <a href="{{url('/consults/create')}}">
-                <div class="widget blue3-bg p-lg text-center">
-                    <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-bolt fa-4x"></i>
-                        <h3 class="font-bold no-margins">
-                            Nuevo Servicio
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-lg-2">
-           <a href="{{url('/cashier/cash')}}">
-                <div class="widget darkblue1-bg p-lg text-center">
-                    <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-money fa-4x"></i>
-                        <h3 class="font-bold no-margins">
-                            <br>
-                            Caja
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-        
         <div class="col-lg-4">
             <div class="widget navy-bg p-lg text-center">
                     <div class="m-b-md">

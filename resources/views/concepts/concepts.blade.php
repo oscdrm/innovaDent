@@ -36,7 +36,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Tienda</th>
+                                        <th>Monto</th>
                                         <th>Acción</th>
                                     </tr>
                                     </thead>
@@ -53,7 +53,7 @@
                                             @endphp   
                                             <tr class="{{$class}}">
                                                 <td>{{$concept->name}}</td>
-                                                <td>{{$concept->surgery->name}}</td>
+                                                <td>{{$concept->amount}}</td>
                                                 <td>    
                                                     <span class="actions-custom"><a class="yellow" href="{{url('/concepts/'.$concept->id.'/edit')}}"> <i class="fa fa-edit yellow"></i>Editar </a></span>
                                                     <form style="display:inline" method="post" action="{{url('/concepts/'.$concept->id)}}">

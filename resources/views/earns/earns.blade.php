@@ -52,9 +52,9 @@
                
                 <div class="form-group">
 
-                        <button id="filter" type="button" class="btn btn-w-m btn-info">Filtrar por fechas</button>
-                        <button type="submit" class="btn btn-w-m btn-success">Realizar corte</button>
-                        <button type="button" onclick="window.location='/earning/';"  class="btn btn-w-m btn-warning">Corte general</button>
+                        <button id="filter" type="button" class="btn btn-w-m darkblue1-bg btn-info">Filtrar por fechas</button>
+                        <button type="submit" class="btn btn-w-m darkblue2-bg btn-success">Realizar corte</button>
+                        <button type="button" onclick="window.location='/earning/';"  class="btn btn-w-m darkblue3-bg btn-warning">Corte general</button>
 
                 </div>
 
@@ -66,7 +66,7 @@
     <div class="col-lg-12">
 
         <div class="col-lg-3">
-            <div class="widget navy-bg p-lg text-center shad">
+            <div class="widget darkblue1-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <span style="font-size:55px;">{{$serviciosRealizados}}</span>
                         <h3 class="font-bold no-margins">
@@ -77,7 +77,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="widget blue-bg p-lg text-center shad">
+            <div class="widget darkblue2-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
                         <h3 class="font-bold no-margins">
@@ -88,7 +88,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="widget yellow-bg p-lg text-center shad">
+            <div class="widget darkblue4-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$dineroCaja}}</span>
                         <h3 class="font-bold no-margins">
@@ -112,7 +112,7 @@
                 </div>
             </div>
                 <div class="table-responsive">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" data-page-size="15">
                         <thead>
                         <tr>
                             <th>N Movimiento</th>
@@ -124,7 +124,7 @@
                             <th data-hide="phone">Concepto</th>
                             <th data-hide="phone">Cobrada por</th>
                             <th data-hide="phone">Metodo de pago</th>
-                            <th data-hide="phone">Actions</th>
+                            <th data-hide="phone">Sucursal:</th>
                             <!--<th class="text-right">Action</th>-->
                         </tr>
                         </thead>
@@ -183,6 +183,10 @@
                                     </td>
                                 @endif
 
+                                <td>
+                                    {{$consult->surgery ? $consult->surgery->name: ''}}
+                                </td>
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -194,6 +198,32 @@
 </div>
 </div>
 </div>
+
+ <script>
+        $(document).ready(function(){
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [],
+                language: {
+                    search: "Buscar en la tabla:",
+                    info:   "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+                    lengthMenu:    "Mostrar _MENU_ registros",
+                    infoFiltered:   "",
+                    paginate: {
+                        first:      "Primero",
+                        previous:   "Anterior",
+                        next:       "Siguiente",
+                        last:       "Ultimo"
+                    }
+                }
+
+            });
+
+        });
+
+    </script>
 
 @endsection
 

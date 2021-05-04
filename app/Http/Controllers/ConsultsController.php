@@ -8,9 +8,11 @@ use App\Patient;
 use App\User;
 use App\Concept;
 use App\PaymentMethod;
+use App\Surgery;
 use Carbon\Carbon;
 use Auth;
 use DB;
+use Session;
 
 class ConsultsController extends Controller
 {
@@ -24,12 +26,21 @@ class ConsultsController extends Controller
         $saturday =  Carbon::setWeekEndsAt(Carbon::SATURDAY);
 
         if(Auth::user()->role_id == 1){
+
             $consults = Consult::orderBy('created_at', 'desc')
                       ->paginate();
+
+            if (session()->has('surgery')) {
+                $surgery = Session::get('surgery');
+                $consults = Consult::where('surgery_id', '=', $surgery)->orderBy('created_at', 'desc')
+                      ->paginate();
+            }
+
+            
         }
 
         if(Auth::user()->role_id == 2){
-            $user = Auth::user()->role_id;
+            $user = Auth::user()->id;
             $consults = Consult::where('cashier_id', '=', $user)
                       ->whereBetween('created_at', [Carbon::now()
                       ->startOfWeek(), Carbon::now()->endOfWeek()])
@@ -44,9 +55,18 @@ class ConsultsController extends Controller
     {
         $patients = Patient::all();
         $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
-        $services = Concept::where('surgery_id', '=', 1)->get();
+        $services = Concept::all();
+        if(Auth::user()->role_id != 1){
+            $surgery_id = Auth::user()->surgery_id;
+            $surgeries = [$surgery_id];
+            $services = Concept::whereHas('surgeries', function($q) use($surgeries) {
+                $q->whereIn('surgery_id', $surgeries);
+            })->get();
+        }
+
+        $surgeries = Surgery::all();
         $payments = PaymentMethod::all();
-        return view('consults.create')->with(compact('services', 'doctors', 'patients', 'payments'));
+        return view('consults.create')->with(compact('services', 'doctors', 'patients', 'payments', 'surgeries'));
 
     }
 
@@ -89,6 +109,15 @@ class ConsultsController extends Controller
         $consult->cashier_id = $cashier;
         $consult->outflow = false;
         $consult->dismount = false;
+        if(Auth::user()->role_id == 1){
+            $surgery_id = $request->input('surgery');
+        }
+
+        if(Auth::user()->role_id == 2){
+            $surgery_id = Auth::user()->surgery_id;
+        }
+        
+        $consult->surgery_id = $surgery_id;
 
         $paymentMetod = $request->input('payment_method') ? $request->input('payment_method') : 1;
         $consult->payment_method_id = $paymentMetod;
@@ -118,7 +147,15 @@ class ConsultsController extends Controller
         $consult = Consult::find($id);
         $patients = Patient::all();
         $doctors = User::where('role_id', '=', 3)->get();
-        $services = Concept::where('surgery_id', '=', 1)->get();
+        $services = Concept::all();
+        
+        if(Auth::user()->role_id != 1){
+            $surgery_id = Auth::user()->surgery_id;
+            $services = Concept::where('surgery_id', '=', $surgery_id)->get();  
+        }
+
+        $surgeries = Surgery::all();
+        
         return view('consults.edit')->with(compact('services', 'doctors', 'patients', 'consult'));
     }
 
@@ -154,6 +191,10 @@ class ConsultsController extends Controller
          $consult->amount = $request->input('amount');
          $consult->other_patient = $request->input('other_patient');
          $consult->cashed_on = $dt;
+         if(Auth::user()->role_id == 1){
+            $surgery_id = $request->input('surgery');
+            $consult->surgery_id = $surgery_id;
+        }
  
          $consult->save();
  
@@ -170,7 +211,8 @@ class ConsultsController extends Controller
 
 
     public function cashMovements(){
-        return view('consults.movements');
+        $surgeries = Surgery::all();
+        return view('consults.movements')->with(compact('surgeries'));
     }
 
     public function storeMovement(Request $request)
@@ -185,6 +227,15 @@ class ConsultsController extends Controller
         $consult->amount = $request->input('amount');
         $cashier = Auth::user()->id;
         $consult->cashier_id = $cashier;
+        if(Auth::user()->role_id == 1){
+            $surgery_id = $request->input('surgery');
+        }
+
+        if(Auth::user()->role_id == 2){
+            $surgery_id = Auth::user()->surgery_id;
+        }
+        
+        $consult->surgery_id = $surgery_id;
 
         if($dismount == "on"){
             $dismount = true;

@@ -6,7 +6,10 @@
  *   version 2.7
  *
 */
-
+.surgery-name{
+  margin-left: 30px;
+  font-size:30px
+}
 .spinner-container{
 
   width:100%;
@@ -46,10 +49,24 @@
   box-shadow: 1px 3px 10px rgba(0, 0, 0, .5);
 }
 .bck-square{
-  background-image:url('/img/back/bg-smile.jpeg');
+  background-image:url('/img/back/rahex-back.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.logo-login{
+  width:100%;
+  margin-bottom:20px;
+}
+
+.btn-login{
+  background-color: #041348 !important;
+  border: 1px solid #041348 !important;
+}
+
+.logo-login img{
+  width:100%;
 }
 
 #new-treatment{
@@ -1759,7 +1776,11 @@ table.dataTable thead .sorting_desc_disabled {
   float: left;
 }
 .dataTables_filter label {
-  margin-right: 5px;
+  margin-left: 25px;
+}
+
+.dataTables_info{
+  margin: 10px 0;
 }
 .html5buttons {
   float: right;
@@ -3610,7 +3631,7 @@ body.boxed-layout {
   background: url('patterns/shattered.png');
 }
 body.boxed-layout #wrapper {
-  background-color: #2f4050;
+  background-color: #041348;
   max-width: 1200px;
   margin: 0 auto;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
@@ -4151,6 +4172,40 @@ table.table-mail tr td {
   background-color: #1c84c6;
   color: #ffffff;
 }
+
+.darkblue1-bg,
+.bg-success {
+  background-color: #0047AB;
+  color: #ffffff;
+}
+
+.darkblue2-bg,
+.bg-success {
+  background-color: #1034A6;
+  color: #ffffff;
+}
+
+.darkblue3-bg,
+.bg-success {
+  background-color: #002366;
+  color: #ffffff;
+}
+
+.darkblue4-bg,
+.bg-success {
+  background-color: #082567;
+  color: #ffffff;
+}
+
+.lightblue1-bg,
+.bg-success {
+  background-color: #73C2FB;
+  color: #ffffff;
+}
+
+
+
+
 .navy-bg,
 .bg-primary {
   background-color: #1ab394;

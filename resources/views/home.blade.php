@@ -51,9 +51,9 @@
 <div class="wrapper wrapper-content animated fadeInRight">
  <div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-2">
+        <!--<div class="col-lg-2">
            <a href="{{url('/patients/create')}}">
-                <div class="widget lazur-bg p-lg text-center shad">
+                <div class="widget darkblue1-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i style="margin-bottom:5px;" class="fa fa-user-o fa-4x"></i>
                         <h3 class="font-bold no-margins">
@@ -62,43 +62,62 @@
                     </div>
                 </div>
             </a>
-        </div>
-
-        <div class="col-lg-2">
-            <a href="{{url('/consults/create')}}">
-                <div class="widget yellow-bg p-lg text-center shad">
+        </div>-->
+        <div class="col-lg-3">
+            <div class="widget darkblue1-bg p-lg text-center shad">
                     <div class="m-b-md">
-                        <i style="margin-bottom:5px;" class="fa fa-stethoscope fa-4x"></i>
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountTodayHuetamo}}</span>
                         <h3 class="font-bold no-margins">
-                            Nueva Consulta
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-
-        <div class="col-lg-4">
-            <div class="widget navy-bg p-lg text-center shad">
-                    <div class="m-b-md">
-                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountToday}}</span>
-                        <h3 class="font-bold no-margins">
-                            Corte del dia
+                            Corte del dia Huetamo
                         </h3>
                     </div>
                 </div>
         </div>
 
-        <div class="col-lg-4">
-            <div class="widget blue-bg p-lg text-center shad">
+        <div class="col-lg-3">
+            <div class="widget darkblue2-bg p-lg text-center shad">
                     <div class="m-b-md">
-                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeek}}</span>
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountTodayMaravatio}}</span>
                         <h3 class="font-bold no-margins">
-                            Corte de la semana
+                            Corte del dia maravatio
                         </h3>
                     </div>
                 </div>
         </div>
+
+
+        <div class="col-lg-3">
+            <div class="widget darkblue4-bg p-lg text-center shad">
+                    <div class="m-b-md">
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountTodayHuetamo}}</span>
+                        <h3 class="font-bold no-margins">
+                            Corte de la semana Huetamo
+                        </h3>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="widget darkblue3-bg p-lg text-center shad">
+                    <div class="m-b-md">
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeekMaravatio}}</span>
+                        <h3 class="font-bold no-margins">
+                            Corte de la semana maravatio
+                        </h3>
+                    </div>
+                </div>
+        </div>
+
+        <!--<div class="col-lg-4">
+            <form method="POST" action="{{url('/consults/search')}}">
+                @csrf
+                <div class="form-group">
+                    <div class="col-lg-9"> 
+                        <input type="text" placeholder="Buscar movimiento" class="form-control" name="filter" id="top-search">
+                    </div>
+                </div>
+            </form>
+        </div>-->
 
             
     </div>

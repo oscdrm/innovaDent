@@ -50,6 +50,19 @@
                 </div>
 
                 @if(auth()->user()->role->id == 1)
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Tienda:</label>
+                        <div class="col-sm-10">
+                            <select data-placeholder="Selecciona una tienda" name="surgery" class="chosen-select"  tabindex="2" required>
+                                <option value="">Selecciona una tienda</option>
+                                @foreach ($surgeries as $surgery)
+                                    <option value="{{$surgery->id}}">{{$surgery->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group" id="dc">
                                     <label class="font-normal">Selecciona la fecha de consulta:</label>
                                     <div class="input-group date dc-date">

@@ -26,7 +26,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <form role="search" class="shad" method="POST" action="{{url('/consults/search')}}">
+            <!--<form role="search" class="shad" method="POST" action="{{url('/consults/search')}}">
                 @csrf
                 <div class="form-group">
                     <div class="col-lg-9"> 
@@ -37,7 +37,7 @@
                         <button class="btn btn-primary" type="submit">Buscar</button>
                     </div>
                 </div>
-            </form>
+            </form>-->
         </div>
     </div>
 
@@ -151,7 +151,6 @@
     </div><!--END ROW-->
 
 </div><!--END WRAPER-->
-@section('additional_scripts')
  <script>
         $(document).ready(function(){
             $('.dataTables-example').DataTable({
@@ -161,8 +160,9 @@
                 buttons: [],
                 language: {
                     search: "Buscar en la tabla:",
-                    info:   "Mostrando del _START_ al _END_ de _TOTAL_ alumno",
+                    info:   "Mostrando del _START_ al _END_ de _TOTAL_ registros",
                     lengthMenu:    "Mostrar _MENU_ registros",
+                    infoFiltered:   "",
                     paginate: {
                         first:      "Primero",
                         previous:   "Anterior",
@@ -176,6 +176,5 @@
         });
 
     </script>
-@endsection
 
 @endsection

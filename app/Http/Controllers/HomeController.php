@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Consult;
 use Carbon\Carbon;
+use Session;
 
 class HomeController extends Controller
 {
@@ -31,10 +32,12 @@ class HomeController extends Controller
             $ncw = $consults['nconsultsweek'];
             $nct = $consults['nct'];
             $ncm = $consults['ncm'];
-            $amountWeek = $consults['amountWeek'];
-            $amountToday = $consults['amountToday'];
+            $amountWeekHuetamo = $consults['amountWeekHuetamo'];
+            $amountTodayHuetamo = $consults['amountTodayHuetamo'];
+            $amountWeekMaravatio = $consults['amountWeekMaravatio'];
+            $amountTodayMaravatio = $consults['amountTodayMaravatio'];
             $consults = $consults['consults'];
-            return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeek', 'amountToday', 'consults'));
+            return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeekHuetamo', 'amountTodayHuetamo', 'consults', 'amountWeekMaravatio', 'amountTodayMaravatio'));
         }
 
         if(Auth::user()->role_id == 2){
@@ -48,7 +51,12 @@ class HomeController extends Controller
         }
 
         if(Auth::user()->role_id == 3){
-            return 'hola soy un doctor';
+            $user = Auth::user()->id;
+            $consults = $this->consultasCajera($user);
+            $amountWeek = $consults['amountWeek'];
+            $amountToday = $consults['amountToday'];
+            $consults = $consults['consults'];
+            return view('doctor/home')->with(compact('ncw', 'nct', 'ncm', 'consults', 'amountWeek', 'amountToday'));
         }
 
     }
@@ -58,7 +66,7 @@ class HomeController extends Controller
         if(Auth::user()->role_id == 2){
 
             $user = Auth::user()->id;
-            $consults = $this->consultasCajera($user);
+            $consults = $this->consultasDoctor($user);
             $amountWeek = $consults['amountWeek'];
             $amountToday = $consults['amountToday'];
             $consults = $consults['consults'];
@@ -106,16 +114,17 @@ class HomeController extends Controller
         return $consultsArray;
     }
 
-    private function consultasAdmin(){
+    private function consultasDoctor($user){
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
-        $nconsultsweek = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)])->where('outflow', '!=', true)->count();
-        $nct = Consult::whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
-        $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
-
-        //$consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->paginate(10);
-        $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)])->get();
-        $allConsults = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::MONDAY), Carbon::now()->endOfWeek(Carbon::SUNDAY)])->get();
+        $consults = Consult::where('doctor_id', '=', $user)
+                    ->whereDate('created_at', Carbon::today())
+                    //->where('outflow', '!=', true)
+                    ->orderBy('created_at', 'desc')->get();
+        $allConsults = Consult::where('doctor_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $nconsultsweek = Consult::where('doctor_id', '=', $user)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->count();
+        $nct = Consult::where('doctor_id', '=', $user)->whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
+        $ncm = Consult::where('doctor_id', '=', $user)->whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
         $amountWeek = 0;
         $dt = Carbon::now();
         $dt = explode(" ", $dt);
@@ -139,10 +148,89 @@ class HomeController extends Controller
             }
             
         }
+
+        $consultsArray = ['nconsultsweek' => $nconsultsweek, 'nct' => $nct, 'ncm' => $ncm, 'consults' => $consults, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
+        
+        return $consultsArray;
+    }
+
+    private function consultasAdmin(){
+        Carbon::setWeekStartsAt(Carbon::MONDAY);
+        Carbon::setWeekEndsAt(Carbon::SUNDAY);
+
+        
+        $nconsultsweek = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->count();
+        $nct = Consult::whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
+        $ncm = Consult::whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
+        $consults10 = Consult::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $allConsultsHuetamo = Consult::where('surgery_id', '=', 1)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $allConsultsMaravatio = Consult::where('surgery_id', '=', 2)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+
+        if (session()->has('surgery')) {
+            $surgery = Session::get('surgery');
+            $nconsultsweek = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('outflow', '!=', true)->count();
+            $nct = Consult::where('surgery_id', '=', $surgery)->whereDate('created_at', Carbon::today())->where('outflow', '!=', true)->count();
+            $ncm = Consult::where('surgery_id', '=', $surgery)->whereMonth('created_at', Carbon::now()->month)->where('outflow', '!=', true)->count();
+            $consults10 = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            //$allConsults = Consult::where('surgery_id', '=', $surgery)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();  
+        }
+
+        $amountWeekHuetamo = 0;
+        $amountWeekMaravatio = 0;
+        $dt = Carbon::now();
+        $dt = explode(" ", $dt);
+        $dc = "";
+        $amountTodayHuetamo = 0;
+        $amountTodayMaravatio = 0;
+        foreach($allConsultsHuetamo as $consulth){
+            if($consulth->dismount != true){
+                $amountWeekHuetamo = $amountWeekHuetamo + $consulth->amount;
+                $dc = $consulth->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountTodayHuetamo = $amountTodayHuetamo + $consulth->amount;
+                }
+            }else{
+                $amountWeekHuetamo = $amountWeekHuetamo - $consulth->amount;
+                $dc = $consulth->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountTodayHuetamo = $amountTodayHuetamo - $consulth->amount;
+                }
+            }
+            
+        }
+
+        foreach($allConsultsMaravatio as $consult){
+            if($consult->dismount != true){
+                $amountWeekMaravatio = $amountWeekMaravatio + $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountTodayMaravatio = $amountTodayMaravatio + $consult->amount;
+                }
+            }else{
+                $amountWeekMaravatio = $amountWeekMaravatio - $consult->amount;
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    $amountTodayMaravatio = $amountTodayMaravatio - $consult->amount;
+                }
+            }
+            
+        }
          
      
 
-        $consultsArray = ['nconsultsweek' => $nconsultsweek, 'nct' => $nct, 'ncm' => $ncm, 'consults' => $consults10, 'amountWeek' => $amountWeek, 'amountToday' => $amountToday];
+        $consultsArray = ['nconsultsweek' => $nconsultsweek,
+                          'nct' => $nct,
+                          'ncm' => $ncm,
+                          'consults' => $consults10,
+                          'amountWeekHuetamo' => $amountWeekHuetamo,
+                          'amountTodayHuetamo' => $amountTodayHuetamo,
+                          'amountWeekMaravatio' => $amountWeekMaravatio,
+                          'amountTodayMaravatio' => $amountTodayMaravatio
+                        ];
         
         return $consultsArray;
     }

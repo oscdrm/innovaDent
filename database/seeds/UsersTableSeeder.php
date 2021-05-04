@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('qwerty123456'),
             'age' => 26,
             'username' => 'admin',
-            'role_id' => 1
+            'role_id' => 1,
+            'surgery_id' => 1
         ]);
     }
 }
