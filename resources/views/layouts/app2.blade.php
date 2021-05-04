@@ -91,6 +91,7 @@
                             </ul>
                         </li>
                         @endif
+                        @if(auth()->user()->role->id != 3)
                         <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Operaciones</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -108,6 +109,7 @@
                         <li>
                             <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Citas</span></a>
                         </li>
+                        @endif
                     </ul>
 
                 </div>

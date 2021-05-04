@@ -48,7 +48,16 @@ class HomeController extends Controller
         }
 
         if(Auth::user()->role_id == 3){
-            return 'hola soy un doctor';
+            $user = Auth::user()->id;
+            $consults = $this->consultasDoctor($user);
+            $amountWeek = $consults['amountWeek'];
+            $amountToday = $consults['amountToday'];
+            $ncw = $consults['nconsultsweek'];
+            $nct = $consults['nct'];
+            $ncm = $consults['ncm'];
+            $consults = $consults['consults'];
+            
+            return view('doctor/home')->with(compact('ncw', 'nct', 'ncm', 'consults', 'amountWeek', 'amountToday'));
         }
 
     }
