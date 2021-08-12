@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {      
-        if(auth()->user()->role->id != 1){
+        if(auth()->user()->role->id != 1 && auth()->user()->role->id != 4){
             return redirect('/home');
         }
 
