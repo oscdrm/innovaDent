@@ -49,7 +49,7 @@
                     <input type="checkbox" class="js-switch_2" checked name="dismount"/>
                 </div>
 
-                @if(auth()->user()->role->id == 1)
+                @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4)
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Tienda:</label>

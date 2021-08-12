@@ -25,7 +25,7 @@ class ConsultsController extends Controller
         $sunday = Carbon::setWeekStartsAt(Carbon::SUNDAY);
         $saturday =  Carbon::setWeekEndsAt(Carbon::SATURDAY);
 
-        if(Auth::user()->role_id == 1){
+        if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4){
 
             $consults = Consult::orderBy('created_at', 'desc')
                       ->paginate();
@@ -109,7 +109,7 @@ class ConsultsController extends Controller
         $consult->cashier_id = $cashier;
         $consult->outflow = false;
         $consult->dismount = false;
-        if(Auth::user()->role_id == 1){
+        if(Auth::user()->role_id == 1 || Auth::user()->role_id == 4){
             $surgery_id = $request->input('surgery');
         }
 

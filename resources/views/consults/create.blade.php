@@ -62,7 +62,7 @@
                         </select>
                     </div>
                 </div>
-                @if(auth()->user()->role->id == 1)
+                @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4)
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Tienda</label>
                     <div class="col-sm-10">

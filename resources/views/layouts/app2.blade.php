@@ -95,9 +95,11 @@
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Personal</span> <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 
-                                @if(auth()->user()->role->id == 1)
-                                <li><a href="/users/cashier/index">Cajeras</a></li>
-                                <li><a href="/users/admin/index">Administradores</a></li>
+                                @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4)
+                                    <li><a href="/users/cashier/index">Cajeras</a></li>
+                                    @if(auth()->user()->role->id == 1)
+                                    <li><a href="/users/admin/index">Administradores</a></li>
+                                    @endif    
                                 @endif
                                 <li><a href="/users/doctor/index">Medicos</a></li>
                             </ul>
@@ -108,15 +110,17 @@
                             <ul class="nav nav-second-level">
                                 <!--<li><a href="/patients">Pacientes</a></li>-->
                                 <li><a href="/consults">Consultas</a></li>
-                            @if(auth()->user()->role->id == 1)
+                            @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
+                                @if(auth()->user()->role->id == 1)
                                 <li><a href="/earning">Corte de Caja</a></li>
+                                @endif
                             @endif
                                 <li><a href="/movements">Registrar movimiento en caja</a></li>
                             </ul>
                         </li>
-                        @if(auth()->user()->role->id == 1 && (!Request::isMethod('post')))
+                        @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4 && (!Request::isMethod('post')))
                         
                             <li>
                             <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Selecciona tienda</span> <span class="fa arrow"></span></a>
