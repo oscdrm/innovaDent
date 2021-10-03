@@ -110,6 +110,9 @@
                             <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Citas</span></a>
                         </li>
                         @endif
+                        @if(auth()->user()->role->id == 3)
+                        <li><a href="/earning/doctor">Corte de Caja</a></li>
+                        @endif
                     </ul>
 
                 </div>

@@ -150,8 +150,59 @@ class EarningController extends Controller
                                                  'serviciosRealizados', 'doctors', 'concepts',
                                                  'dineroCaja', 'start', 'end', 'vali', 'doc',
                                                  'conc'));
+    }
 
+    public function doctors()
+    {   
+        if(Auth::user()->role_id == 3){
+            $sendConsults = "";
+            $consults = [];
+            $amountWeek = 0;
+            $concepts = Concept::all();
+            Carbon::setWeekStartsAt(Carbon::SUNDAY);
+            Carbon::setWeekEndsAt(Carbon::SATURDAY);
+            $doctor = Auth::user();
+            $consults = Consult::where('doctor_id', '=', $doctor->id)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            $allConsults = Consult::where('doctor_id', '=', $doctor->id)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            $amountWeek = 0;
+            $dt = Carbon::now();
+            $dt = explode(" ", $dt);
+            $dc = "";
+            $amountToday = 0;
+            $serviciosRealizados = 0;
+            $dineroCaja = 0;
+            
+            
+            foreach($allConsults as $consult){
+                $dc = $consult->created_at;
+                $dc = explode(" ", $dc);
+                $paymentMethod = $consult->paymentMethod ? $consult->paymentMethod->id : 0;
 
+                if($consult->dismount != true){
+                    $serviciosRealizados++;
+                    $amountWeek = $amountWeek + $consult->amount;
+
+                    if($paymentMethod == 1){
+                        $dineroCaja = $dineroCaja + $consult->amount;
+                    }
+
+                    if($dt[0] == $dc[0]){
+                        $amountToday = $amountToday + $consult->amount;
+                    }
+                }else{
+                    $amountWeek = $amountWeek - $consult->amount;
+                    if($paymentMethod == 1){
+                        $dineroCaja = $dineroCaja - $consult->amount;
+                    }
+                    if($dt[0] == $dc[0]){
+                        $amountToday = $amountToday - $consult->amount;
+                    }
+                }
+            }
+        
+            return view('earns/earns-doc')->with(compact('sendConsults', 'consults', 'amountWeek', 'serviciosRealizados', 'concepts', 'dineroCaja'));
+        }
+        
     }
 
 }

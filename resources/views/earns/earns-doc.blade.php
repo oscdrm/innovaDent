@@ -8,24 +8,7 @@
             <form action="{{url('/earning/calculate')}}" method="post">
                 @csrf
                 <div class="row">
-                    @if(auth()->user()->role->id == 1)
-                        <div class="col-md-6">
-                                <p>Doctor</p>
-                                <select data-placeholder="Selecciona una doctor" name="doctor" class="chosen-select shad"  tabindex="2">
-                                    <option value="">Selecciona un Doctor</option>
-                                    @foreach ($doctors as $doctor)
-                                        @if(isset($doc) && $doc == $doctor->id)
-                                            <option value="{{$doctor->id}}" selected>{{$doctor->name}} {{$doctor->lastName}}</option>
-                                        @else
-                                            <option value="{{$doctor->id}}">{{$doctor->name}} {{$doctor->lastName}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                        </div>
-                    @endif
-                    @if(auth()->user()->role->id == 3)
-                        <input type="hidden" name="doctor" value="{{Auth::user()->id}}">
-                    @endif
+                    <input type="hidden" name="doctor" value="{{Auth::user()->id}}">
                     <div class="col-md-6">
                         <p>Tratamiento</p>
                         <select data-placeholder="Selecciona un tratamiento" name="concept" class="chosen-select shad"  tabindex="2">

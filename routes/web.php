@@ -92,6 +92,14 @@ Route::middleware(['auth', 'cashier'])->group(function () {
 
 });
 
+//Middlaware para ADMIN y CAJERO
+Route::middleware(['auth', 'doctor'])->group(function () {
+    //RUTAS PARA CORTE DE CAJA
+    Route::get('earning/doctor', 'EarningController@doctors'); //Inicio
+    Route::post('earning/calculate', 'EarningController@calculate'); //Inicio
+
+});
+
 //Middlaware para los tres perfiles
 Route::middleware(['auth'])->group(function () {
     //RUTAS PARA PAIENTES
