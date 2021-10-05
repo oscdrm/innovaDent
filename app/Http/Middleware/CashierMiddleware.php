@@ -15,7 +15,7 @@ class CashierMiddleware
      */
     public function handle($request, Closure $next)
     {   
-        if(auth()->user()->role->id == 2){
+        if(auth()->user()->role->id == 4){
             return redirect('/home');
         }
         return $next($request);
