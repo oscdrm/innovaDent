@@ -69,7 +69,7 @@
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountTodayHuetamo}}</span>
                         <h3 class="font-bold no-margins">
-                            Corte del dia Huetamo
+                            Corte de la semana Huetamo
                         </h3>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountTodayMaravatio}}</span>
                         <h3 class="font-bold no-margins">
-                            Corte del dia maravatio
+                            Corte de la semana maravatio
                         </h3>
                     </div>
                 </div>
@@ -90,15 +90,15 @@
         <div class="col-lg-3">
             <div class="widget darkblue4-bg p-lg text-center shad">
                     <div class="m-b-md">
-                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeekHuetamo}}</span>
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeekParacho}}</span>
                         <h3 class="font-bold no-margins">
-                            Corte de la semana Huetamo
+                            Corte de la semana Paracho
                         </h3>
                     </div>
                 </div>
         </div>
 
-        <div class="col-lg-3">
+        <!--<div class="col-lg-3">
             <div class="widget darkblue3-bg p-lg text-center shad">
                     <div class="m-b-md">
                         <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeekMaravatio}}</span>
@@ -107,7 +107,7 @@
                         </h3>
                     </div>
                 </div>
-        </div>
+        </div>-->
 
         <!--<div class="col-lg-4">
             <form method="POST" action="{{url('/consults/search')}}">
