@@ -36,8 +36,9 @@ class HomeController extends Controller
             $amountTodayHuetamo = $consults['amountTodayHuetamo'];
             $amountWeekMaravatio = $consults['amountWeekMaravatio'];
             $amountTodayMaravatio = $consults['amountTodayMaravatio'];
+            $amountWeekParacho = $consults['amountWeekParacho'];
             $consults = $consults['consults'];
-            return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeekHuetamo', 'amountTodayHuetamo', 'consults', 'amountWeekMaravatio', 'amountTodayMaravatio'));
+            return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeekHuetamo', 'amountTodayHuetamo', 'consults', 'amountWeekMaravatio', 'amountTodayMaravatio', 'amountWeekParacho'));
         }
 
         if(Auth::user()->role_id == 2){
