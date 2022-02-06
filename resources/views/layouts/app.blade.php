@@ -32,6 +32,8 @@
 
      <!-- ASSETS CSS INSPINIA -->
 
+     <link rel="icon" href="{{asset('/img/back/inodent.png')}}">
+
 </head>
 <body class="gray-bg">
     <div  id="app">

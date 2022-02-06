@@ -4828,6 +4828,11 @@ body.mini-navbar.fixed-sidebar .logo-element {
   letter-spacing: -10px;
   margin-bottom: 0;
 }
+
+.logo-login img{
+  width: 100%;
+}
+
 .middle-box h1 {
   font-size: 170px;
 }

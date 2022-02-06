@@ -5,7 +5,11 @@
         <div>
             <div>
 
-                <h1 class="logo-name">IDH</h1>
+                <h1 class="logo-name">
+                    <figure class="logo-login">
+                        <img src="{{asset('/img/back/inodent.jpeg')}}"/>
+                    </figure>
+                </h1>
 
             </div>
             <h3>Bienvenido a INNOVA DENT</h3>
