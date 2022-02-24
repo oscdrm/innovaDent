@@ -666,6 +666,101 @@ footer{
 
 }
 
+@media only screen and (max-width: 460px) {
+
+    .box-container{
+        width: 350px;
+    }
+
+    .content-hero {
+        width: 350px;
+        height: auto;
+        display: block;
+    }
+
+    .content-hero div {
+        text-align: center;
+    }
+
+    .txt-hero h1 {
+        font-size: 65px;
+    }
+
+    .txt-hero h2 {
+        font-size: 40px;
+    }
+
+    .cont-blue-circle {
+        height: 350px;
+        margin-top: 10px;
+    }
+
+    .blue-circle {
+        top: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .img-radiogragia {
+        margin: 0px auto;
+        right: 0px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .que-hacemos {
+        width: 100%;
+        height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content-que-hacemos {
+        width: 350px;
+        flex-direction: column;
+    }
+
+    .content-que-hacemos div {
+        flex: none;
+    }
+
+    .cont-circle-darkblue {
+        height: 350px;
+        width: 350px;
+        margin-bottom: 10px;
+        
+    }
+
+    .darkblue-circle {
+        height: 100%;
+        width: 100%;
+        top: 0px;
+    }
+    
+    .img-radiografia-dient {
+        margin: 0px auto;
+        right: 0px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .content-sucursales {
+        width: 350px;
+    }
+
+    .sucursales {
+        height: auto !important;
+    }
+
+    .content-contacto {
+        width: 350px;
+    }
+
+}
+
 @media only screen and (max-width: 800){
     nav a{
         font-size:  14px;
