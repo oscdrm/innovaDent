@@ -723,7 +723,7 @@ footer{
     }
 
     .content-que-hacemos div {
-        flex: 1;
+        flex: none;
         text-align: center;
     }
 
