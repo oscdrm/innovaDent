@@ -723,7 +723,8 @@ footer{
     }
 
     .content-que-hacemos div {
-        flex: none;
+        flex: 1;
+        text-align: center;
     }
 
     .cont-circle-darkblue {
