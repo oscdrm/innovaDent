@@ -21,6 +21,8 @@ Route::get('/', function(){
 
 });
 
+Route::get('/landing', 'LandingController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

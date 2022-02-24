@@ -1,0 +1,683 @@
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background: #F3F3F3;
+    font-family: 'Roboto', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+.main-container{
+    width: 100%;
+}
+
+.box-container{
+    width: 1140px;
+    display: flex;
+    align-items: center;
+}
+
+/*++++++++++++++  MENU +++++++++++++++++++++++++*/
+
+.menu-container{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #F3F3F3;
+    padding: 0px 10px;
+    height: 80px;
+    position: sticky;
+    position: -webkit-sticky;
+    align-self: flex-start;
+    top: 0;
+    z-index: 10000;
+}
+
+nav{
+    height: 80px;
+    width: 1140px;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+}
+
+.cont-navigators{
+    display: flex;
+    height: 100%;
+}
+
+nav a{
+    height: 100%;
+    text-align: center;
+    transition: .2s ease-in-out all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    color: #000;
+}
+
+nav a:hover{
+    background: #fff;
+}
+
+nav .indicador{
+    width: 0px;
+    height: 7px;
+    background: #113ec1;
+    position: absolute;
+    bottom: 0;
+    transition: .3s ease-out all;
+    transform: translate(-1000px);
+}
+
+.cont-logo{
+    width: 15rem;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: 0px auto;
+    top: -2px;
+    transition: .9s ease-in-out all;
+}
+
+.cont-logo figure{
+    width: 100%;
+}
+
+.cont-logo figure img{
+    width: 100%;
+}
+
+/*++++++++++++++ SECCION HERO +++++++++++++++++++++++++*/
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+    width: 100%;
+}
+
+.content-hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1140px;
+    padding: 0px 10px;
+    position: relative;
+}
+
+.content-hero div{
+    flex: 1;
+}
+
+.txt-hero h1{
+    font-size: 75px;
+    font-weight: 900;
+    color: #031147;
+}
+
+.txt-hero h2{
+    font-size: 45px;
+    font-weight: 200;
+    color: #848688;
+}
+
+/*++++++++++++++ SECCION QUE HACEMOS +++++++++++++++++++++++++*/
+
+.cont-blue-circle{
+    height: 100%;
+    position: relative;
+}
+
+.blue-circle{
+    background: #00AFEF;
+    position: absolute;
+    height: 70vh;
+    width: 70vh;
+    right: 0px;
+    top: calc(50% - 580px/2 + 36px);
+    border-radius: 1000px;
+    z-index: 1;
+}
+
+.img-radiogragia{
+    width: 79vh;
+    border-radius: 10px;
+    z-index: 2;
+    top: -97px;
+    position: absolute;
+    right: -134px;
+}
+
+.img-radiogragia figure img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+/*++++++++++++++ SECCIONES +++++++++++++++++++++++++*/
+/*++++++++++++++ SECCIONES +++++++++++++++++++++++++*/
+/*++++++++++++++ SECCIONES +++++++++++++++++++++++++*/
+
+.secciones .seccion{
+    width: 100%;
+    height: calc(100vh - 80px);
+}
+
+
+/*++++++++++++++ SECCION QUE HACEMOS +++++++++++++++++++++++++*/
+
+.que-hacemos{
+    background: #00AFEF;
+    display: flex;
+    justify-content: center;
+    color: #031147;
+}
+
+.content-que-hacemos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1140px;
+}
+
+.content-que-hacemos div{
+    flex: 1;
+}
+
+.content-que-hacemos div h2{
+    font-size: 30px;
+}
+
+.content-que-hacemos div p{
+    font-size: 14px;
+}
+
+.cont-circle-darkblue{
+    height: 100%;
+    position: relative;
+}
+
+.darkblue-circle{
+    background: #06114A;
+    position: absolute;
+    height: 50vh;
+    width: 50vh;
+    left: 0px;
+    top: calc(50% - 480px/2 + 36px);
+    border-radius: 1000px;
+    z-index: 1;
+}
+
+.img-radiografia-dient{
+    position: absolute;
+    left: -10px;
+    top: calc(50% - 287px/2 + 36px);
+    width: 350px;
+    z-index: 2;
+}
+
+.img-radiografia-dient figure{
+    width: 100%;
+}
+
+.img-radiografia-dient figure img{
+    width: 100%;
+    border-radius: 25px;
+}
+
+/*++++++++++++++ SECCION SUCURSALES +++++++++++++++++++++++++*/
+
+.sucursales{
+    background: #06114A;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 60px 0px;
+}
+
+
+.sucursales h2{
+    font-size: 35px;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.content-sucursales{
+    width: 1140px;
+    text-align: center;
+}
+
+.contenedor-box-sucursales{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sucursal{
+    width: 330px;
+    margin: 10px 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 30px;
+    border-radius: 20px;
+}
+
+.sucursal i{
+    font-size: 30px;
+    color: #00AFEF;
+}
+
+.txt-sucursal{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.nombre-sucursal{
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.direccion-sucursal{
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.redes{
+    position: relative;
+}
+.cont-redes{
+    display: flex;
+    flex-direction: row;
+}
+
+.redes{
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+}
+
+.redes i{
+    padding-right: 5px;
+    font-size: 15px;
+}
+
+.redes a{
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+}
+
+/*++++++++++++++ SECCION Contacto +++++++++++++++++++++++++*/
+
+.contacto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #848688;
+    color: #031147;
+}
+
+.contacto h2{
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.txt-contacto {
+    margin-bottom: 25px;
+}
+
+.txt-contacto p{
+    font-size: 17px;
+}
+
+.content-contacto{
+    width: 1000px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.content-contacto form{
+    width: 100%;
+    color: #fff;
+}
+
+.cont-inputs{
+    display: flex;
+    text-align: left;
+}
+
+.cont-inputs div{
+    flex: 1;
+    margin-bottom: 8px;
+    
+}
+
+.cont-inputs label{
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 20px;
+}
+
+.cont-inputs input{
+    display: block;
+    width: 90%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1.5px solid #031147;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.txt-area textarea{
+    display: block;
+    width: 95%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1.5px solid #031147;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn-sub{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.btn-sub div{
+    width: 400px !important;
+    flex: none !important;
+}
+.btn-submit{
+    background: #031147 !important;
+    color: #fff !important;
+    font-size: 16px !important;
+}
+
+
+@media only screen and (max-width: 1140px) {
+    .box-container{
+        width: 980px;
+    }
+
+    .content-hero {
+        width: 980px;
+    }
+
+    .blue-circle {
+        height: 65vh;
+        width: 65vh;
+        top: calc(50% - 450px/2 + 36px);
+    }
+
+    .img-radiogragia {
+        width: 70vh;
+        top: -40px;
+        right: -84px;
+    }
+
+    .content-que-hacemos {
+        width: 980px;
+    }
+
+    .content-sucursales {
+        width: 950px;
+    }
+
+    .sucursales {
+        height: auto !important;
+    }
+
+    .content-contacto {
+        width: 900px;
+    }
+
+}
+
+@media only screen and (max-width: 980px) {
+
+    .menu-container {
+        display: block;
+        justify-content: initial;
+        align-self: initial;
+        padding: 0px;
+    }
+
+    nav {
+        height: 100vh;
+        width: 40vh;
+        display: none;
+        align-items: initial;
+        position: fixed;
+        align-self: initial;
+        background: #F3F3F3;
+        margin-top: 80px;
+        z-index: -1;
+        box-shadow: 0 8px 17px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+        transition: .9s ease-in-out all;
+    }
+
+    .cont-logo {
+        width: 5rem;
+    }
+
+    .cont-navigators {
+        display: block;
+        height: auto;
+    }
+
+    .box-container{
+        width: 770px;
+    }
+
+    .content-hero {
+        width: 770px;
+    }
+
+    .txt-hero h1 {
+        font-size: 65px;
+    }
+
+    .txt-hero h2 {
+        font-size: 40px;
+    }
+
+    .blue-circle {
+        height: 47vh;
+        width: 47vh;
+        top: calc(50% - 330px/2 + 36px);
+    }
+
+    .img-radiogragia {
+        width: 36vh;
+        top: -3px;
+        right: -43px;
+    }
+
+    .content-que-hacemos {
+        width: 770px;
+    }
+
+    .darkblue-circle {
+        height: 35vh;
+        width: 35vh;
+        top: calc(50% - 330px/2 + 36px);
+    }
+    
+    .img-radiografia-dient {
+        top: calc(50% - 211px/2 + 36px);
+        width: 315px;
+    }
+
+    .content-sucursales {
+        width: 750px;
+    }
+
+    .sucursales {
+        height: auto !important;
+    }
+
+    .content-contacto {
+        width: 720px;
+    }
+
+}
+
+
+@media only screen and (max-width: 780px) {
+
+    .box-container{
+        width: 450px;
+    }
+
+    .content-hero {
+        width: 450px;
+        height: auto;
+        display: block;
+    }
+
+    .content-hero div {
+        text-align: center;
+    }
+
+    .txt-hero h1 {
+        font-size: 65px;
+    }
+
+    .txt-hero h2 {
+        font-size: 40px;
+    }
+
+    .cont-blue-circle {
+        height: 430px;
+        margin-top: 10px;
+    }
+
+    .blue-circle {
+        top: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .img-radiogragia {
+        margin: 0px auto;
+        right: 0px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .que-hacemos {
+        width: 100%;
+        height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content-que-hacemos {
+        width: 450px;
+        flex-direction: column;
+    }
+
+    .content-que-hacemos div {
+        flex: none;
+    }
+
+    .cont-circle-darkblue {
+        height: 430px;
+        width: 430px;
+        margin-bottom: 10px;
+        
+    }
+
+    .darkblue-circle {
+        height: 100%;
+        width: 100%;
+        top: 0px;
+    }
+    
+    .img-radiografia-dient {
+        margin: 0px auto;
+        right: 0px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .content-sucursales {
+        width: 430px;
+    }
+
+    .sucursales {
+        height: auto !important;
+    }
+
+    .content-contacto {
+        width: 430px;
+    }
+
+}
+
+@media only screen and (max-width: 800){
+    nav a{
+        font-size:  14px;
+        padding: 5px;
+
+    }
+}
+
+@media only screen and (max-width: 450){
+    nav a{
+        font-size:  12px;
+    }
+}
+
+
