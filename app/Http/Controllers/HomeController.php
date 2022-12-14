@@ -182,6 +182,7 @@ class HomeController extends Controller
         $amountWeekHuetamo = 0;
         $amountWeekMaravatio = 0;
         $amountWeekParacho = 0;
+        $amountWeekAltamirano = 0;
         $dt = Carbon::now();
         $dt = explode(" ", $dt);
         $dc = "";
