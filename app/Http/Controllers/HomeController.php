@@ -37,6 +37,7 @@ class HomeController extends Controller
             $amountWeekMaravatio = $consults['amountWeekMaravatio'];
             $amountTodayMaravatio = $consults['amountTodayMaravatio'];
             $amountWeekParacho = $consults['amountWeekParacho'];
+            $amountWeekAltamirano = $consults['amountWeekAltamirano'];
             $consults = $consults['consults'];
             return view('home')->with(compact('ncw', 'nct', 'ncm', 'amountWeekHuetamo', 'amountTodayHuetamo', 'consults', 'amountWeekMaravatio', 'amountTodayMaravatio', 'amountWeekParacho'));
         }
