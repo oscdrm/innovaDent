@@ -167,6 +167,7 @@ class HomeController extends Controller
         $allConsultsHuetamo = Consult::where('surgery_id', '=', 1)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $allConsultsMaravatio = Consult::where('surgery_id', '=', 2)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $allConsultsParacho = Consult::where('surgery_id', '=', 4)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $allConsultsAltamirano = Consult::where('surgery_id', '=', 5)->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         
 
         if (session()->has('surgery')) {
@@ -242,6 +243,26 @@ class HomeController extends Controller
             }
             
         }
+
+
+        foreach($allConsultsAltamirano as $consultAlta){
+            if($consultAlta->dismount != true){
+                $amountWeekAltamirano = $amountWeekAltamirano + $consultAlta->amount;
+                $dc = $consultAlta->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    //$amountTodayMaravatio = $amountTodayMaravatio + $consultAlta->amount;
+                }
+            }else{
+                $amountWeekAltamirano = $amountWeekAltamirano - $consultAlta->amount;
+                $dc = $consultAlta->created_at;
+                $dc = explode(" ", $dc);
+                if($dt[0] == $dc[0]){
+                    //$amountTodayMaravatio = $amountTodayMaravatio - $consultAlta->amount;
+                }
+            }
+            
+        }
          
      
 
@@ -253,7 +274,8 @@ class HomeController extends Controller
                           'amountTodayHuetamo' => $amountTodayHuetamo,
                           'amountWeekMaravatio' => $amountWeekMaravatio,
                           'amountTodayMaravatio' => $amountTodayMaravatio,
-                          'amountWeekParacho' => $amountWeekParacho
+                          'amountWeekParacho' => $amountWeekParacho,
+                          'amountWeekAltamirano' => $amountWeekAltamirano
                         ];
         
         return $consultsArray;

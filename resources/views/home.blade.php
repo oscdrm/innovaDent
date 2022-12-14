@@ -98,6 +98,18 @@
                 </div>
         </div>
 
+
+        <div class="col-lg-3">
+            <div class="widget darkblue4-bg p-lg text-center shad">
+                    <div class="m-b-md">
+                        <i class="fa fa-dollar fa-4x"></i> <span style="font-size:55px;">{{$amountWeekAltamirano}}</span>
+                        <h3 class="font-bold no-margins">
+                            Corte de la semana Altamirano
+                        </h3>
+                    </div>
+                </div>
+        </div>
+
         <!--<div class="col-lg-3">
             <div class="widget darkblue3-bg p-lg text-center shad">
                     <div class="m-b-md">
