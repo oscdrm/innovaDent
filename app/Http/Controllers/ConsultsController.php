@@ -59,9 +59,17 @@ class ConsultsController extends Controller
         if(Auth::user()->role_id != 1){
             $surgery_id = Auth::user()->surgery_id;
             $surgeries = [$surgery_id];
-            $services = Concept::whereHas('surgeries', function($q) use($surgeries) {
-                $q->whereIn('surgery_id', $surgeries);
-            })->get();
+            //$services = Concept::whereHas('surgeries', function($q) use($surgeries) {
+            //    $q->whereIn('surgery_id', $surgeries);
+            //})->get();
+            $surgery = Surgery::find($surgery_id);
+            $services = $surgery->concepts;
+        }else{
+            if (session()->has('surgery')) {
+                $surgery_id = Session::get('surgery');
+                $surgery = Surgery::find($surgery_id);
+                $services = $surgery->concepts;
+            }
         }
 
         $surgeries = Surgery::all();
