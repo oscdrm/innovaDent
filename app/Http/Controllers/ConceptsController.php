@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Concept;
 use App\Surgery;
+use Session;
 
 class ConceptsController extends Controller
 {
@@ -15,7 +16,12 @@ class ConceptsController extends Controller
     
     public function index(){
 
-        $concepts = Concept::paginate(10);
+        $concepts = Concept::all();
+        if (session()->has('surgery')) {
+            $surgery_id = Session::get('surgery');
+            $surgery = Surgery::find($surgery_id);
+            $concepts = $surgery->concepts;
+        }
         return view('concepts/concepts')->with(compact('concepts'));
     }
 
