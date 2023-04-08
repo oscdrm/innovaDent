@@ -14,7 +14,11 @@
     if($role_id == 3){
         $type_user = "Doctor";
         $role_name ="doctor";
-    }       
+    }  
+    if($role_id == 4){
+        $type_user = "Inspector";
+        $role_name ="inspector";
+    }  
 
 @endphp
 <div class="row wrapper border-bottom white-bg page-heading shad">
