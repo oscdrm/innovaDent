@@ -99,6 +99,7 @@
                                     <li><a href="/users/cashier/index">Cajeras</a></li>
                                     @if(auth()->user()->role->id == 1)
                                     <li><a href="/users/admin/index">Administradores</a></li>
+                                    <li><a href="/users/inspector/index">Inspectores</a></li>
                                     @endif    
                                 @endif
                                 <li><a href="/users/doctor/index">Medicos</a></li>

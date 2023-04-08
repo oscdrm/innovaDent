@@ -31,6 +31,11 @@ class UsersController extends Controller
             $role_id = 3;
         }
 
+        if($role == 'inspector' || $role == 'Inspector'){
+            $role_id = 4;
+        }
+
+
         $users = User::where('role_id', '=', $role_id)->paginate(10);
         return view('users/users')->with(compact('users', 'role_id'));
     }
@@ -48,6 +53,10 @@ class UsersController extends Controller
 
         if($role == 'doctor' || $role == 'Doctor'){
             $role_id = 3;
+        }
+
+        if($role == 'inspector' || $role == 'Inspector'){
+            $role_id = 4;
         }
 
         $surgeries = Surgery::all();
@@ -70,6 +79,9 @@ class UsersController extends Controller
             $role_id = 3;
         }
 
+        if($role == 'inspector' || $role == 'Inspector'){
+            $role_id = 4;
+        }
          //Messages
          $messages = [
             'required' => 'Es necesario ingresar un valor para el campo :attribute',
@@ -165,6 +177,11 @@ class UsersController extends Controller
         if($role == 'doctor' || $role == 'Doctor'){
             $role_id = 3;
         }
+
+        if($role == 'inspector' || $role == 'Inspector'){
+            $role_id = 4;
+        }
+
         $surgeries = Surgery::all();
         $user = User::find($id);
         $add = null;

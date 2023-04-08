@@ -54,7 +54,6 @@ class ConsultsController extends Controller
     public function create()
     {
         $patients = Patient::all();
-        $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get();
         $services = Concept::all();
         if(Auth::user()->role_id != 1){
             $surgery_id = Auth::user()->surgery_id;
@@ -71,7 +70,7 @@ class ConsultsController extends Controller
                 $services = $surgery->concepts;
             }
         }
-
+        $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get()->where('surgery_id', '=', $surgery_id);
         $surgeries = Surgery::all();
         $payments = PaymentMethod::all();
         return view('consults.create')->with(compact('services', 'doctors', 'patients', 'payments', 'surgeries'));
@@ -159,7 +158,8 @@ class ConsultsController extends Controller
         
         if(Auth::user()->role_id != 1){
             $surgery_id = Auth::user()->surgery_id;
-            $services = Concept::where('surgery_id', '=', $surgery_id)->get();  
+            $services = Concept::where('surgery_id', '=', $surgery_id)->get();
+            $doctors = User::where('role_id', '=', 3)->orWhere('username', 'admin')->get()->where('surgery_id', '=', $surgery_id);  
         }
 
         $surgeries = Surgery::all();
