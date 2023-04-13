@@ -114,7 +114,7 @@
                             @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4)
                                 <li><a href="/stores">Tiendas</a></li>
                                 <li><a href="/concepts">Servicios</a></li>
-                                @if(auth()->user()->role->id == 1)
+                                @if(auth()->user()->role->id == 1 || auth()->user()->role->id == 4)
                                 <li><a href="/earning">Corte de Caja</a></li>
                                 @endif
                             @endif
